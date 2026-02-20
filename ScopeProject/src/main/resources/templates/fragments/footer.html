@@ -1,35 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SCOPE INDIA</title>
-    <link href="https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="Css/style.css">
-</head>
+<html xmlns:th="http://www.thymeleaf.org">
 <body>
-    <footer class="footer">
-        <div class="footer-line"></div>
 
-        <div class="footer-content">
-            <p class="footer-locations">
-               We are located at <strong>Technopark TVM | Thampanoor TVM | Kochi, Kerala | Nagercoil, Tamil Nadu</strong> 
-            </p>
-            <p class="footer-contacts">
-                9745936073 (TPK) &nbsp;&nbsp;  &nbsp;&nbsp;
-                9745936073 (TVM) &nbsp;&nbsp;  &nbsp;&nbsp;
-                7592939481 (EKM) &nbsp;&nbsp;  &nbsp;&nbsp;
-                8075536185 (NGL) &nbsp;&nbsp;  &nbsp;&nbsp;
-                <a href="mailto:info@scopeindia.org">info@scopeindia.org</a>
-            </p>
+<div th:fragment="footer">
 
-            <p class="footer-rights">
-               All Rights Reserved &nbsp;&nbsp;  &nbsp;&nbsp;
-               <a href="https://www.suffixesolutions.com/"><strong>SCOPE INDIA & SUFFIX SOLUTIONS PRIVATE LIMITED</strong></a>&nbsp;&nbsp;  &nbsp;&nbsp;
-               © 2007-2025  &nbsp;&nbsp;  |&nbsp;&nbsp;&nbsp;&nbsp; 
-               <a href="https://scopeindia.org/privacy-policy.html">Privacy Policy </a>&nbsp;&nbsp;|&nbsp;&nbsp; 
-               <a href="https://scopeindia.org/blog.html">Blog</a>
+    <footer class="footer-wrapper">
+
+        <!-- ===== FOOTER TOP ===== -->
+        <div class="footer-top">
+
+            <!-- Brand Column -->
+            <div class="footer-brand">
+                <h4>SCOPE INDIA</h4>
+                <p>
+                    Center for Software, Networking &amp; Cloud Education. 18+ years of industrial
+                    excellence. Powered by Suffix E Solutions — where careers begin.
+                </p>
+                <div style="margin-top: 20px; display: flex; gap: 10px;">
+                    <a href="#" style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem; transition: color 0.3s;"
+                       onmouseover="this.style.color='#f5c400'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Instagram</a>
+                    <span style="color: rgba(255,255,255,0.2);">|</span>
+                    <a href="#" style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem; transition: color 0.3s;"
+                       onmouseover="this.style.color='#f5c400'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">YouTube</a>
+                    <span style="color: rgba(255,255,255,0.2);">|</span>
+                    <a href="#" style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem; transition: color 0.3s;"
+                       onmouseover="this.style.color='#f5c400'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">LinkedIn</a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-col">
+                <h5>Quick Links</h5>
+                <ul>
+                    <li><a th:href="@{/}">Home</a></li>
+                    <li><a th:href="@{/courses}">Courses</a></li>
+                    <li><a th:href="@{/placements}">Placements</a></li>
+                    <li><a th:href="@{/about}">About Us</a></li>
+                    <li><a th:href="@{/reviews}">Reviews</a></li>
+                    <li><a th:href="@{/faq}">FAQ</a></li>
+                    <li><a th:href="@{/contact}">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Locations -->
+            <div class="footer-col">
+                <h5>Our Locations</h5>
+                <div class="footer-locations">
+                    <div class="location-item">
+                        <span class="location-dot"></span>
+                        <span>Technopark, Thiruvananthapuram</span>
+                    </div>
+                    <div class="location-item">
+                        <span class="location-dot"></span>
+                        <span>Thampanoor, Thiruvananthapuram</span>
+                    </div>
+                    <div class="location-item">
+                        <span class="location-dot"></span>
+                        <span>Kochi, Kerala</span>
+                    </div>
+                    <div class="location-item">
+                        <span class="location-dot"></span>
+                        <span>Nagercoil, Tamil Nadu</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
-    </footer>  
+
+        <!-- Divider -->
+        <div class="footer-divider"></div>
+
+        <!-- ===== FOOTER BOTTOM ===== -->
+        <div class="footer-bottom">
+
+            <!-- Contact Links -->
+            <div class="footer-contacts">
+                <a href="tel:9745936073">📞 9745936073 (TPK)</a>
+                <a href="tel:9745936073">📞 9745936073 (TVM)</a>
+                <a href="tel:7592939481">📞 7592939481 (EKM)</a>
+                <a href="tel:8075536185">📞 8075536185 (NGL)</a>
+                <a href="mailto:info@scopeindia.org">✉ info@scopeindia.org</a>
+            </div>
+
+            <!-- Copyright -->
+            <p class="copyright-text">
+                © 2007–2025 SCOPE INDIA &amp; SUFFIX SOLUTIONS PRIVATE LIMITED
+            </p>
+
+        </div>
+
+    </footer>
+
+</div>
+
 </body>
 </html>

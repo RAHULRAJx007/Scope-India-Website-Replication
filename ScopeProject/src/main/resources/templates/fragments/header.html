@@ -1,39 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SCOPE INDIA</title>
-  <link href="https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="Css/style.css">
-</head>
-<body style="background-color: #050f38;">
-  <img class="bg-image">
-  <header class="main-header">
-   <div class="container-header">
-    <img src="Assets\scopeindialogo.jpg" alt="Scope India Logo" class="logo">
-    <img src="Assets\google-rating.webp" alt="Google Rating" class="google-rating">
-    <nav class="navbar">
-      <ul>
-        <li><a href="#" class="active">HERO</a></li>
-        <li><a href="#">COURSES</a></li>
-        <li><a href="#" class="highlight">REGISTRATION</a></li>
-        <li><a href="#">PLACEMENTS</a></li>
-        <li><a href="#">ABOUT US</a></li>
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">REVIEWS</a></li>
-        <li><a href="#">CONTACT US</a></li>
-      </ul>
-    </nav>
-   </div>
-  </header>
-  <div class="social-block">
-    <div class="socials">
-          <a href="#" class="photos"><img src="Assets\imagesicon.png" alt="Top"></a>
-          <a href="#" class="instagram"><img src="Assets\Instagram-icon.png" alt="Instagram"></a>
-          <a href="#" class="call"><img src="Assets\call-icon.png" alt="Call"></a>
-          <a href="#" class="whatsApp"><img src="Assets\whatsapp-icon.png" alt="WhatsApp"></a>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="header">
+
+    <!-- ===== MAIN HEADER ===== -->
+    <header class="main-header">
+        <div class="container-header">
+
+            <!-- Logo -->
+            <a th:href="@{/}">
+                <img th:src="@{/images/scopeindialogo.jpg}" alt="Scope India Logo" id="logo-img">
+            </a>
+
+            <!-- Navigation -->
+            <nav class="navbar-custom">
+                <ul>
+                    <li><a th:href="@{/}"           th:classappend="${activePage == 'home'         ? 'active' : ''}">Home</a></li>
+                    <li><a th:href="@{/courses}"    th:classappend="${activePage == 'courses'      ? 'active' : ''}">Courses</a></li>
+                    <li><a th:href="@{/placements}" th:classappend="${activePage == 'placements'   ? 'active' : ''}">Placements</a></li>
+                    <li><a th:href="@{/about}"      th:classappend="${activePage == 'about'        ? 'active' : ''}">About</a></li>
+                    <li><a th:href="@{/faq}"        th:classappend="${activePage == 'faq'          ? 'active' : ''}">FAQ</a></li>
+                    <li><a th:href="@{/reviews}"    th:classappend="${activePage == 'reviews'      ? 'active' : ''}">Reviews</a></li>
+                    <li><a th:href="@{/contact}"    th:classappend="${activePage == 'contact'      ? 'active' : ''}">Contact</a></li>
+                    <li><a th:href="@{/registration}" class="highlight">Register Now</a></li>
+                </ul>
+            </nav>
+
+            <!-- Google Rating (right) -->
+            <img th:src="@{/images/google-rating.webp}" alt="Google Rating" id="rating-img">
+
+        </div>
+    </header>
+
+    <!-- ===== SOCIAL SIDEBAR ===== -->
+    <div class="social-block">
+        <a href="#" class="photos" title="Photos">
+            <img th:src="@{/images/imagesicon.png}" alt="Gallery">
+        </a>
+        <a href="#" class="instagram" title="Instagram">
+            <img th:src="@{/images/Instagram-icon.png}" alt="Instagram">
+        </a>
+        <a href="tel:9745936073" class="call" title="Call Us">
+            <img th:src="@{/images/call-icon.png}" alt="Call">
+        </a>
+        <a href="https://wa.me/919745936073" class="whatsApp" title="WhatsApp" target="_blank">
+            <img th:src="@{/images/whatsapp-icon.png}" alt="WhatsApp">
+        </a>
     </div>
-  </div>
+
+</div>
+
 </body>
 </html>
