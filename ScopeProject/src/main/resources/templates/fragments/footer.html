@@ -11,20 +11,18 @@
 
             <!-- Brand Column -->
             <div class="footer-brand">
-                <h4>SCOPE INDIA</h4>
-                <p>
-                    Center for Software, Networking &amp; Cloud Education. 18+ years of industrial
-                    excellence. Powered by Suffix E Solutions — where careers begin.
-                </p>
-                <div style="margin-top: 20px; display: flex; gap: 10px;">
-                    <a href="#" style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem; transition: color 0.3s;"
-                       onmouseover="this.style.color='#f5c400'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Instagram</a>
-                    <span style="color: rgba(255,255,255,0.2);">|</span>
-                    <a href="#" style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem; transition: color 0.3s;"
-                       onmouseover="this.style.color='#f5c400'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">YouTube</a>
-                    <span style="color: rgba(255,255,255,0.2);">|</span>
-                    <a href="#" style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem; transition: color 0.3s;"
-                       onmouseover="this.style.color='#f5c400'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">LinkedIn</a>
+                <img th:src="@{/images/scopeindialogo.jpg}" alt="Scope India" class="footer-logo">
+                <p>Center for Software, Networking &amp; Cloud Education. 18+ years of industrial excellence, powered by Suffix E Solutions.</p>
+                <div class="footer-socials">
+                    <a href="#" class="footer-social-link" title="Instagram">
+                        <img th:src="@{/images/Instagram-icon.png}" alt="Instagram">
+                    </a>
+                    <a href="#" class="footer-social-link" title="WhatsApp">
+                        <img th:src="@{/images/whatsapp-icon.png}" alt="WhatsApp">
+                    </a>
+                    <a href="#" class="footer-social-link" title="Photos">
+                        <img th:src="@{/images/imagesicon.png}" alt="Gallery">
+                    </a>
                 </div>
             </div>
 
@@ -65,6 +63,33 @@
                 </div>
             </div>
 
+            <!-- Contact Column -->
+            <div class="footer-col">
+                <h5>Contact Us</h5>
+                <div class="footer-contact-list">
+                    <a href="tel:9745936073" class="footer-contact-item">
+                        <span class="footer-contact-label">TPK</span>
+                        <span>9745936073</span>
+                    </a>
+                    <a href="tel:9745936073" class="footer-contact-item">
+                        <span class="footer-contact-label">TVM</span>
+                        <span>9745936073</span>
+                    </a>
+                    <a href="tel:7592939481" class="footer-contact-item">
+                        <span class="footer-contact-label">EKM</span>
+                        <span>7592939481</span>
+                    </a>
+                    <a href="tel:8075536185" class="footer-contact-item">
+                        <span class="footer-contact-label">NGL</span>
+                        <span>8075536185</span>
+                    </a>
+                    <a href="mailto:info@scopeindia.org" class="footer-contact-item footer-email">
+                        <span class="footer-contact-label">✉</span>
+                        <span>info@scopeindia.org</span>
+                    </a>
+                </div>
+            </div>
+
         </div>
 
         <!-- Divider -->
@@ -72,21 +97,8 @@
 
         <!-- ===== FOOTER BOTTOM ===== -->
         <div class="footer-bottom">
-
-            <!-- Contact Links -->
-            <div class="footer-contacts">
-                <a href="tel:9745936073">📞 9745936073 (TPK)</a>
-                <a href="tel:9745936073">📞 9745936073 (TVM)</a>
-                <a href="tel:7592939481">📞 7592939481 (EKM)</a>
-                <a href="tel:8075536185">📞 8075536185 (NGL)</a>
-                <a href="mailto:info@scopeindia.org">✉ info@scopeindia.org</a>
-            </div>
-
-            <!-- Copyright -->
-            <p class="copyright-text">
-                © 2007–2025 SCOPE INDIA &amp; SUFFIX SOLUTIONS PRIVATE LIMITED
-            </p>
-
+            <p class="copyright-text">© 2007–2026 SCOPE INDIA &amp; SUFFIX SOLUTIONS PRIVATE LIMITED. All rights reserved.</p>
+            <a th:href="@{/registration}" class="footer-cta">Register Now →</a>
         </div>
 
     </footer>
