@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SCOPE INDIA | Your Career Partner</title>
+    <meta name="description" content="India's premier IT training institute — Software, DevOps, AI, Cloud, Testing. 18+ years, 100% placement support.">
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
-    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link th:href="@{/css/index.css}" rel="stylesheet">
 </head>
 <body>
 
@@ -34,18 +35,18 @@
                 Expert-led, industry-backed education with 100% placement support.
             </p>
 
-            <!-- Stats -->
+            <!-- Stats — data-target drives the JS counter -->
             <div class="hero-stats">
                 <div class="stat-item">
-                    <h3>1,000+</h3>
+                    <h3 data-target="1000" data-suffix="+">1,000+</h3>
                     <p>Placed Per Year</p>
                 </div>
                 <div class="stat-item">
-                    <h3>15,000+</h3>
+                    <h3 data-target="15000" data-suffix="+">15,000+</h3>
                     <p>Alumni Strong</p>
                 </div>
                 <div class="stat-item">
-                    <h3>18+</h3>
+                    <h3 data-target="18" data-suffix="+">18+</h3>
                     <p>Years Experience</p>
                 </div>
             </div>
@@ -55,41 +56,65 @@
                 <a th:href="@{/registration}" class="btn-gold">Enroll Now →</a>
                 <a th:href="@{/courses}" class="btn-outline">Explore Courses</a>
             </div>
+
+            <!-- Scroll hint mouse icon -->
+            <div class="scroll-hint">
+                <div class="scroll-hint-mouse">
+                    <div class="scroll-hint-dot"></div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- ===== PARTNERS / CERTIFICATIONS SECTION ===== -->
-    <section class="partners-section">
-        <h3>Get Globally Certified with Scope India</h3>
-        <div class="logos-track">
-            <img th:src="@{/images/microsoftlogo.png}" alt="Microsoft">
-            <img th:src="@{/images/IBMlogo.png}"       alt="IBM">
-            <img th:src="@{/images/GoogleLogo.png}"    alt="Google">
-            <img th:src="@{/images/AmazonLogo.png}"    alt="Amazon">
-            <img th:src="@{/images/redhatlogo.png}"    alt="Red Hat">
-            <img th:src="@{/images/istqblogo.png}"     alt="ISTQB">
-            <img th:src="@{/images/CiscoLogo.png}"     alt="Cisco">
-            <img th:src="@{/images/GitHubLogo.png}"    alt="GitHub">
-        </div>
-    </section>
+<!-- ================= PARTNERS SECTION ================= -->
+<section class="partners-section">
+
+    <p class="partners-label">
+        Get Globally Certified with Scope India
+    </p>
+
+    <div class="logos-track">
+
+        <img th:src="@{/images/microsoftlogo.png}" class="logo microsoft" alt="Microsoft">
+
+        <img th:src="@{/images/IBMlogo.png}" class="logo ibm" alt="IBM">
+
+        <img th:src="@{/images/GoogleLogo.png}" class="logo google" alt="Google">
+
+        <img th:src="@{/images/AmazonLogo.png}" class="logo amazon" alt="Amazon">
+
+        <img th:src="@{/images/redhatlogo.png}" class="logo redhat" alt="RedHat">
+
+        <img th:src="@{/images/istqblogo.png}" class="logo istqb" alt="ISTQB">
+
+        <img th:src="@{/images/CiscoLogo.png}" class="logo cisco" alt="Cisco">
+
+        <img th:src="@{/images/GitHubLogo.png}" class="logo github" alt="GitHub">
+
+    </div>
+
+</section>
+
+    <!-- ============================================================ -->
+    <div class="section-sep"></div>
 
     <!-- ===== CHOOSE YOUR CAREER SECTION ===== -->
     <section class="career-section">
         <div style="max-width: 1300px; margin: 0 auto;">
 
-            <div class="section-label">What We Offer</div>
-            <h2 class="section-title">Choose Your <span class="gold">Career Path</span></h2>
+            <div class="section-label reveal">What We Offer</div>
+            <h2 class="section-title reveal delay-1">Choose Your <span class="gold">Career Path</span></h2>
 
             <div class="career-grid">
 
                 <!-- LEFT: Intro + Course List -->
                 <div>
-                    <p class="career-intro">
+                    <p class="career-intro reveal delay-2">
                         Spearheaded by working professionals of Suffix E Solutions in flexible learning mode,
                         we provide quality training with <span>100% placement support</span> — online and in-person.
                     </p>
 
-                    <div class="courses-grid">
+                    <div class="courses-grid reveal delay-2">
                         <div class="course-item">Software Programming</div>
                         <div class="course-item">DevOps</div>
                         <div class="course-item">Data Science &amp; AI</div>
@@ -102,53 +127,54 @@
                         <div class="course-item">Digital Marketing</div>
                     </div>
 
-                    <div style="margin-top: 32px;">
-                        <a th:href="@{/courses}" class="btn-gold" style="display: inline-flex;">View All Courses →</a>
+                    <div style="margin-top: 32px;" class="reveal delay-3">
+                        <a th:href="@{/courses}" class="btn-gold" style="display:inline-flex;">View All Courses →</a>
                     </div>
                 </div>
 
                 <!-- RIGHT: Info Cards -->
-                <div class="info-cards-grid">
-
+                <div class="info-cards-grid reveal-right">
                     <div class="info-card">
                         <span class="card-icon">🖥️</span>
                         <h3>Classes</h3>
                         <p>Learn anywhere, anytime. Online &amp; in-person classes to fit your schedule.</p>
                     </div>
-
                     <div class="info-card">
                         <span class="card-icon">🚀</span>
                         <h3>Placement</h3>
                         <p>Guaranteed success with 100% placement support from our dedicated team.</p>
                     </div>
-
                     <div class="info-card">
                         <span class="card-icon">🏭</span>
                         <h3>Training</h3>
                         <p>Practical, hands-on sessions led by working professionals at Suffix E Solutions.</p>
                     </div>
-
                     <div class="info-card">
                         <span class="card-icon">🎓</span>
                         <h3>Internship</h3>
                         <p>OJT (On the Job Training) with experience certificates upon completion.</p>
                     </div>
-
                 </div>
+
             </div>
         </div>
     </section>
 
+    <!-- ============================================================ -->
+    <div class="section-sep"></div>
+
     <!-- ===== DATA SCIENCE & AI SECTION ===== -->
     <section class="ai-section">
 
-        <h2 class="ai-main-title">Match the Pace of <span>Artificial Intelligence</span></h2>
-        <a th:href="@{/courses}" class="ai-cta-badge">Study AI From SCOPE INDIA</a>
+        <h2 class="ai-main-title reveal">Match the Pace of <span>Artificial Intelligence</span></h2>
+        <div class="reveal delay-1">
+            <a th:href="@{/courses}" class="ai-cta-badge">Study AI From SCOPE INDIA</a>
+        </div>
 
         <div class="ai-content-grid">
 
             <!-- LEFT: Course Banner -->
-            <div class="ai-banner">
+            <div class="ai-banner reveal-left">
                 <div class="ai-banner-inner">
                     <img th:src="@{/images/robo.jpg}" alt="Data Science &amp; AI" class="ai-robo-img">
                     <div class="ai-banner-overlay">
@@ -159,7 +185,7 @@
                         </div>
                         <div class="ai-banner-bottom">
                             <div class="ai-days-box">
-                                <span class="ai-hourglass">&#x23F3;</span>
+                                <span class="ai-hourglass">⏳</span>
                                 <strong>180 DAYS<br>COURSE<br>WITH<br>INTERNSHIP</strong>
                             </div>
                             <a th:href="@{/registration}" class="ai-enroll-btn">ENROLL TODAY</a>
@@ -169,41 +195,44 @@
             </div>
 
             <!-- RIGHT: Topics Checklist -->
-            <div class="ai-topics-card">
+            <div class="ai-topics-card reveal-right">
                 <ul class="ai-topics-list">
-                    <li><span>&#x2714;</span> Python 3.12</li>
-                    <li><span>&#x2714;</span> SQL</li>
-                    <li><span>&#x2714;</span> Pandas</li>
-                    <li><span>&#x2714;</span> NumPy</li>
-                    <li><span>&#x2714;</span> Matplotlib and Seaborn</li>
-                    <li><span>&#x2714;</span> Tableau</li>
-                    <li><span>&#x2714;</span> Excel &amp; Power BI</li>
-                    <li><span>&#x2714;</span> Django &amp; REST Services</li>
-                    <li><span>&#x2714;</span> Machine Learning</li>
-                    <li><span>&#x2714;</span> Deep Learning &amp; AI</li>
-                    <li><span>&#x2714;</span> English Language Training</li>
-                    <li><span>&#x2714;</span> Live Projects</li>
+                    <li><span>✔</span> Python 3.12</li>
+                    <li><span>✔</span> SQL</li>
+                    <li><span>✔</span> Pandas</li>
+                    <li><span>✔</span> NumPy</li>
+                    <li><span>✔</span> Matplotlib and Seaborn</li>
+                    <li><span>✔</span> Tableau</li>
+                    <li><span>✔</span> Excel &amp; Power BI</li>
+                    <li><span>✔</span> Django &amp; REST Services</li>
+                    <li><span>✔</span> Machine Learning</li>
+                    <li><span>✔</span> Deep Learning &amp; AI</li>
+                    <li><span>✔</span> English Language Training</li>
+                    <li><span>✔</span> Live Projects</li>
                 </ul>
             </div>
 
         </div>
 
-        <p class="ai-description">
+        <p class="ai-description reveal">
             Harness the capabilities of machine learning, deep learning, natural language processing and uncover hidden patterns,
             optimize processes, and drive smarter decision-making.
         </p>
 
     </section>
 
+    <!-- ============================================================ -->
+    <div class="section-sep"></div>
+
     <!-- ===== FULL STACK SECTION ===== -->
     <section class="fullstack-section">
 
-        <h2 class="fullstack-title">Become a <span>Full Stack Developer</span></h2>
+        <h2 class="fullstack-title reveal">Become a <span>Full Stack Developer</span></h2>
 
         <div class="fullstack-grid">
 
             <!-- LEFT: Pathway Card -->
-            <div class="fullstack-card">
+            <div class="fullstack-card reveal-left">
                 <h4>Your pathway includes</h4>
                 <ul class="pathway-list">
                     <li>
@@ -228,38 +257,36 @@
                         </div>
                     </li>
                 </ul>
-                <a th:href="@{/registration}" class="btn-gold" style="display:inline-flex; margin-top: 30px;">Enroll Now →</a>
+                <a th:href="@{/registration}" class="btn-gold" style="display:inline-flex; margin-top:30px;">Enroll Now →</a>
             </div>
 
             <!-- RIGHT: Banner Image -->
-            <div class="fullstack-img-wrap">
+            <div class="fullstack-img-wrap reveal-right">
                 <img th:src="@{/images/fullstack.webp}" alt="Become a Full Stack Developer" class="fullstack-img">
             </div>
 
         </div>
     </section>
 
+    <!-- ============================================================ -->
+    <div class="section-sep"></div>
+
     <!-- ===== SOFTWARE TESTING SECTION ===== -->
     <section class="testing-section">
 
-        <!-- Background accent -->
         <div class="testing-bg-accent"></div>
 
-        <!-- Header -->
-        <div class="testing-header">
+        <div class="testing-header reveal">
             <p class="testing-eyebrow">No Coding Prowess? Not a Problem</p>
             <h2 class="testing-title">Software Testing is the <span>Gateway</span> to Your IT Career</h2>
             <p class="testing-subtitle">Start your tech journey today with <strong>SCOPE INDIA</strong> and make your mark in the IT industry.</p>
         </div>
 
-        <!-- Content Grid -->
         <div class="testing-grid">
 
             <!-- LEFT: Course Info Cards -->
-            <div class="testing-left">
-
+            <div class="testing-left reveal-left">
                 <div class="testing-badge">Manual &amp; Automation Testing</div>
-
                 <div class="testing-info-card">
                     <div class="testing-info-top">
                         <span class="testing-tag">Join Our Initiative Today</span>
@@ -273,7 +300,6 @@
                         <a th:href="@{/registration}" class="testing-enroll-btn">Enroll Now →</a>
                     </div>
                 </div>
-
                 <div class="testing-mode-card">
                     <span class="testing-mode-icon">🖥️</span>
                     <div>
@@ -281,12 +307,10 @@
                         <p>Flexible learning modes to fit your schedule</p>
                     </div>
                 </div>
-
             </div>
 
             <!-- RIGHT: Checklist -->
-            <div class="testing-right">
-
+            <div class="testing-right reveal-right">
                 <ul class="testing-topics">
                     <li><span>✔</span> Manual Testing</li>
                     <li><span>✔</span> Automation Testing</li>
@@ -295,32 +319,32 @@
                     <li><span>✔</span> Flexible Schedules</li>
                     <li><span>✔</span> On Job Training</li>
                 </ul>
-
                 <div class="testing-contact-strip">
                     <span>📞 9745936073</span>
-                    <span>|</span>
+                    <span class="sep-pipe">|</span>
                     <span>📞 7592939481</span>
-                    <a th:href="@{/courses}" class="btn-outline" style="font-size:12px; padding: 10px 20px;">View Course →</a>
+                    <a th:href="@{/courses}" class="btn-outline" style="font-size:12px; padding:10px 20px;">View Course →</a>
                 </div>
-
             </div>
 
         </div>
     </section>
+
+    <!-- ============================================================ -->
+    <div class="section-sep"></div>
 
     <!-- ===== DEVOPS SECTION ===== -->
     <section class="devops-section">
 
         <div class="devops-bg-accent"></div>
 
-        <h2 class="devops-title">Career with <span>DevOps</span></h2>
+        <h2 class="devops-title reveal">Career with <span>DevOps</span></h2>
 
         <div class="devops-grid">
 
             <!-- LEFT: Info Card -->
-            <div class="devops-card">
+            <div class="devops-card reveal-left">
                 <div class="devops-card-badge">Master DevOps From SCOPE INDIA</div>
-
                 <ul class="devops-topics">
                     <li><span>✔</span> Build Applications</li>
                     <li><span>✔</span> Deploy Applications</li>
@@ -331,7 +355,6 @@
                     <li><span>✔</span> Cloud Management</li>
                     <li><span>✔</span> Deployment Strategies</li>
                 </ul>
-
                 <div class="devops-tools-strip">
                     <span class="devops-tool-tag">Docker</span>
                     <span class="devops-tool-tag">Kubernetes</span>
@@ -342,12 +365,11 @@
                     <span class="devops-tool-tag">Nexus</span>
                     <span class="devops-tool-tag">Grafana</span>
                 </div>
-
-                <a th:href="@{/registration}" class="btn-gold" style="display:inline-flex; margin-top: 28px;">Enroll Now →</a>
+                <a th:href="@{/registration}" class="btn-gold" style="display:inline-flex; margin-top:28px;">Enroll Now →</a>
             </div>
 
             <!-- RIGHT: Banner Image -->
-            <div class="devops-img-wrap">
+            <div class="devops-img-wrap reveal-right">
                 <div class="devops-duration-badge">
                     <span class="devops-duration-num">6</span>
                     <span class="devops-duration-label">MONTH<br>COURSE</span>
@@ -358,17 +380,20 @@
         </div>
     </section>
 
+    <!-- ============================================================ -->
+    <div class="section-sep"></div>
+
     <!-- ===== POWER BI SECTION ===== -->
     <section class="powerbi-section">
 
         <div class="powerbi-bg-accent"></div>
 
-        <h2 class="powerbi-title">Match the Pace of <span>Business Intelligence</span></h2>
+        <h2 class="powerbi-title reveal">Match the Pace of <span>Business Intelligence</span></h2>
 
         <div class="powerbi-grid">
 
             <!-- LEFT: Banner Image -->
-            <div class="powerbi-img-wrap">
+            <div class="powerbi-img-wrap reveal-left">
                 <div class="powerbi-duration-badge">
                     <span class="powerbi-duration-num">3</span>
                     <span class="powerbi-duration-label">MONTH<br>COURSE</span>
@@ -377,11 +402,9 @@
             </div>
 
             <!-- RIGHT: Info Card -->
-            <div class="powerbi-card">
+            <div class="powerbi-card reveal-right">
                 <div class="powerbi-card-badge">Study Power BI From SCOPE INDIA</div>
-
                 <p class="powerbi-tagline">From Insights to Impact — Power BI Training Course at SCOPE INDIA</p>
-
                 <ul class="powerbi-topics">
                     <li><span>✔</span> Transform Raw Data</li>
                     <li><span>✔</span> Interactive Dashboards</li>
@@ -390,25 +413,26 @@
                     <li><span>✔</span> Flexible Schedules</li>
                     <li><span>✔</span> On Job Training</li>
                 </ul>
-
                 <div class="powerbi-contact-strip">
                     <span>📞 9745936073</span>
-                    <span>|</span>
+                    <span class="sep-pipe">|</span>
                     <span>📞 7592939481</span>
                 </div>
-
-                <a th:href="@{/registration}" class="btn-gold" style="display:inline-flex; margin-top: 8px;">Enroll Now →</a>
+                <a th:href="@{/registration}" class="btn-gold" style="display:inline-flex; margin-top:8px;">Enroll Now →</a>
             </div>
 
         </div>
     </section>
+
+    <!-- ============================================================ -->
+    <div class="section-sep"></div>
 
     <!-- ===== MISSION & VISION SECTION ===== -->
     <section class="mission-section">
 
         <div class="mission-bg-accent"></div>
 
-        <div class="mission-header">
+        <div class="mission-header reveal">
             <div class="section-label">Who We Are</div>
             <h2 class="section-title">Our Mission <span class="gold">&amp;</span> Vision</h2>
         </div>
@@ -416,7 +440,7 @@
         <div class="mission-grid">
 
             <!-- MISSION CARD -->
-            <div class="mission-card">
+            <div class="mission-card reveal-left">
                 <div class="mission-icon-wrap">
                     <span class="mission-icon">⚡</span>
                 </div>
@@ -435,7 +459,7 @@
             </div>
 
             <!-- VISION CARD -->
-            <div class="mission-card">
+            <div class="mission-card reveal-right">
                 <div class="mission-icon-wrap">
                     <span class="mission-icon">👥</span>
                 </div>
@@ -460,6 +484,85 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+    /* ============================================================
+       SCROLL REVEAL — fires once when element enters viewport
+    ============================================================ */
+    (function () {
+        var targets = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        if (!targets.length) return;
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                if (e.isIntersecting) {
+                    e.target.classList.add('revealed');
+                    io.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        targets.forEach(function (el) { io.observe(el); });
+    })();
+
+    /* ============================================================
+       HERO STATS COUNTER — counts up when stats row visible
+    ============================================================ */
+    (function () {
+        var statsEl = document.querySelector('.hero-stats');
+        if (!statsEl) return;
+
+        function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+        function animateCount(el, target, suffix) {
+            var dur = 1600, startTs = null;
+            function step(now) {
+                if (!startTs) startTs = now;
+                var pct = Math.min((now - startTs) / dur, 1);
+                var val = Math.floor(easeOut(pct) * target);
+                el.textContent = (val >= 1000 ? val.toLocaleString() : val) + suffix;
+                if (pct < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+        }
+
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                if (e.isIntersecting) {
+                    document.querySelectorAll('.hero-stats .stat-item h3').forEach(function (h) {
+                        animateCount(h, parseInt(h.dataset.target) || 0, h.dataset.suffix || '');
+                    });
+                    io.disconnect();
+                }
+            });
+        }, { threshold: 0.5 });
+
+        io.observe(statsEl);
+    })();
+
+    /* ============================================================
+       SECTION SEPARATOR — match diamond bg to preceding section
+    ============================================================ */
+    (function () {
+        document.querySelectorAll('.section-sep').forEach(function (sep) {
+            var prev = sep.previousElementSibling;
+            if (!prev) return;
+            var bg = getComputedStyle(prev).backgroundColor;
+            sep.style.setProperty('--sep-bg', bg);
+        });
+    })();
+
+    /* ============================================================
+       SCROLL HINT — fades out on first scroll
+    ============================================================ */
+    (function () {
+        var hint = document.querySelector('.scroll-hint');
+        if (!hint) return;
+        window.addEventListener('scroll', function hide() {
+            hint.style.opacity = '0';
+            hint.style.pointerEvents = 'none';
+            window.removeEventListener('scroll', hide);
+        }, { passive: true });
+    })();
+    </script>
 
 </body>
 </html>
