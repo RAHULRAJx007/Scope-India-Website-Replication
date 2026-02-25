@@ -54,4 +54,10 @@ public class HomeController {
         model.addAttribute("activePage", "registration");
         return "registration";
     }
+    
+    @GetMapping("/login")
+    public String login(Model model) {
+        model.addAttribute("activePage", "login");
+        return "login";
+    }
 }

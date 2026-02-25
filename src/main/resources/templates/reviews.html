@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCOPE INDIA | Student Reviews &amp; Testimonials</title>
+    <meta name="description" content="Real student reviews for Scope India — hear what our 15,000+ alumni say about their training, placements and experience across Trivandrum, Kochi and Nagercoil.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/reviews.css}" rel="stylesheet">
+</head>
+<body>
+
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <!-- ===== HERO ===== -->
+    <section class="reviews-hero">
+        <div class="reviews-hero-bg"></div>
+        <div class="reviews-hero-content">
+            <span class="hero-eyebrow reveal">Real Students. Real Results.</span>
+            <h1 class="reviews-hero-title reveal delay-1">What Our <span class="gold-shimmer">Students Say</span></h1>
+            <p class="reviews-hero-sub reveal delay-2">Over 15,000 students trained. Here are their stories — sourced directly from Google and verified directories.</p>
+            <div class="rating-strip reveal delay-3">
+                <div class="rs-block">
+                    <div class="rs-stars">★★★★★</div>
+                    <div class="rs-num">4.9 / 5</div>
+                    <div class="rs-label">Google Rating</div>
+                </div>
+                <div class="rs-divider"></div>
+                <div class="rs-block">
+                    <div class="rs-num">633+</div>
+                    <div class="rs-label">Ratings &amp; Reviews</div>
+                </div>
+                <div class="rs-divider"></div>
+                <div class="rs-block">
+                    <div class="rs-num">15,000+</div>
+                    <div class="rs-label">Students Trained</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FILTER ===== -->
+    <section class="rv-filter-section">
+        <div class="rv-filter-inner">
+            <button class="filter-btn active" data-filter="all">All Reviews</button>
+            <button class="filter-btn" data-filter="trivandrum">Trivandrum</button>
+            <button class="filter-btn" data-filter="kochi">Kochi</button>
+            <button class="filter-btn" data-filter="nagercoil">Nagercoil</button>
+        </div>
+    </section>
+
+    <!-- ===== REVIEWS GRID ===== -->
+    <section class="reviews-section">
+        <div class="reviews-grid">
+
+            <div class="review-card rv-card-wide reveal" data-branch="trivandrum">
+                <div class="rc-top">
+                    <div class="rc-avatar" style="--av-color:#1a4a7a;">S</div>
+                    <div class="rc-meta"><div class="rc-name">Full Stack Student</div><div class="rc-branch">Trivandrum</div></div>
+                    <div class="rc-stars">★★★★★</div>
+                </div>
+                <div class="rc-course-tag">Python · HTML · CSS · AWS · Git</div>
+                <blockquote class="rc-text">"Fantastic class taken by very friendly faculties. Snekha miss taught us Python in a very professional and simple manner. She put in all her effort to clarify our doubts on various topics and also helped us in completing our project. When we started, Koshy sir gave us a proper introduction about the full course. The faculties Aakash sir, Sanjay sir, Haripriya maam and Vinod sir helped us in understanding concepts of HTML, CSS, Git, AWS etc. Overall it was a wonderful experience and I would recommend it to all those who expect a bright future in the IT industry."</blockquote>
+            </div>
+
+            <div class="review-card reveal delay-1" data-branch="trivandrum">
+                <div class="rc-top">
+                    <div class="rc-avatar" style="--av-color:#2d5a27;">A</div>
+                    <div class="rc-meta"><div class="rc-name">Akhil R.</div><div class="rc-branch">Trivandrum</div></div>
+                    <div class="rc-stars">★★★★★</div>
+                </div>
+                <div class="rc-course-tag">RHCE · AWS · CCNA</div>
+                <blockquote class="rc-text">"Completed RHCE, AWS and CCNA @scopeindiatvm. The classes are very good and all the staffs are working professionals. After completion of the course, I got placed in a company as Cloud Support Associate. Thank you team Scope India."</blockquote>
+                <div class="rc-placement"><span class="rc-placed-badge">✅ Placed</span><span class="rc-company">Cloud Support Associate</span></div>
+            </div>
+
+            <div class="review-card reveal delay-2" data-branch="trivandrum">
+                <div class="rc-top">
+                    <div class="rc-avatar" style="--av-color:#6b2d7a;">S</div>
+                    <div class="rc-meta"><div class="rc-name">Sreelakshmi A.</div><div class="rc-branch">Trivandrum</div></div>
+                    <div class="rc-stars">★★★★★</div>
+                </div>
+                <div class="rc-course-tag">Python · Data Science</div>
+                <blockquote class="rc-text">"Trainer is teaching the Python language very clearly and understandably. During offline classes I improved my programming skills due to the tasks given by the trainer. Thank you Haripriya mam for your great support. Thankyou @SCOPE INDIA TVM."</blockquote>
+            </div>
+
+            <div class="review-card reveal" data-branch="trivandrum">
+                <div class="rc-top">
+                    <div class="rc-avatar" style="--av-color:#7a3a1a;">M</div>
+                    <div class="rc-meta"><div class="rc-name">Mujeeb Rahman</div><div class="rc-branch">Trivandrum</div></div>
+                    <div class="rc-stars">★★★★★</div>
+                </div>
+                <div class="rc-course-tag">Java J2EE</div>
+                <blockquote class="rc-text">"I had a good experience with SCOPE INDIA Software training institute. I joined for Java J2EE course and completed with 100% satisfaction from experienced trainers who have years of experience in Java Development with live projects and 100% placement assistance. I recommend SCOPE INDIA as the best institute for Software courses in Trivandrum."</blockquote>
+            </div>
+
+            <div class="review-card reveal delay-1" data-branch="trivandrum">
+                <div class="rc-top">
+                    <div class="rc-avatar" style="--av-color:#1a5a6b;">R</div>
+                    <div class="rc-meta"><div class="rc-name">Rahul V.</div><div class="rc-branch">Trivandrum</div></div>
+                    <div class="rc-stars">★★★★★</div>
+                </div>
+                <div class="rc-course-tag">Java Full Stack</div>
+                <blockquote class="rc-text">"I recently completed Java Full Stack training from Scope India and I really enjoyed my time here. It's been a wonderful experience and the facilities are really helpful for enhancing our skills. I 100% recommend joining Scope India for developing your software skills."</blockquote>
+            </div>
+
+            <div class="review-card reveal delay-2" data-branch="trivandrum">
+                <div class="rc-top">
+                    <div class="rc-avatar" style="--av-color:#4a2a6b;">S</div>
+                    <div class="rc-meta"><div class="rc-name">Steni Jeyan</div><div class="rc-branch">Trivandrum</div></div>
+                    <div class="rc-stars">★★★★★</div>
+                </div>
+                <div class="rc-course-tag">Software Testing</div>
+                <blockquote class="rc-text">"This is the best institute for software testing. Excellent Training! I gained a lot of confidence to attend interviews after the training. Thanks much for your support."</blockquote>
+            </div>
+
+            <div class="review-card reveal" data-branch="trivandrum">
+                <div class="rc-top">
+                    <div class="rc-avatar" style="--av-color:#1a6b3a;">K</div>
+                    <div class="rc-meta"><div class="rc-name">Krishnendu B.</div><div class="rc-branch">Trivandrum</div></div>
+                    <div class="rc-stars">★★★★★</div>
+                </div>
+                <div class="rc-course-tag">Java</div>
+                <blockquote class="rc-text">"Very good facilities. Staffs are very friendly. Classes are very nice. Lab facilities are excellent. I have done Java course here — really wonderful classes. Thank you so much for your help."</blockquote>
+            </div>
+
+            <div class="review-card reveal delay-1" data-branch="trivandrum">
+                <div class="rc-top">
+                    <div class="rc-avatar" style="--av-color:#6b1a1a;">R</div>
+                    <div class="rc-meta"><div class="rc-name">Rinchumol A.P.</div><div class="rc-branch">Trivandrum</div></div>
+                    <div class="rc-stars">★★★★★</div>
+                </div>
+                <div class="rc-course-tag">IT Training</div>
+                <blockquote class="rc-text">"Good experience and very friendly atmosphere. Very good facilities and experienced staffs. Very good placement support. I feel happy to be the part of SCOPE INDIA. Thank you."</blockquote>
+                <div class="rc-placement"><span class="rc-placed-badge">✅ Placed</span></div>
+            </div>
+
+            <div class="review-card reveal delay-2" data-branch="trivandrum">
+                <div class="rc-top">
+                    <div class="rc-avatar" style="--av-color:#2a4a7a;">S</div>
+                    <div class="rc-meta"><div class="rc-name">Sudhil Raj</div><div class="rc-branch">Trivandrum</div></div>
+                    <div class="rc-stars">★★★★★</div>
+                </div>
+                <div class="rc-course-tag">IT Training</div>
+                <blockquote class="rc-text">"Happy to be the part of SCOPE INDIA. Very friendly atmosphere and a great place to learn a new language. Thank you for providing a wonderful training program."</blockquote>
+            </div>
+
+            <div class="review-card reveal" data-branch="trivandrum">
+                <div class="rc-top">
+                    <div class="rc-avatar" style="--av-color:#5a2a1a;">N</div>
+                    <div class="rc-meta"><div class="rc-name">Neethu Narayan</div><div class="rc-branch">Trivandrum</div></div>
+                    <div class="rc-stars">★★★★★</div>
+                </div>
+                <div class="rc-course-tag">MCSE</div>
+                <blockquote class="rc-text">"It was a great experience in SCOPE India, Trivandrum. The MCSE faculties were really experienced and friendly. They really helped me to clear all my doubts regarding the subject. I am really satisfied with the classes and the management. Wishing SCOPE India all the very best for their future!"</blockquote>
+            </div>
+
+            <div class="review-card reveal delay-1" data-branch="trivandrum">
+                <div class="rc-top">
+                    <div class="rc-avatar" style="--av-color:#1a6b6b;">M</div>
+                    <div class="rc-meta"><div class="rc-name">Manasa Mb</div><div class="rc-branch">Trivandrum</div></div>
+                    <div class="rc-stars">★★★★★</div>
+                </div>
+                <div class="rc-course-tag">IT Training</div>
+                <blockquote class="rc-text">"Very good experience in Scope India. Friendly staffs and students. Happy to become a part of Scope India. Thanks to all."</blockquote>
+            </div>
+
+            <div class="review-card reveal delay-2" data-branch="trivandrum">
+                <div class="rc-top">
+                    <div class="rc-avatar" style="--av-color:#6b3a1a;">R</div>
+                    <div class="rc-meta"><div class="rc-name">Reshma Suresh</div><div class="rc-branch">Trivandrum</div></div>
+                    <div class="rc-stars">★★★★★</div>
+                </div>
+                <div class="rc-course-tag">IT Training</div>
+                <blockquote class="rc-text">"Excellent Lab facilities. Very well trained and supportive faculty. Good infrastructure."</blockquote>
+            </div>
+
+            <div class="review-card rv-card-wide reveal" data-branch="trivandrum">
+                <div class="rc-top">
+                    <div class="rc-avatar" style="--av-color:#2a5a2a;">I</div>
+                    <div class="rc-meta"><div class="rc-name">IT Professional (Singapore)</div><div class="rc-branch">Trivandrum</div></div>
+                    <div class="rc-stars">★★★★★</div>
+                </div>
+                <div class="rc-course-tag">PHP Full Stack · SQL · HTML · JS · CSS · Laravel</div>
+                <blockquote class="rc-text">"I just completed my PHP Full Stack Developer course from Scope India. I'm happy to say that I'm completely satisfied with the training. Basically I'm an IT professional currently working in Singapore. I just thought of learning web development too, which is completely new to me, as I'm working in ERP domain. The topics covered were SQL, HTML, JavaScript, CSS, Bootstrap, jQuery, AngularJS, NodeJS, PHP and Laravel. The course was completed in 4 months. There was an introduction session by Mr. Koshy and there were three other trainers to cover all the topics. All of them are equally good. All the trainers are full time working professionals in Suffix E Solutions."</blockquote>
+            </div>
+
+            <div class="review-card rv-card-wide reveal delay-1" data-branch="trivandrum">
+                <div class="rc-top">
+                    <div class="rc-avatar" style="--av-color:#3a1a5a;">A</div>
+                    <div class="rc-meta"><div class="rc-name">Alumni Review (After 1 Year)</div><div class="rc-branch">Trivandrum</div></div>
+                    <div class="rc-stars">★★★★★</div>
+                </div>
+                <div class="rc-course-tag">Networking</div>
+                <blockquote class="rc-text">"If I am not recommending SCOPE, it will be selfishness. You really mean what a job oriented training is. I understood this after starting my career. Just thought to put a review after 1 year of completion in networking. Sorry for the delay!"</blockquote>
+            </div>
+
+            <div class="review-card reveal" data-branch="trivandrum">
+                <div class="rc-top">
+                    <div class="rc-avatar" style="--av-color:#1a3a5a;">K</div>
+                    <div class="rc-meta"><div class="rc-name">Krishnanunni A.</div><div class="rc-branch">Trivandrum</div></div>
+                    <div class="rc-stars">★★★★★</div>
+                </div>
+                <div class="rc-course-tag">Internship Training</div>
+                <blockquote class="rc-text">"One of the best decisions I've made is choosing Scope India for my internship training. Great faculties and staff to support you until you get placed. Very positive environment. The best programming institute in town — teach from scratch, excellent lab facility, updated syllabus according to industrial standards."</blockquote>
+                <div class="rc-placement"><span class="rc-placed-badge">✅ Placed</span></div>
+            </div>
+
+            <div class="review-card reveal delay-1" data-branch="trivandrum">
+                <div class="rc-top">
+                    <div class="rc-avatar" style="--av-color:#3a1a6b;">T</div>
+                    <div class="rc-meta"><div class="rc-name">Thiru Malai</div><div class="rc-branch">Trivandrum</div></div>
+                    <div class="rc-stars">★★★★★</div>
+                </div>
+                <div class="rc-course-tag">IT Training</div>
+                <blockquote class="rc-text">"Very good institution. Take classes and lab properly. They helped me to get a job."</blockquote>
+                <div class="rc-placement"><span class="rc-placed-badge">✅ Placed</span></div>
+            </div>
+
+            <div class="review-card reveal delay-2" data-branch="trivandrum">
+                <div class="rc-top">
+                    <div class="rc-avatar" style="--av-color:#1a6b4a;">D</div>
+                    <div class="rc-meta"><div class="rc-name">Digital Marketing Graduate</div><div class="rc-branch">Technopark, Trivandrum</div></div>
+                    <div class="rc-stars">★★★★★</div>
+                </div>
+                <div class="rc-course-tag">Digital Marketing</div>
+                <blockquote class="rc-text">"SCOPE INDIA TECHNOPARK IS THE BEST TRAINING INSTITUTION IN TRIVANDRUM. ALL TRAINERS ARE VERY SUPPORTIVE AND FRIENDLY. I COMPLETED DIGITAL MARKETING TRAINING THERE. MUST RECOMMEND SCOPE INDIA."</blockquote>
+            </div>
+
+            <div class="review-card reveal" data-branch="trivandrum">
+                <div class="rc-top">
+                    <div class="rc-avatar" style="--av-color:#6b2a3a;">C</div>
+                    <div class="rc-meta"><div class="rc-name">Cloud Engineering Student</div><div class="rc-branch">Trivandrum</div></div>
+                    <div class="rc-stars">★★★★★</div>
+                </div>
+                <div class="rc-course-tag">AWS · Azure · Cloud</div>
+                <blockquote class="rc-text">"Very good coaching in cloud computing. I joined last month in AWS and Azure course in this institution. Now I got a job in Technopark as a cloud engineer."</blockquote>
+                <div class="rc-placement"><span class="rc-placed-badge">✅ Placed</span><span class="rc-company">Cloud Engineer — Technopark</span></div>
+            </div>
+
+            <div class="review-card reveal delay-1" data-branch="trivandrum">
+                <div class="rc-top">
+                    <div class="rc-avatar" style="--av-color:#1a4a2a;">N</div>
+                    <div class="rc-meta"><div class="rc-name">Networking Student</div><div class="rc-branch">Trivandrum</div></div>
+                    <div class="rc-stars">★★★★★</div>
+                </div>
+                <div class="rc-course-tag">AWS · Red Hat · CCNA</div>
+                <blockquote class="rc-text">"I attended the cloud computing class — AWS, Red Hat, CCNA from Scope India Trivandrum and it was extremely helpful to enhance my knowledge in networking. Faculties were experienced and industry oriented."</blockquote>
+            </div>
+
+            <div class="review-card rv-card-wide reveal delay-2" data-branch="trivandrum">
+                <div class="rc-top">
+                    <div class="rc-avatar" style="--av-color:#4a1a2a;">A</div>
+                    <div class="rc-meta"><div class="rc-name">Anjana M.</div><div class="rc-branch">Trivandrum / Kochi</div></div>
+                    <div class="rc-stars">★★★★★</div>
+                </div>
+                <div class="rc-course-tag">Java · Automation Testing</div>
+                <blockquote class="rc-text">"I found the Scope India class to be excellent, and I must particularly commend Mrs. Ajanya miss for her brilliant Java class and Automation Testing. Her teaching was exceptional and greatly enhanced my understanding of the subject. Koshi Sir's class was also very good. Thank you to the team for their effort and hard work. Wishing everyone all the success."</blockquote>
+            </div>
+
+            <div class="review-card reveal" data-branch="trivandrum">
+                <div class="rc-top">
+                    <div class="rc-avatar" style="--av-color:#1a4a6b;">B</div>
+                    <div class="rc-meta"><div class="rc-name">Beginner Student</div><div class="rc-branch">Trivandrum</div></div>
+                    <div class="rc-stars">★★★★★</div>
+                </div>
+                <div class="rc-course-tag">IT Training</div>
+                <blockquote class="rc-text">"I had a wonderful experience studying at Scope. The classes begin from basics and gradually focus on advanced path, hence beginners can also follow it with ease. They provide many tasks and lab exercises which help you to thoroughly understand the topics. The tutors help you clear all your doubts during classes as well as lab periods."</blockquote>
+            </div>
+
+            <div class="review-card reveal delay-1" data-branch="trivandrum">
+                <div class="rc-top">
+                    <div class="rc-avatar" style="--av-color:#6b4a1a;">H</div>
+                    <div class="rc-meta"><div class="rc-name">CCNA &amp; Hardware Student</div><div class="rc-branch">Trivandrum</div></div>
+                    <div class="rc-stars">★★★★★</div>
+                </div>
+                <div class="rc-course-tag">CCNA · Hardware · Internship</div>
+                <blockquote class="rc-text">"I have done internship in CCNA &amp; Hardware from Scope India. My institution has all the necessary infra, facilities and equipment. Faculties were brilliant. The curriculum is fully updated and contains all the recent updates. It's fully worth it for me to learn new technologies in terms of networking &amp; hardware."</blockquote>
+            </div>
+
+            <div class="review-card reveal delay-2" data-branch="trivandrum">
+                <div class="rc-top">
+                    <div class="rc-avatar" style="--av-color:#1a6b6b;">S</div>
+                    <div class="rc-meta"><div class="rc-name">Scope India Student</div><div class="rc-branch">Trivandrum</div></div>
+                    <div class="rc-stars">★★★★★</div>
+                </div>
+                <div class="rc-course-tag">IT Training</div>
+                <blockquote class="rc-text">"Having personally attended their training in Trivandrum, their staff support when it comes to teaching and placement support is very good. It is a very good space for everyone to start a better career. The staff here are so friendly and efficient. The training they provide is far better to learn."</blockquote>
+            </div>
+
+            <!-- KOCHI -->
+            <div class="review-card reveal" data-branch="kochi">
+                <div class="rc-top">
+                    <div class="rc-avatar" style="--av-color:#1a5a3a;">P</div>
+                    <div class="rc-meta"><div class="rc-name">PHP Full Stack Student</div><div class="rc-branch">Kochi</div></div>
+                    <div class="rc-stars">★★★★★</div>
+                </div>
+                <div class="rc-course-tag">PHP Full Stack</div>
+                <blockquote class="rc-text">"Good learning atmosphere and developers as educators here are highly experienced in their respective programming languages. I pursued my PHP Full Stack internship from here and even though having zero knowledge about programming, I caught up fast and got to know about programming very quickly and easily. Thanks to the staffs and faculties of SCOPEINDIA Kochi."</blockquote>
+            </div>
+
+            <div class="review-card reveal delay-1" data-branch="kochi">
+                <div class="rc-top">
+                    <div class="rc-avatar" style="--av-color:#2a5a6b;">F</div>
+                    <div class="rc-meta"><div class="rc-name">Frontend &amp; Backend Student</div><div class="rc-branch">Kochi</div></div>
+                    <div class="rc-stars">★★★★★</div>
+                </div>
+                <div class="rc-course-tag">Frontend · Backend</div>
+                <blockquote class="rc-text">"Study materials and teaching styles — better for good studying. Frontend and backend — best option in Kochi. Really good experience. Learned a lot of things I didn't know before. Thank you Scope Indians."</blockquote>
+            </div>
+
+            <div class="review-card reveal delay-2" data-branch="kochi">
+                <div class="rc-top">
+                    <div class="rc-avatar" style="--av-color:#5a2a1a;">G</div>
+                    <div class="rc-meta"><div class="rc-name">Kochi Centre Student</div><div class="rc-branch">Kochi</div></div>
+                    <div class="rc-stars">★★★★★</div>
+                </div>
+                <div class="rc-course-tag">IT Training</div>
+                <blockquote class="rc-text">"Good communiting staff at Kochi office. Good faculty &amp; excellent classes. Great experience. All the very best to Suffix Solutions."</blockquote>
+            </div>
+
+            <!-- NAGERCOIL -->
+            <div class="review-card rv-card-wide reveal" data-branch="nagercoil">
+                <div class="rc-top">
+                    <div class="rc-avatar" style="--av-color:#3a1a6b;">V</div>
+                    <div class="rc-meta"><div class="rc-name">Vishnu K.</div><div class="rc-branch">Nagercoil</div></div>
+                    <div class="rc-stars">★★★★★</div>
+                </div>
+                <div class="rc-course-tag">CCNA</div>
+                <blockquote class="rc-text">"I recently completed the CCNA course at Scope India Nagercoil and had an exceptional experience. The instructor Ashtami S Biju mam is highly knowledgeable and made complex topics easy to understand. The hands-on labs enhanced my learning and practical skills. The curriculum was well-structured and kept up to date with the latest industry standards. The support from both the faculty and administrative staff was outstanding, ensuring a smooth and enriching educational experience."</blockquote>
+            </div>
+
+            <div class="review-card rv-card-wide reveal delay-1" data-branch="nagercoil">
+                <div class="rc-top">
+                    <div class="rc-avatar" style="--av-color:#1a6b4a;">S</div>
+                    <div class="rc-meta"><div class="rc-name">Subash L.</div><div class="rc-branch">Nagercoil</div></div>
+                    <div class="rc-stars">★★★★★</div>
+                </div>
+                <div class="rc-course-tag">PHP Full Stack</div>
+                <blockquote class="rc-text">"I have joined Scope India Nagercoil for studying PHP Full Stack. The staffs are very good and have great knowledge in the fields. After finishing my course I got placed in IT MARKERZ, Kottayam on my first try. I will surely recommend Scope India for building your career. Their environment, knowledge sharing, lab assistance — everything is good. Thanks Scope India for changing my career."</blockquote>
+                <div class="rc-placement"><span class="rc-placed-badge">✅ Placed</span><span class="rc-company">IT MARKERZ, Kottayam</span></div>
+            </div>
+
+            <div class="review-card reveal delay-2" data-branch="nagercoil">
+                <div class="rc-top">
+                    <div class="rc-avatar" style="--av-color:#6b2a3a;">P</div>
+                    <div class="rc-meta"><div class="rc-name">Preethi A.</div><div class="rc-branch">Nagercoil</div></div>
+                    <div class="rc-stars">★★★★★</div>
+                </div>
+                <div class="rc-course-tag">CCNA</div>
+                <blockquote class="rc-text">"I completed my CCNA course at Scope India Nagercoil, where Ashtami S Biju mam was my instructor. The course was thorough, covering all key networking topics with practical, hands-on training. I highly recommend Scope India Nagercoil to anyone seeking a comprehensive CCNA course."</blockquote>
+            </div>
+
+            <div class="review-card rv-card-wide reveal" data-branch="nagercoil">
+                <div class="rc-top">
+                    <div class="rc-avatar" style="--av-color:#2a6b1a;">A</div>
+                    <div class="rc-meta"><div class="rc-name">Scope India Alumni</div><div class="rc-branch">Nagercoil · Kochi · Trivandrum</div></div>
+                    <div class="rc-stars">★★★★★</div>
+                </div>
+                <div class="rc-course-tag">All Campuses</div>
+                <blockquote class="rc-text">"SCOPE INDIA is an exceptional institution for software and networking education with campuses in Nagercoil, Kochi, and Trivandrum. The institution offers a wealth of resources and opportunities for students to learn and grow professionally. The trainers are knowledgeable and experienced, providing students with a strong foundation in their chosen field. If you're looking to advance your career, SCOPE INDIA is an excellent choice."</blockquote>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="section-sep"></div>
+
+    <!-- ===== CTA ===== -->
+    <section class="review-cta-section reveal">
+        <div class="review-cta-inner">
+            <div class="rcta-glow"></div>
+            <div class="rcta-rating">
+                <span class="rcta-stars">★★★★★</span>
+                <span class="rcta-score">4.9 / 5</span>
+                <span class="rcta-count">633+ Reviews on Google</span>
+            </div>
+            <h2>Trained with Us? <span>Share Your Story</span></h2>
+            <p>Your review helps thousands of students choose the right IT career path.</p>
+            <div class="rcta-actions">
+                <a href="https://g.page/r/scopeindia/review" target="_blank" rel="noopener" class="btn-gold">Write a Google Review →</a>
+                <a th:href="@{/registration}" class="btn-outline">Join &amp; Be Next →</a>
+            </div>
+        </div>
+    </section>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    (function () {
+        var els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('revealed'); io.unobserve(e.target); } });
+        }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
+        els.forEach(function (el) { io.observe(el); });
+    })();
+
+    (function () {
+        var btns  = document.querySelectorAll('.filter-btn');
+        var cards = document.querySelectorAll('.review-card');
+        btns.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                btns.forEach(function (b) { b.classList.remove('active'); });
+                btn.classList.add('active');
+                var f = btn.dataset.filter, idx = 0;
+                cards.forEach(function (c) {
+                    var show = (f === 'all' || c.dataset.branch === f);
+                    c.style.display = show ? '' : 'none';
+                    if (show) {
+                        c.style.transitionDelay = (idx * 0.055) + 's';
+                        c.classList.remove('revealed');
+                        setTimeout(function (card) { card.classList.add('revealed'); }, 40, c);
+                        idx++;
+                    }
+                });
+            });
+        });
+    })();
+
+    (function () {
+        document.querySelectorAll('.section-sep').forEach(function (sep) {
+            var prev = sep.previousElementSibling;
+            if (prev) sep.style.setProperty('--sep-bg', getComputedStyle(prev).backgroundColor);
+        });
+    })();
+    </script>
+</body>
+</html>

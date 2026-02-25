@@ -22,7 +22,8 @@
                     <li><a th:href="@{/faq}"           th:classappend="${activePage == 'faq'          ? 'active' : ''}">FAQ</a></li>
                     <li><a th:href="@{/reviews}"       th:classappend="${activePage == 'reviews'      ? 'active' : ''}">Reviews</a></li>
                     <li><a th:href="@{/contact}"       th:classappend="${activePage == 'contact'      ? 'active' : ''}">Contact</a></li>
-                    <li><a th:href="@{/registration}"  class="highlight">Register Now</a></li>
+                    <li><a th:href="@{/registration}"  class="highlight">Register Your Course Now</a></li>
+                    <li><a th:href="@{/login}"  th:classappend="${activePage == 'login'      ? 'active' : ''}">Login</a></li>
                 </ul>
             </nav>
 
