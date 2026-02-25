@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="header">
+
+    <!-- ===== MAIN HEADER ===== -->
+    <header class="main-header">
+        <div class="container-header">
+
+            <!-- Logo -->
+            <a th:href="@{/}">
+                <img th:src="@{/images/scopeindialogo.jpg}" alt="Scope India Logo" id="logo-img">
+            </a>
+
+            <!-- Navigation -->
+            <nav class="navbar-custom" aria-label="Main navigation">
+                <ul>
+                    <li><a th:href="@{/}"             th:classappend="${activePage == 'home'         ? 'active' : ''}">Home</a></li>
+                    <li><a th:href="@{/courses}"       th:classappend="${activePage == 'courses'      ? 'active' : ''}">Courses</a></li>
+                    <li><a th:href="@{/about}"         th:classappend="${activePage == 'about'        ? 'active' : ''}">About</a></li>
+                    <li><a th:href="@{/faq}"           th:classappend="${activePage == 'faq'          ? 'active' : ''}">FAQ</a></li>
+                    <li><a th:href="@{/reviews}"       th:classappend="${activePage == 'reviews'      ? 'active' : ''}">Reviews</a></li>
+                    <li><a th:href="@{/contact}"       th:classappend="${activePage == 'contact'      ? 'active' : ''}">Contact</a></li>
+                    <li><a th:href="@{/registration}"  class="highlight">Register Now</a></li>
+                </ul>
+            </nav>
+
+            <!-- Google Rating -->
+            <img th:src="@{/images/google-rating.webp}" alt="Google Rating" id="rating-img">
+
+        </div>
+    </header>
+
+    <!-- ===== SOCIAL SIDEBAR ===== -->
+    <div class="social-block" aria-label="Social links">
+        <a href="#" class="social-link" title="Photos">
+            <img th:src="@{/images/imagesicon.png}" alt="Gallery">
+        </a>
+        <a href="#" class="social-link" title="Instagram">
+            <img th:src="@{/images/Instagram-icon.png}" alt="Instagram">
+        </a>
+        <a href="tel:9745936073" class="social-link" title="Call Us">
+            <img th:src="@{/images/call-icon.png}" alt="Call">
+        </a>
+        <a href="https://wa.me/919745936073" class="social-link" title="WhatsApp" target="_blank" rel="noopener">
+            <img th:src="@{/images/whatsapp-icon.png}" alt="WhatsApp">
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>
