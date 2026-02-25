@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCOPE INDIA | About Us</title>
+    <meta name="description" content="Learn about Scope India — 18+ years of IT training excellence, powered by Suffix E Solutions. Our mission, vision, team & story.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link th:href="@{/css/about.css}" rel="stylesheet">
+</head>
+<body>
+
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <!-- ===== ABOUT HERO ===== -->
+    <section class="about-hero">
+        <div class="about-hero-bg"></div>
+        <div class="about-hero-content">
+            <span class="hero-eyebrow reveal">Est. 2007</span>
+            <h1 class="about-hero-title reveal delay-1">
+                18+ Years of Shaping<br><span class="gold-shimmer">IT Careers</span>
+            </h1>
+            <p class="about-hero-sub reveal delay-2">
+                From a single centre in Kerala to four locations across South India — SCOPE INDIA has been the launchpad for over 15,000 IT professionals.
+            </p>
+            <div class="about-hero-pills reveal delay-3">
+                <span class="about-pill">📍 4 Locations</span>
+                <span class="about-pill">🎓 15,000+ Alumni</span>
+                <span class="about-pill">🏢 Powered by Suffix E Solutions</span>
+            </div>
+        </div>
+        <!-- Decorative vertical text -->
+        <div class="about-hero-year" aria-hidden="true">SCOPE</div>
+    </section>
+
+    <!-- ===== PARTNERS ===== -->
+    <section class="partners-section">
+        <p class="partners-label reveal">Get Globally Certified with Scope India</p>
+        <div class="logos-track reveal delay-1">
+            <img th:src="@{/images/microsoftlogo.png}" class="logo microsoft" alt="Microsoft">
+            <img th:src="@{/images/IBMlogo.png}"       class="logo ibm"       alt="IBM">
+            <img th:src="@{/images/GoogleLogo.png}"    class="logo google"    alt="Google">
+            <img th:src="@{/images/AmazonLogo.png}"    class="logo amazon"    alt="Amazon">
+            <img th:src="@{/images/redhatlogo.png}"    class="logo redhat"    alt="Red Hat">
+            <img th:src="@{/images/istqblogo.png}"     class="logo istqb"     alt="ISTQB">
+            <img th:src="@{/images/CiscoLogo.png}"     class="logo cisco"     alt="Cisco">
+            <img th:src="@{/images/GitHubLogo.png}"    class="logo github"    alt="GitHub">
+        </div>
+    </section>
+
+    <div class="section-sep"></div>
+
+    <!-- ===== WHO WE ARE ===== -->
+    <section class="about-who-section">
+        <div class="about-who-inner">
+
+            <div class="about-who-text reveal-left">
+                <div class="section-label">Who We Are</div>
+                <h2 class="section-title">The Story Behind <span class="gold">SCOPE INDIA</span></h2>
+                <p>
+                    SCOPE INDIA — Center for Software, Networking &amp; Cloud Education — was founded in 2007 with a singular purpose: to bridge the gap between academic learning and real-world IT employment in Kerala.
+                </p>
+                <p>
+                    Backed by <strong>Suffix E Solutions Pvt. Ltd.</strong>, an active IT company, our training programmes are designed and delivered by professionals who work in the industry every day. This gives our students an unmatched advantage — they learn tools, workflows, and practices that are live in production environments.
+                </p>
+                <p>
+                    Over 18 years, we have expanded to four strategic locations across South India, launched 10+ specialised courses, and placed over <strong>1,000 students per year</strong> into top IT companies.
+                </p>
+                <div class="about-who-cta">
+                    <a th:href="@{/registration}" class="btn-gold">Start Your Journey →</a>
+                    <a th:href="@{/contact}" class="btn-outline">Talk to Us</a>
+                </div>
+            </div>
+
+            <div class="about-who-stats reveal-right">
+                <div class="aws-card">
+                    <div class="aws-num" data-target="18" data-suffix="+">18+</div>
+                    <div class="aws-label">Years of Excellence</div>
+                </div>
+                <div class="aws-card">
+                    <div class="aws-num" data-target="15000" data-suffix="+">15,000+</div>
+                    <div class="aws-label">Alumni Placed</div>
+                </div>
+                <div class="aws-card">
+                    <div class="aws-num" data-target="1000" data-suffix="+">1,000+</div>
+                    <div class="aws-label">Placed Per Year</div>
+                </div>
+                <div class="aws-card">
+                    <div class="aws-num" data-target="10" data-suffix="+">10+</div>
+                    <div class="aws-label">IT Courses</div>
+                </div>
+                <div class="aws-card aws-card-wide">
+                    <div class="aws-num" data-target="4" data-suffix="">4</div>
+                    <div class="aws-label">Training Centres Across South India</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="section-sep"></div>
+
+    <!-- ===== MISSION & VISION ===== -->
+    <section class="mission-section">
+        <div class="mission-bg-accent"></div>
+        <div class="mission-header reveal">
+            <div class="section-label">Our Purpose</div>
+            <h2 class="section-title">Our Mission <span class="gold">&amp;</span> Vision</h2>
+        </div>
+        <div class="mission-grid">
+            <div class="mission-card reveal-left">
+                <div class="mission-icon-wrap"><span class="mission-icon">⚡</span></div>
+                <h3>Our Mission</h3>
+                <p>
+                    SCOPE INDIA seeks to close the knowledge gap between education and employment by offering interactive, industry-focused IT training led by proficient working professionals aligned with the latest trends and technologies. Our objective is to provide people with the technical expertise and confidence they need to build fulfilling careers.
+                </p>
+                <ul class="mission-list">
+                    <li><span>✔</span> Industry-aligned curriculum</li>
+                    <li><span>✔</span> Practical skill development</li>
+                    <li><span>✔</span> Career-focused training</li>
+                </ul>
+            </div>
+            <div class="mission-card reveal-right">
+                <div class="mission-icon-wrap"><span class="mission-icon">👥</span></div>
+                <h3>Our Vision</h3>
+                <p>
+                    We aspire to become the most respected and forward-thinking training organisation in India and beyond — shaping the future of IT education through innovation, integrity, and strong industry ties. We intend to expand globally and create pathways for every aspiring IT professional.
+                </p>
+                <ul class="mission-list">
+                    <li><span>✔</span> Global recognition</li>
+                    <li><span>✔</span> Innovation leadership</li>
+                    <li><span>✔</span> Technology excellence</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-sep"></div>
+
+    <!-- ===== TIMELINE ===== -->
+    <section class="timeline-section">
+        <div class="timeline-inner">
+            <div class="section-label reveal">Our Journey</div>
+            <h2 class="section-title reveal delay-1">18 Years of <span class="gold">Milestones</span></h2>
+
+            <div class="timeline">
+
+                <div class="tl-item tl-left reveal-left">
+                    <div class="tl-content">
+                        <span class="tl-year">2007</span>
+                        <h4>Founded in Thiruvananthapuram</h4>
+                        <p>SCOPE INDIA opens its first centre at Technopark, Kerala — offering software and networking courses to fresh graduates.</p>
+                    </div>
+                    <div class="tl-dot"></div>
+                </div>
+
+                <div class="tl-item tl-right reveal-right">
+                    <div class="tl-content">
+                        <span class="tl-year">2010</span>
+                        <h4>Suffix E Solutions Partnership</h4>
+                        <p>Formally backed by Suffix E Solutions Pvt. Ltd., bringing real-world industry trainers directly into the classroom.</p>
+                    </div>
+                    <div class="tl-dot"></div>
+                </div>
+
+                <div class="tl-item tl-left reveal-left">
+                    <div class="tl-content">
+                        <span class="tl-year">2013</span>
+                        <h4>2,000 Alumni Milestone</h4>
+                        <p>Crossed 2,000 placed students and expanded course offerings to include cloud computing and server administration.</p>
+                    </div>
+                    <div class="tl-dot"></div>
+                </div>
+
+                <div class="tl-item tl-right reveal-right">
+                    <div class="tl-content">
+                        <span class="tl-year">2016</span>
+                        <h4>Thampanoor Centre Opens</h4>
+                        <p>Second centre launched in Thampanoor, Thiruvananthapuram — bringing training closer to city students.</p>
+                    </div>
+                    <div class="tl-dot"></div>
+                </div>
+
+                <div class="tl-item tl-left reveal-left">
+                    <div class="tl-content">
+                        <span class="tl-year">2019</span>
+                        <h4>Kochi &amp; Nagercoil Expansion</h4>
+                        <p>Expanded to Kochi, Kerala and Nagercoil, Tamil Nadu — extending our reach across South India.</p>
+                    </div>
+                    <div class="tl-dot"></div>
+                </div>
+
+                <div class="tl-item tl-right reveal-right">
+                    <div class="tl-content">
+                        <span class="tl-year">2021</span>
+                        <h4>Online Learning Launched</h4>
+                        <p>Full online training platform launched during the pandemic — enabling students from anywhere to access Scope India courses.</p>
+                    </div>
+                    <div class="tl-dot"></div>
+                </div>
+
+                <div class="tl-item tl-left reveal-left">
+                    <div class="tl-content">
+                        <span class="tl-year">2023</span>
+                        <h4>AI &amp; Data Science Course</h4>
+                        <p>Launched a comprehensive 180-day Data Science &amp; AI programme with live internship, meeting industry demand head-on.</p>
+                    </div>
+                    <div class="tl-dot"></div>
+                </div>
+
+                <div class="tl-item tl-right reveal-right">
+                    <div class="tl-content">
+                        <span class="tl-year">2025</span>
+                        <h4>15,000+ Alumni &amp; Growing</h4>
+                        <p>SCOPE INDIA surpasses 15,000 placed alumni, cementing its position as Kerala's premier IT training institute.</p>
+                    </div>
+                    <div class="tl-dot"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="section-sep"></div>
+
+    <!-- ===== WHAT MAKES US DIFFERENT ===== -->
+    <section class="diff-section">
+        <div class="diff-inner">
+            <div class="section-label reveal">Our Edge</div>
+            <h2 class="section-title reveal delay-1">What Makes Us <span class="gold">Different</span></h2>
+
+            <div class="diff-grid">
+                <div class="diff-card reveal">
+                    <div class="diff-num">01</div>
+                    <div class="diff-icon">🏢</div>
+                    <h3>Industry-Run Training</h3>
+                    <p>Every trainer at SCOPE INDIA is a working professional at Suffix E Solutions. You learn what's actually used in production — not textbook theory.</p>
+                </div>
+                <div class="diff-card reveal delay-1">
+                    <div class="diff-num">02</div>
+                    <div class="diff-icon">🎯</div>
+                    <h3>Placement-First Approach</h3>
+                    <p>From day one, our goal is your employment. Resume building, mock interviews, aptitude training, and direct company referrals — all included.</p>
+                </div>
+                <div class="diff-card reveal delay-2">
+                    <div class="diff-num">03</div>
+                    <div class="diff-icon">📋</div>
+                    <h3>OJT with Real Certificate</h3>
+                    <p>On the Job Training is not just a term here. Students work on live projects and receive official experience certificates from Suffix E Solutions.</p>
+                </div>
+                <div class="diff-card reveal">
+                    <div class="diff-num">04</div>
+                    <div class="diff-icon">🌐</div>
+                    <h3>Global Cert Preparation</h3>
+                    <p>We prepare you for Microsoft, AWS, Google Cloud, Cisco CCNA, ISTQB and other globally recognised certification exams.</p>
+                </div>
+                <div class="diff-card reveal delay-1">
+                    <div class="diff-num">05</div>
+                    <div class="diff-icon">⏰</div>
+                    <h3>Flexible Batches</h3>
+                    <p>Morning, evening, weekend and crash batches available both online and offline across all four centres. Learning fits your life.</p>
+                </div>
+                <div class="diff-card reveal delay-2">
+                    <div class="diff-num">06</div>
+                    <div class="diff-icon">🤝</div>
+                    <h3>Lifetime Alumni Network</h3>
+                    <p>Join a community of 15,000+ IT professionals. Our alumni network opens doors to referrals, collaborations, and career opportunities long after graduation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-sep"></div>
+
+    <!-- ===== LOCATIONS ===== -->
+    <section class="locations-section">
+        <div class="locations-inner">
+            <div class="section-label reveal">Find Us</div>
+            <h2 class="section-title reveal delay-1">Our <span class="gold">Locations</span></h2>
+            <p class="locations-sub reveal delay-2">Four centres across South India — walk in anytime for a free counselling session.</p>
+
+            <div class="locations-grid">
+
+                <div class="loc-card reveal">
+                    <div class="loc-num">01</div>
+                    <h3>Technopark</h3>
+                    <p class="loc-city">Thiruvananthapuram, Kerala</p>
+                    <div class="loc-details">
+                        <div class="loc-row"><span>📞</span><a href="tel:9745936073">9745936073</a></div>
+                        <div class="loc-row"><span>📍</span><span>Technopark Campus, TVM</span></div>
+                    </div>
+                    <a href="tel:9745936073" class="loc-btn">Call Centre →</a>
+                </div>
+
+                <div class="loc-card reveal delay-1">
+                    <div class="loc-num">02</div>
+                    <h3>Thampanoor</h3>
+                    <p class="loc-city">Thiruvananthapuram, Kerala</p>
+                    <div class="loc-details">
+                        <div class="loc-row"><span>📞</span><a href="tel:9745936073">9745936073</a></div>
+                        <div class="loc-row"><span>📍</span><span>Thampanoor, TVM</span></div>
+                    </div>
+                    <a href="tel:9745936073" class="loc-btn">Call Centre →</a>
+                </div>
+
+                <div class="loc-card reveal delay-2">
+                    <div class="loc-num">03</div>
+                    <h3>Kochi</h3>
+                    <p class="loc-city">Ernakulam, Kerala</p>
+                    <div class="loc-details">
+                        <div class="loc-row"><span>📞</span><a href="tel:7592939481">7592939481</a></div>
+                        <div class="loc-row"><span>📍</span><span>Kochi, Kerala</span></div>
+                    </div>
+                    <a href="tel:7592939481" class="loc-btn">Call Centre →</a>
+                </div>
+
+                <div class="loc-card reveal delay-3">
+                    <div class="loc-num">04</div>
+                    <h3>Nagercoil</h3>
+                    <p class="loc-city">Tamil Nadu</p>
+                    <div class="loc-details">
+                        <div class="loc-row"><span>📞</span><a href="tel:8075536185">8075536185</a></div>
+                        <div class="loc-row"><span>📍</span><span>Nagercoil, Tamil Nadu</span></div>
+                    </div>
+                    <a href="tel:8075536185" class="loc-btn">Call Centre →</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="section-sep"></div>
+
+    <!-- ===== CTA ===== -->
+    <section class="about-cta-section reveal">
+        <div class="about-cta-inner">
+            <div class="about-cta-glow"></div>
+            <h2>Ready to Be Part of the <span>SCOPE INDIA</span> Story?</h2>
+            <p>Join 15,000+ alumni who launched their IT careers with us.</p>
+            <div class="about-cta-actions">
+                <a th:href="@{/registration}" class="btn-gold">Register Now →</a>
+                <a th:href="@{/courses}" class="btn-outline">Browse Courses</a>
+            </div>
+        </div>
+    </section>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    /* ── Scroll Reveal ── */
+    (function () {
+        var els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                if (e.isIntersecting) { e.target.classList.add('revealed'); io.unobserve(e.target); }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        els.forEach(function (el) { io.observe(el); });
+    })();
+
+    /* ── Stat Counter ── */
+    (function () {
+        function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+        function animate(el) {
+            var target = parseInt(el.dataset.target) || 0;
+            var suffix = el.dataset.suffix || '';
+            var dur = 1800, startTs = null;
+            function step(now) {
+                if (!startTs) startTs = now;
+                var pct = Math.min((now - startTs) / dur, 1);
+                var val = Math.floor(easeOut(pct) * target);
+                el.textContent = (val >= 1000 ? val.toLocaleString() : val) + suffix;
+                if (pct < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+        }
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                if (e.isIntersecting) {
+                    e.target.querySelectorAll('.aws-num[data-target]').forEach(animate);
+                    io.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.4 });
+        var stats = document.querySelector('.about-who-stats');
+        if (stats) io.observe(stats);
+    })();
+
+    /* ── Section Sep bg ── */
+    (function () {
+        document.querySelectorAll('.section-sep').forEach(function (sep) {
+            var prev = sep.previousElementSibling;
+            if (prev) sep.style.setProperty('--sep-bg', getComputedStyle(prev).backgroundColor);
+        });
+    })();
+    </script>
+</body>
+</html>
