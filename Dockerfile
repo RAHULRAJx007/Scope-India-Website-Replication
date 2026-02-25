@@ -1,20 +1,16 @@
-# Use lightweight Java 21 image
+# -------- Stage 1: Build --------
+FROM maven:3.9.6-eclipse-temurin-21 AS builder
+
+WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
+
+# -------- Stage 2: Run --------
 FROM eclipse-temurin:21-jdk-jammy
 
-# Set working directory
 WORKDIR /app
+COPY --from=builder /app/target/ScopeProject-0.0.1-SNAPSHOT.jar app.jar
 
-# Copy project files
-COPY . .
-
-# Make mvnw executable
-RUN chmod +x mvnw
-
-# Build the project
-RUN ./mvnw clean package -DskipTests
-
-# Expose port
 EXPOSE 8080
 
-# Run the application
-CMD ["java", "-jar", "target/*.jar"]
+ENTRYPOINT ["java","-jar","app.jar"]
