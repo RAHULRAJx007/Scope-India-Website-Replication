@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCOPE INDIA | Register Now</title>
+    <meta name="description" content="Register for IT training at Scope India — AI, DevOps, Full Stack, Software Testing, Cloud & more. Free counselling, 100% placement support.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/registration.css}" rel="stylesheet">
+</head>
+<body>
+
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <!-- ===== REGISTRATION HERO ===== -->
+    <section class="reg-hero">
+        <div class="reg-hero-bg"></div>
+        <div class="reg-hero-content">
+            <span class="hero-eyebrow reveal">Free Counselling Included</span>
+            <h1 class="reg-hero-title reveal delay-1">
+                Start Your <span class="gold-shimmer">IT Career</span><br>Today
+            </h1>
+            <p class="reg-hero-sub reveal delay-2">
+                Fill in your details and our team will contact you within 24 hours to guide you to the right course.
+            </p>
+        </div>
+    </section>
+
+	<div class="section-sep"></div>
+	
+    <!-- ===== MAIN CONTENT: FORM + SIDEBAR ===== -->
+    <section class="reg-main">
+        <div class="reg-main-inner">
+
+            <!-- ── LEFT: Registration Form ── -->
+            <div class="reg-form-wrap reveal-left">
+                <div class="reg-form-header">
+                    <h2>Registration Form</h2>
+                    <p>All fields marked <span class="req-star">*</span> are required</p>
+                </div>
+
+                <form class="reg-form" th:action="@{/registration}" method="post" id="regForm" novalidate>
+                   <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> -->
+
+                    <!-- Name row -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name <span class="req-star">*</span></label>
+                            <input type="text" id="firstName" name="firstName" placeholder="Arjun" required autocomplete="given-name">
+                            <span class="field-err">Please enter your first name</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name <span class="req-star">*</span></label>
+                            <input type="text" id="lastName" name="lastName" placeholder="Nair" required autocomplete="family-name">
+                            <span class="field-err">Please enter your last name</span>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">Email Address <span class="req-star">*</span></label>
+                        <input type="email" id="email" name="email" placeholder="arjun@email.com" required autocomplete="email">
+                        <span class="field-err">Please enter a valid email address</span>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="form-group">
+                        <label for="phone">Phone Number <span class="req-star">*</span></label>
+                        <div class="phone-input-wrap">
+                            <span class="phone-prefix">🇮🇳 +91</span>
+                            <input type="tel" id="phone" name="phone" placeholder="9745936073" required pattern="[6-9][0-9]{9}" autocomplete="tel">
+                        </div>
+                        <span class="field-err">Please enter a valid 10-digit mobile number</span>
+                    </div>
+
+                    <!-- Course -->
+                    <div class="form-group">
+                        <label for="course">Course of Interest <span class="req-star">*</span></label>
+                        <div class="select-wrap">
+                            <select id="course" name="course" required>
+                                <option value="" disabled selected>Select a course…</option>
+                                <optgroup label="Data &amp; AI">
+                                    <option value="data-science-ai">Data Science &amp; AI (180 Days)</option>
+                                    <option value="power-bi">Power BI &amp; Data Analytics (3 Months)</option>
+                                </optgroup>
+                                <optgroup label="Software Development">
+                                    <option value="full-stack">Full Stack Development (6 Months)</option>
+                                    <option value="mobile-app">Mobile App Development (4 Months)</option>
+                                    <option value="digital-marketing">Digital Marketing (3 Months)</option>
+                                </optgroup>
+                                <optgroup label="DevOps &amp; Cloud">
+                                    <option value="devops">DevOps Engineering (6 Months)</option>
+                                    <option value="cloud">Cloud Computing (4 Months)</option>
+                                </optgroup>
+                                <optgroup label="Testing &amp; Networking">
+                                    <option value="software-testing">Software Testing (120 Days)</option>
+                                    <option value="networking">Networking &amp; Server Admin (4 Months)</option>
+                                </optgroup>
+                                <option value="not-sure">Not Sure — Need Counselling</option>
+                            </select>
+                            <span class="select-arrow">▾</span>
+                        </div>
+                        <span class="field-err">Please select a course</span>
+                    </div>
+
+                    <!-- Learning Mode -->
+                    <div class="form-group">
+                        <label>Preferred Learning Mode <span class="req-star">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-card">
+                                <input type="radio" name="mode" value="offline" required>
+                                <span class="radio-inner">
+                                    <span class="radio-icon">🏢</span>
+                                    <span class="radio-label">Offline</span>
+                                    <span class="radio-sub">Centre-based</span>
+                                </span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="mode" value="online">
+                                <span class="radio-inner">
+                                    <span class="radio-icon">💻</span>
+                                    <span class="radio-label">Online</span>
+                                    <span class="radio-sub">From anywhere</span>
+                                </span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="mode" value="both">
+                                <span class="radio-inner">
+                                    <span class="radio-icon">🔄</span>
+                                    <span class="radio-label">Hybrid</span>
+                                    <span class="radio-sub">Both modes</span>
+                                </span>
+                            </label>
+                        </div>
+                        <span class="field-err">Please select a learning mode</span>
+                    </div>
+
+                    <!-- Nearest Centre -->
+                    <div class="form-group">
+                        <label for="centre">Nearest Centre</label>
+                        <div class="select-wrap">
+                            <select id="centre" name="centre">
+                                <option value="" disabled selected>Select nearest centre…</option>
+                                <option value="technopark">Technopark, Thiruvananthapuram</option>
+                                <option value="thampanoor">Thampanoor, Thiruvananthapuram</option>
+                                <option value="kochi">Kochi, Kerala</option>
+                                <option value="nagercoil">Nagercoil, Tamil Nadu</option>
+                            </select>
+                            <span class="select-arrow">▾</span>
+                        </div>
+                    </div>
+
+                    <!-- Qualification -->
+                    <div class="form-group">
+                        <label for="qualification">Highest Qualification</label>
+                        <div class="select-wrap">
+                            <select id="qualification" name="qualification">
+                                <option value="" disabled selected>Select qualification…</option>
+                                <option value="plus2">Plus Two / Diploma</option>
+                                <option value="btech">B.Tech / B.E</option>
+                                <option value="bsc">B.Sc / BCA / B.Com</option>
+                                <option value="mtech">M.Tech / M.E</option>
+                                <option value="msc">MCA / M.Sc / MBA</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <span class="select-arrow">▾</span>
+                        </div>
+                    </div>
+
+                    <!-- Message -->
+                    <div class="form-group">
+                        <label for="message">Message / Questions (Optional)</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Tell us about your background, goals, or any questions you have…"></textarea>
+                    </div>
+
+                    <!-- How did you hear -->
+                    <div class="form-group">
+                        <label for="source">How did you hear about us?</label>
+                        <div class="select-wrap">
+                            <select id="source" name="source">
+                                <option value="" disabled selected>Select…</option>
+                                <option value="google">Google Search</option>
+                                <option value="friend">Friend / Family Referral</option>
+                                <option value="social">Social Media</option>
+                                <option value="alumni">SCOPE INDIA Alumni</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <span class="select-arrow">▾</span>
+                        </div>
+                    </div>
+
+                    <!-- Submit -->
+                    <button type="submit" class="reg-submit-btn" id="submitBtn">
+                        <span class="btn-text">Submit Registration →</span>
+                        <span class="btn-loader" aria-hidden="true"></span>
+                    </button>
+
+                    <p class="reg-privacy">
+                        🔒 Your information is safe with us. We will never share your data with third parties.
+                    </p>
+                </form>
+            </div>
+
+            <!-- ── RIGHT: Sidebar ── -->
+            <div class="reg-sidebar reveal-right">
+
+                <!-- What happens next -->
+                <div class="sidebar-card">
+                    <h3 class="sidebar-card-title">What Happens Next?</h3>
+                    <ul class="next-steps">
+                        <li>
+                            <div class="ns-num">1</div>
+                            <div>
+                                <strong>We review your form</strong>
+                                <p>Our team reviews your details within a few hours.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ns-num">2</div>
+                            <div>
+                                <strong>Free counselling call</strong>
+                                <p>A counsellor calls you to understand your goals and recommend the best course.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ns-num">3</div>
+                            <div>
+                                <strong>Batch confirmation</strong>
+                                <p>We confirm your batch, schedule, and centre or online link.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ns-num">4</div>
+                            <div>
+                                <strong>Start learning!</strong>
+                                <p>Your IT journey begins. Our trainers will guide you every step of the way.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact Direct -->
+                <div class="sidebar-card contact-card">
+                    <h3 class="sidebar-card-title">Prefer to Call?</h3>
+                    <p class="contact-card-sub">Reach us directly at any of our centres.</p>
+                    <div class="contact-lines">
+                        <a href="tel:9745936073" class="contact-line">
+                            <span class="cl-badge">TPK</span>
+                            <span class="cl-num">9745936073</span>
+                        </a>
+                        <a href="tel:9745936073" class="contact-line">
+                            <span class="cl-badge">TVM</span>
+                            <span class="cl-num">9745936073</span>
+                        </a>
+                        <a href="tel:7592939481" class="contact-line">
+                            <span class="cl-badge">EKM</span>
+                            <span class="cl-num">7592939481</span>
+                        </a>
+                        <a href="tel:8075536185" class="contact-line">
+                            <span class="cl-badge">NGL</span>
+                            <span class="cl-num">8075536185</span>
+                        </a>
+                    </div>
+                    <a href="mailto:info@scopeindia.org" class="contact-email">
+                        ✉ info@scopeindia.org
+                    </a>
+                    <a href="https://wa.me/919745936073" class="whatsapp-btn" target="_blank" rel="noopener">
+                        <span>💬</span> Chat on WhatsApp
+                    </a>
+                </div>
+
+                <!-- Trust Badges -->
+                <div class="sidebar-card trust-card">
+                    <h3 class="sidebar-card-title">Why Register with Us?</h3>
+                    <ul class="trust-list">
+                        <li><span>✔</span> 18+ years of excellence</li>
+                        <li><span>✔</span> 100% placement support</li>
+                        <li><span>✔</span> OJT with experience certificate</li>
+                        <li><span>✔</span> Trainers from Suffix E Solutions</li>
+                        <li><span>✔</span> Online &amp; offline batches</li>
+                        <li><span>✔</span> Global certification prep</li>
+                        <li><span>✔</span> 15,000+ happy alumni</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SUCCESS TOAST ===== -->
+    <div class="reg-toast" id="regToast" aria-live="polite">
+        <span class="toast-icon">✅</span>
+        <div>
+            <strong>Registration Submitted!</strong>
+            <p>We'll contact you within 24 hours.</p>
+        </div>
+        <button class="toast-close" onclick="document.getElementById('regToast').classList.remove('show')" aria-label="Close">✕</button>
+    </div>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    /* ── Scroll Reveal ── */
+    (function () {
+        var els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        var io = new IntersectionObserver(function (e) {
+            e.forEach(function (entry) {
+                if (entry.isIntersecting) { entry.target.classList.add('revealed'); io.unobserve(entry.target); }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+        els.forEach(function (el) { io.observe(el); });
+    })();
+
+    /* ── Radio card visual toggle ── */
+    document.querySelectorAll('.radio-card input[type="radio"]').forEach(function (radio) {
+        radio.addEventListener('change', function () {
+            document.querySelectorAll('.radio-card').forEach(function (c) { c.classList.remove('checked'); });
+            radio.closest('.radio-card').classList.add('checked');
+        });
+    });
+
+    /* ── Form validation + submit ── */
+    (function () {
+        var form   = document.getElementById('regForm');
+        var btn    = document.getElementById('submitBtn');
+        var toast  = document.getElementById('regToast');
+        if (!form) return;
+
+        /* Live field validation */
+        form.querySelectorAll('input[required], select[required], textarea[required]').forEach(function (field) {
+            field.addEventListener('blur', function () { validateField(field); });
+            field.addEventListener('input', function () {
+                if (field.classList.contains('invalid')) validateField(field);
+            });
+        });
+
+        function validateField(field) {
+            var valid = field.checkValidity();
+            /* Extra phone check */
+            if (field.id === 'phone' && valid) {
+                valid = /^[6-9][0-9]{9}$/.test(field.value.trim());
+            }
+            field.classList.toggle('invalid', !valid);
+            field.classList.toggle('valid', valid);
+            return valid;
+        }
+
+        /* Radio group validation */
+        function validateRadio() {
+            var checked = form.querySelector('input[name="mode"]:checked');
+            var group   = form.querySelector('.radio-group');
+            var err     = form.querySelector('.radio-group + .field-err');
+            if (!checked) {
+                if (group) group.classList.add('radio-invalid');
+                return false;
+            }
+            if (group) group.classList.remove('radio-invalid');
+            return true;
+        }
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            var allValid = true;
+
+            form.querySelectorAll('input[required], select[required]').forEach(function (field) {
+                if (!validateField(field)) allValid = false;
+            });
+            if (!validateRadio()) allValid = false;
+
+            if (!allValid) {
+                /* Scroll to first error */
+                var first = form.querySelector('.invalid, .radio-invalid');
+                if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            /* Loading state */
+            btn.classList.add('loading');
+
+            /* Simulate submit (replace with actual AJAX / form submit) */
+            setTimeout(function () {
+                btn.classList.remove('loading');
+                form.reset();
+                form.querySelectorAll('.valid, .invalid').forEach(function (el) {
+                    el.classList.remove('valid', 'invalid');
+                });
+                document.querySelectorAll('.radio-card').forEach(function (c) { c.classList.remove('checked'); });
+
+                /* Show toast */
+                toast.classList.add('show');
+                setTimeout(function () { toast.classList.remove('show'); }, 5000);
+            }, 1600);
+        });
+    })();
+    </script>
+</body>
+</html>
