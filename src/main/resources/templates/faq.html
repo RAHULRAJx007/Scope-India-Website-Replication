@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCOPE INDIA | FAQ — Frequently Asked Questions</title>
+    <meta name="description" content="Frequently asked questions about Scope India — courses, duration, placement, OJT, fees, batches and more. Real answers from scopeindia.org.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/faq.css}" rel="stylesheet">
+</head>
+<body>
+
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <!-- ===== HERO ===== -->
+    <section class="faq-hero">
+        <div class="faq-hero-bg"></div>
+        <div class="faq-hero-content">
+            <span class="hero-eyebrow reveal">Got Questions?</span>
+            <h1 class="faq-hero-title reveal delay-1">
+                Frequently Asked <span class="gold-shimmer">Questions</span>
+            </h1>
+            <p class="faq-hero-sub reveal delay-2">
+                Everything you need to know about courses, placement, OJT, fees and more — straight from SCOPE INDIA.
+            </p>
+            <!-- Search box -->
+            <div class="faq-search-wrap reveal delay-3">
+                <span class="faq-search-icon">🔍</span>
+                <input type="text" id="faqSearch" placeholder="Search questions…" autocomplete="off">
+                <button class="faq-search-clear" id="faqClear" aria-label="Clear search">✕</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CATEGORY TABS ===== -->
+    <section class="faq-filter-section">
+        <div class="faq-filter-inner">
+            <button class="faq-cat-btn active" data-cat="all">All</button>
+            <button class="faq-cat-btn" data-cat="general">General</button>
+            <button class="faq-cat-btn" data-cat="courses">Courses</button>
+            <button class="faq-cat-btn" data-cat="placement">Placement</button>
+            <button class="faq-cat-btn" data-cat="ojt">OJT &amp; Internship</button>
+            <button class="faq-cat-btn" data-cat="fees">Fees &amp; Discounts</button>
+            <button class="faq-cat-btn" data-cat="classes">Classes &amp; Schedule</button>
+            <button class="faq-cat-btn" data-cat="certification">Certification</button>
+        </div>
+    </section>
+
+    <!-- ===== FAQ ACCORDION ===== -->
+    <section class="faq-section">
+        <div class="faq-inner">
+
+            <!-- ── GENERAL ── -->
+            <div class="faq-group reveal" data-group="general">
+                <h2 class="faq-group-title"><span>01</span> General</h2>
+
+                <div class="faq-item" data-cat="general">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>Who conducts training for the students?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>The training is conducted by the working professionals of <strong>SUFFIX E SOLUTIONS</strong> for the students of SCOPE INDIA. All trainers are active industry professionals, not full-time lecturers — so you learn what's used in real production environments.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="general">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>Is SCOPE INDIA an ISO certified organisation?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Yes. <strong>SCOPE INDIA (SUFFIX E SOLUTIONS)</strong> is an <strong>ISO 9001:2015 Certified Organisation</strong>.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="general">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>What is the teaching methodology at SCOPE INDIA?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>At SCOPE INDIA we follow a standardised format of teaching with a fixed syllabus followed across all branches. Classes are split into two halves — <strong>Theory</strong> and <strong>Practicals</strong> — so students get both conceptual understanding and hands-on lab experience in every session.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="general">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>Do you provide any study materials?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Yes. Students receive study materials. Materials are provided with discounts to enrolled students.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="general">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>Is there a free demo class available before joining?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Yes. Demo classes are given to students before they take up a course if they request one. Contact any of our centres to schedule a free demo session.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="general">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>Can I join multiple courses at once?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Yes. Students can sign up for multiple courses at different time slots, allowing you to learn more than one technology simultaneously if your schedule permits.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="general">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>Is SCOPE INDIA suitable for beginners with no prior IT background?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Yes. All courses are structured to start from the fundamentals and gradually progress to advanced concepts. Beginners and freshers are welcome — even students from non-IT backgrounds have successfully transitioned into IT through our courses.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ── COURSES ── -->
+            <div class="faq-group reveal" data-group="courses">
+                <h2 class="faq-group-title"><span>02</span> Courses</h2>
+
+                <div class="faq-item" data-cat="courses">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>What is the duration of the training programmes?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Duration varies depending on the course. Typically, training programmes range from <strong>1 to 6 months</strong>, with additional On-the-Job Training. For more information regarding the duration of specific courses, please contact our office.</p>
+                        <ul>
+                            <li>Data Science &amp; AI — 180 days (6 months) + OJT</li>
+                            <li>Full Stack Development — 6 months + OJT</li>
+                            <li>DevOps Engineering — 6 months + OJT</li>
+                            <li>Software Testing — 120 days (4 months) + OJT</li>
+                            <li>Cloud Computing — 4 months + OJT</li>
+                            <li>Networking &amp; Server Admin — 4 months + OJT</li>
+                            <li>Power BI / Data Analytics — 3 months + OJT</li>
+                            <li>Digital Marketing — 3 months + OJT</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="courses">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>Is Software Testing suitable for students with no coding background?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Yes. Software Testing is one of the best entry points into IT for students with no programming background. The course starts from manual testing fundamentals and progresses into automation tools like Selenium, Postman, JMeter, and Appium step by step.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="courses">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>Can this course help me switch to IT from a non-IT background?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Absolutely. Many students from non-IT fields — commerce, arts, science — have successfully transitioned into IT through SCOPE INDIA's structured training, hands-on projects, and real-world labs. Dedicated support is provided throughout your transition.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="courses">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>What is the starting salary after completing a Data Science &amp; AI course?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Freshers in Data Science and AI can expect a starting salary between <strong>₹4–6 LPA</strong>. With experience, advanced skills, and certifications, salaries can rise to <strong>₹12–20 LPA or higher</strong>, especially in top product and multinational companies.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="courses">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>What is the starting salary for a Data Analyst?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Freshers completing the Data Analytics course can expect a starting salary between <strong>₹3–6 LPA</strong>, depending on their skills, certifications, and the hiring company.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="courses">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>What entry-level salary can I expect after completing a Software Testing course?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Entry-level software testers can expect between <strong>₹2.5–5 LPA</strong>. Experienced testers with automation skills and certifications may earn <strong>₹12 lakhs or more annually</strong>.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ── PLACEMENT ── -->
+            <div class="faq-group reveal" data-group="placement">
+                <h2 class="faq-group-title"><span>03</span> Placement</h2>
+
+                <div class="faq-item" data-cat="placement">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>Does SCOPE INDIA provide any placement guarantee?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>No. SCOPE INDIA does <strong>not provide a placement guarantee</strong> — we provide <strong>placement support</strong>. This includes resume building, interview preparation, mock interviews, aptitude training, and direct connections with hiring companies.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="placement">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>What does the placement support include?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Our placement team provides:</p>
+                        <ul>
+                            <li>Resume building and profile review</li>
+                            <li>Mock interviews and aptitude training</li>
+                            <li>Interview preparation and soft skills coaching</li>
+                            <li>Direct recruitment drives and company referrals</li>
+                            <li>Job portal guidance and application support</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="placement">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>What is the placement success rate?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>SCOPE INDIA has a high placement success rate. Most dedicated students secure jobs within <strong>3–6 months of course completion</strong>, depending on their performance, project work, and dedication. For Software Testing specifically, more than <strong>85% of students</strong> secure jobs within months of completing the course.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="placement">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>Do recruiters from MNCs visit or hire from SCOPE INDIA?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Yes. Our students are consistently hired by top MNCs such as <strong>Infosys, TCS, Wipro, Cognizant, Accenture, HCL</strong>, and even international companies. Recruiters recognise SCOPE INDIA as a trusted source for skilled, job-ready IT professionals.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="placement">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>Can I apply for jobs in other cities or abroad after the course?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Definitely. IT skills are globally in demand. After completing courses at SCOPE INDIA, students have successfully applied and secured jobs in major Indian IT hubs like <strong>Bangalore, Chennai, Hyderabad, Pune</strong>, and also internationally in the <strong>USA, UK, Germany, Canada, UAE</strong>, and the Middle East.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="placement">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>Is DevOps a good career option in India?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Yes. DevOps is one of the hottest and fastest-growing IT career paths in India and worldwide. With organisations moving to cloud-native technologies and automation, DevOps Engineers are in high demand. The role offers high job security, excellent growth opportunities, and attractive salaries.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="placement">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>Is Data Science &amp; AI a good career option?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Yes. Data Science and AI are two of the fastest-growing and highest-paying career fields. With organisations focusing on analytics, automation, and AI-driven innovation, professionals in this domain enjoy strong job security and global demand.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ── OJT ── -->
+            <div class="faq-group reveal" data-group="ojt">
+                <h2 class="faq-group-title"><span>04</span> OJT &amp; Internship</h2>
+
+                <div class="faq-item" data-cat="ojt">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>What is On The Job Training (OJT)?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Students who successfully complete their courses get the opportunity to <strong>work on live projects alongside experienced developers</strong> for a duration of <strong>3 months</strong> under Suffix E Solutions. This is the OJT (On the Job Training) programme.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="ojt">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>What certificate do I receive after completing the course?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>SCOPE INDIA provides a <strong>Course cum Internship Certificate</strong> upon successful completion of the training and OJT. This certificate is issued under Suffix E Solutions and serves as a recognised experience certificate for your resume.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="ojt">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>How does OJT help my career as a fresher?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>OJT gives you direct industry experience by working on real, live projects run by Suffix E Solutions — an active IT company. This means you graduate with actual work experience on your resume, not just theoretical knowledge, making you significantly more employable even as a fresher.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ── FEES & DISCOUNTS ── -->
+            <div class="faq-group reveal" data-group="fees">
+                <h2 class="faq-group-title"><span>05</span> Fees &amp; Discounts</h2>
+
+                <div class="faq-item" data-cat="fees">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>Is there any refund option available?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>No. A refund option is <strong>not available</strong> as per our company policy. We encourage all prospective students to attend a free demo class before enrolling to ensure the course meets their expectations.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="fees">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>Are there any discounts available for the courses?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Yes. SCOPE INDIA offers <strong>special discounts and offers</strong> from time to time. Please get in touch with our team directly to know about any current offers or promotional discounts available for the course you are interested in.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ── CLASSES & SCHEDULE ── -->
+            <div class="faq-group reveal" data-group="classes">
+                <h2 class="faq-group-title"><span>06</span> Classes &amp; Schedule</h2>
+
+                <div class="faq-item" data-cat="classes">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>What are the available class times?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>SCOPE INDIA offers flexible batch timings to suit different schedules:</p>
+                        <ul>
+                            <li><strong>Early morning batches</strong> — for working professionals</li>
+                            <li><strong>Daytime batches</strong> — for regular/full-time students</li>
+                            <li><strong>Evening / night batches</strong> — for working professionals</li>
+                            <li><strong>Weekend batches</strong> — available on request</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="classes">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>Are online classes available?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Yes. Both <strong>online and offline</strong> classes are available for all courses. Online classes follow the same curriculum and are conducted live by the same industry professional trainers. You can learn from anywhere in India or abroad.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="classes">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>Can I get recorded sessions if I miss a class?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Yes. Online classes are recorded and <strong>students will be given a copy of all recorded classes</strong>. This ensures you never fall behind even if you miss a session.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="classes">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>How is SCOPE INDIA different from other training institutes in Kerala?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Key differences that set SCOPE INDIA apart:</p>
+                        <ul>
+                            <li>Practical, project-based learning instead of only theory</li>
+                            <li>Training delivered by industry-experienced professionals from Suffix E Solutions</li>
+                            <li>Flexible timings for both students and working professionals</li>
+                            <li>Placement-oriented coaching focused on employability</li>
+                            <li>ISO 9001:2015 certified organisation</li>
+                            <li>OJT with official experience certificate</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ── CERTIFICATION ── -->
+            <div class="faq-group reveal" data-group="certification">
+                <h2 class="faq-group-title"><span>07</span> Certification</h2>
+
+                <div class="faq-item" data-cat="certification">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>Does SCOPE INDIA provide a course completion certificate?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Yes. Upon successful completion, SCOPE INDIA provides a <strong>Course cum Internship Certificate</strong> issued under Suffix E Solutions. This serves as both a course completion certificate and an experience certificate.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="certification">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>Are the courses aligned with global industry certifications?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Yes. SCOPE INDIA's courses are aligned with globally recognised certification exams. Depending on your course, you can prepare for:</p>
+                        <ul>
+                            <li><strong>ISTQB</strong> — International Software Testing Qualifications Board</li>
+                            <li><strong>AWS / Azure / GCP</strong> — Cloud certifications</li>
+                            <li><strong>CCNA</strong> — Cisco Certified Network Associate</li>
+                            <li><strong>Red Hat (RHCE)</strong> — Linux certification</li>
+                            <li><strong>Microsoft</strong> — Azure, .NET certifications</li>
+                            <li><strong>Google</strong> — Digital Marketing, Cloud certifications</li>
+                            <li><strong>CSTE</strong> — Certified Software Test Engineer</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="certification">
+                    <button class="faq-q" aria-expanded="false">
+                        <span>Do global certifications improve job prospects?</span>
+                        <span class="faq-chevron">▾</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Yes. Global certifications add strong value to your profile and significantly improve hiring prospects — both in India and internationally. Certifications from AWS, Google, Microsoft, Cisco and ISTQB are recognised by recruiters worldwide.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- No results message -->
+            <div class="faq-no-results" id="faqNoResults" style="display:none;">
+                <div class="no-results-icon">🔍</div>
+                <h3>No matching questions found</h3>
+                <p>Try different keywords or <a th:href="@{/contact}">contact us directly</a> — we're happy to help.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="section-sep"></div>
+
+    <!-- ===== STILL HAVE QUESTIONS CTA ===== -->
+    <section class="faq-cta-section reveal">
+        <div class="faq-cta-inner">
+            <div class="faq-cta-glow"></div>
+            <h2>Still Have <span>Questions?</span></h2>
+            <p>Our counsellors are available 6 days a week — online, by phone, or in person at any of our four centres.</p>
+            <div class="faq-cta-actions">
+                <a th:href="@{/contact}" class="btn-gold">Contact Us →</a>
+                <a href="https://wa.me/919745936073" class="whatsapp-cta-btn" target="_blank" rel="noopener">
+                    <span>💬</span> Chat on WhatsApp
+                </a>
+                <a href="tel:9745936073" class="btn-outline">📞 Call Now</a>
+            </div>
+            <div class="faq-cta-phones">
+                <span>9745936073</span>
+                <span class="sep">·</span>
+                <span>7592939481</span>
+                <span class="sep">·</span>
+                <span>8075536185</span>
+            </div>
+        </div>
+    </section>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    /* ── Scroll Reveal ── */
+    (function () {
+        var els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                if (e.isIntersecting) { e.target.classList.add('revealed'); io.unobserve(e.target); }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+        els.forEach(function (el) { io.observe(el); });
+    })();
+
+    /* ── Accordion ── */
+    document.querySelectorAll('.faq-q').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var item    = btn.closest('.faq-item');
+            var answer  = item.querySelector('.faq-a');
+            var isOpen  = item.classList.contains('open');
+
+            /* Close all others in same group */
+            var group = item.closest('.faq-group');
+            group.querySelectorAll('.faq-item.open').forEach(function (openItem) {
+                if (openItem !== item) {
+                    openItem.classList.remove('open');
+                    openItem.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+                    openItem.querySelector('.faq-a').style.maxHeight = null;
+                }
+            });
+
+            /* Toggle current */
+            if (isOpen) {
+                item.classList.remove('open');
+                btn.setAttribute('aria-expanded', 'false');
+                answer.style.maxHeight = null;
+            } else {
+                item.classList.add('open');
+                btn.setAttribute('aria-expanded', 'true');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            }
+        });
+    });
+
+    /* ── Category Filter ── */
+    (function () {
+        var catBtns = document.querySelectorAll('.faq-cat-btn');
+        var items   = document.querySelectorAll('.faq-item');
+        var groups  = document.querySelectorAll('.faq-group');
+
+        catBtns.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                catBtns.forEach(function (b) { b.classList.remove('active'); });
+                btn.classList.add('active');
+                var cat = btn.dataset.cat;
+
+                items.forEach(function (item) {
+                    if (cat === 'all' || item.dataset.cat === cat) {
+                        item.style.display = '';
+                    } else {
+                        item.style.display = 'none';
+                        item.classList.remove('open');
+                        item.querySelector('.faq-a').style.maxHeight = null;
+                    }
+                });
+
+                /* Hide empty groups */
+                groups.forEach(function (g) {
+                    var visible = Array.from(g.querySelectorAll('.faq-item')).some(function (i) { return i.style.display !== 'none'; });
+                    g.style.display = visible ? '' : 'none';
+                });
+            });
+        });
+    })();
+
+    /* ── Live Search ── */
+    (function () {
+        var input   = document.getElementById('faqSearch');
+        var clear   = document.getElementById('faqClear');
+        var noRes   = document.getElementById('faqNoResults');
+        var items   = document.querySelectorAll('.faq-item');
+        var groups  = document.querySelectorAll('.faq-group');
+
+        if (!input) return;
+
+        input.addEventListener('input', function () {
+            var q = input.value.trim().toLowerCase();
+            clear.style.display = q ? 'block' : 'none';
+
+            var anyVisible = false;
+
+            items.forEach(function (item) {
+                var text = item.textContent.toLowerCase();
+                var show = !q || text.includes(q);
+                item.style.display = show ? '' : 'none';
+                if (show) {
+                    anyVisible = true;
+                    /* Auto-open if searching */
+                    if (q) {
+                        item.classList.add('open');
+                        item.querySelector('.faq-q').setAttribute('aria-expanded', 'true');
+                        item.querySelector('.faq-a').style.maxHeight = item.querySelector('.faq-a').scrollHeight + 'px';
+                    }
+                } else {
+                    item.classList.remove('open');
+                    item.querySelector('.faq-a').style.maxHeight = null;
+                }
+            });
+
+            groups.forEach(function (g) {
+                var visible = Array.from(g.querySelectorAll('.faq-item')).some(function (i) { return i.style.display !== 'none'; });
+                g.style.display = visible ? '' : 'none';
+            });
+
+            noRes.style.display = anyVisible ? 'none' : 'block';
+        });
+
+        clear.addEventListener('click', function () {
+            input.value = '';
+            clear.style.display = 'none';
+            items.forEach(function (item) {
+                item.style.display = '';
+                item.classList.remove('open');
+                item.querySelector('.faq-a').style.maxHeight = null;
+            });
+            groups.forEach(function (g) { g.style.display = ''; });
+            noRes.style.display = 'none';
+        });
+    })();
+
+    /* ── Sep bg ── */
+    (function () {
+        document.querySelectorAll('.section-sep').forEach(function (sep) {
+            var prev = sep.previousElementSibling;
+            if (prev) sep.style.setProperty('--sep-bg', getComputedStyle(prev).backgroundColor);
+        });
+    })();
+    </script>
+</body>
+</html>
