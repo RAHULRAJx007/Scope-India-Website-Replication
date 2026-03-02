@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCOPE INDIA | Contact Us</title>
+    <meta name="description" content="Contact Scope India — 4 centres across Trivandrum (Technopark &amp; Thampanoor), Kochi, and Nagercoil. Call, email or walk in for free counselling.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/contact.css}" rel="stylesheet">
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<!-- ================= HERO ================= -->
+<section class="contact-hero">
+    <div class="contact-hero-orb"></div>
+    <div class="contact-hero-dots"></div>
+    <span class="hero-eyebrow reveal">We're Here to Help</span>
+    <h1 class="reveal delay-1">Let's <span class="gold-shimmer">Connect</span></h1>
+    <p class="reveal delay-2">Have questions about courses, placements, or admissions? We're here to help.</p>
+    <div class="contact-hero-pills reveal delay-3">
+        <span>📍 4 Locations</span>
+        <span>🕘 Mon–Sat 9AM–6PM</span>
+        <span>🌐 Online Training Available</span>
+    </div>
+</section>
+
+<!-- ================= CONTACT SECTION ================= -->
+<section class="contact-section">
+    <div class="contact-grid">
+
+        <!-- Left: Contact Info -->
+        <div class="contact-info reveal-left">
+
+            <h2>Get in Touch</h2>
+            <p>Reach out to us directly or visit one of our centres for a free counselling session.</p>
+
+            <div class="info-item">
+                <span>📞</span>
+                <div>
+                    <h4>Phone</h4>
+                    <p>
+                        <a href="tel:9745936073">9745936073</a> ·
+                        <a href="tel:7592939481">7592939481</a> ·
+                        <a href="tel:8075536185">8075536185</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <span>📧</span>
+                <div>
+                    <h4>Email</h4>
+                    <p><a href="mailto:info@scopeindia.org">info@scopeindia.org</a></p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <span>📍</span>
+                <div>
+                    <h4>Locations</h4>
+                    <ul class="location-list">
+                        <li><strong>Thampanoor</strong> — TC 25/1403/3, Athens Plaza, SS Kovil Rd, TVM 695001</li>
+                        <li><strong>Technopark</strong> — Phase 1, Main Gate, Diamond Arcade, TVM</li>
+                        <li><strong>Kochi</strong> — Vasanth Nagar Rd, near JLN Metro, Kaloor 682025</li>
+                        <li><strong>Nagercoil</strong> — Near WCC College, Palace Rd, TN 629001</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <span>🕘</span>
+                <div>
+                    <h4>Working Hours</h4>
+                    <p>Mon–Fri: 9:00 AM – 6:00 PM<br>Saturday: 9:00 AM – 1:00 PM<br><span class="closed">Sunday: Closed</span></p>
+                </div>
+            </div>
+
+            <a href="https://wa.me/919745936073" class="whatsapp-btn" target="_blank" rel="noopener">
+                <span>💬</span> Chat on WhatsApp
+            </a>
+
+        </div>
+
+        <!-- Right: Contact Form -->
+        <div class="contact-form-card reveal-right">
+
+            <h2>Send a Message</h2>
+            <p class="form-sub">Fields marked <span class="req-star">*</span> are required.</p>
+
+            <form method="post" th:action="@{/contact}" id="contactForm" novalidate>
+
+                <div class="form-group">
+                    <label for="cfName">Full Name <span class="req-star">*</span></label>
+                    <input type="text" id="cfName" name="name" placeholder="Full Name" required autocomplete="name">
+                    <span class="field-err">Please enter your name</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="cfEmail">Email Address <span class="req-star">*</span></label>
+                    <input type="email" id="cfEmail" name="email" placeholder="Email Address" required autocomplete="email">
+                    <span class="field-err">Please enter a valid email</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="cfPhone">Phone Number <span class="req-star">*</span></label>
+                    <input type="tel" id="cfPhone" name="phone" placeholder="Phone Number" required pattern="[6-9][0-9]{9}" autocomplete="tel">
+                    <span class="field-err">Enter a valid 10-digit number</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="cfCourse">Course of Interest</label>
+                    <div class="select-wrap">
+                        <select id="cfCourse" name="course">
+                            <option value="" disabled selected>Select a course…</option>
+                            <option value="data-science-ai">Data Science &amp; AI</option>
+                            <option value="full-stack">Full Stack Development</option>
+                            <option value="devops">DevOps Engineering</option>
+                            <option value="software-testing">Software Testing</option>
+                            <option value="cloud">Cloud Computing</option>
+                            <option value="networking">Networking &amp; Server Admin</option>
+                            <option value="power-bi">Power BI &amp; Data Analytics</option>
+                            <option value="digital-marketing">Digital Marketing</option>
+                            <option value="not-sure">Not Sure — Need Counselling</option>
+                        </select>
+                        <span class="select-arrow">▾</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="cfMessage">Your Message <span class="req-star">*</span></label>
+                    <textarea id="cfMessage" name="message" rows="4" placeholder="Your Message" required></textarea>
+                    <span class="field-err">Please enter your message</span>
+                </div>
+
+                <button type="submit" class="cf-submit-btn" id="cfSubmit">
+                    <span class="cf-btn-text">Send Message →</span>
+                    <span class="cf-btn-loader" aria-hidden="true"></span>
+                </button>
+
+                <p class="cf-privacy">🔒 We never share your details with third parties.</p>
+            </form>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= MAP ================= -->
+<section class="contact-map">
+    <div class="map-tab-bar">
+        <button class="map-tab active" data-map="thampanoor">Thampanoor</button>
+        <button class="map-tab" data-map="technopark">Technopark</button>
+        <button class="map-tab" data-map="kochi">Kochi</button>
+        <button class="map-tab" data-map="nagercoil">Nagercoil</button>
+    </div>
+
+    <iframe id="map-thampanoor" class="map-frame active"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.8388406748!2d76.94991507486577!3d8.487517391545658!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05bba5cdaff17b%3A0xdf93784626e9d676!2sSCOPE%20INDIA%2C%20Software%20and%20Networking%20Education!5e0!3m2!1sen!2sin!4v1700000001"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Thampanoor">
+    </iframe>
+    <iframe id="map-technopark" class="map-frame"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3946.5!2d76.9928!3d8.5552!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05bfb8b0000001%3A0x0000000000000002!2sTechnopark%20Trivandrum!5e0!3m2!1sen!2sin!4v1700000002"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Technopark">
+    </iframe>
+    <iframe id="map-kochi" class="map-frame"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.5!2d76.2960!3d10.0082!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080d614e3c2f7d%3A0x1234abcd!2sKaloor%20Kochi!5e0!3m2!1sen!2sin!4v1700000003"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Kochi">
+    </iframe>
+    <iframe id="map-nagercoil" class="map-frame"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.0!2d77.4120!3d8.1780!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b04f3b000000001%3A0xdeadbeef!2sNagercoil%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1700000004"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Nagercoil">
+    </iframe>
+</section>
+
+<!-- Toast -->
+<div class="contact-toast" id="contactToast" aria-live="polite">
+    <span>✅</span>
+    <div><strong>Message Sent!</strong><p>We'll get back to you within 24 hours.</p></div>
+    <button onclick="document.getElementById('contactToast').classList.remove('show')" aria-label="Close">✕</button>
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+/* Scroll Reveal */
+(function(){
+    var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('revealed');io.unobserve(x.target);}});},{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
+    document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(function(el){io.observe(el);});
+})();
+
+/* Map tabs */
+(function(){
+    document.querySelectorAll('.map-tab').forEach(function(btn){
+        btn.addEventListener('click',function(){
+            document.querySelectorAll('.map-tab,.map-frame').forEach(function(el){el.classList.remove('active');});
+            btn.classList.add('active');
+            var f=document.getElementById('map-'+btn.dataset.map);
+            if(f)f.classList.add('active');
+        });
+    });
+})();
+
+/* Form validation */
+(function(){
+    var form=document.getElementById('contactForm'),btn=document.getElementById('cfSubmit'),toast=document.getElementById('contactToast');
+    if(!form)return;
+    function vf(f){var ok=f.checkValidity();if(f.id==='cfPhone'&&ok)ok=/^[6-9][0-9]{9}$/.test(f.value.trim());f.classList.toggle('invalid',!ok);f.classList.toggle('valid',ok);return ok;}
+    form.querySelectorAll('input[required],textarea[required]').forEach(function(f){
+        f.addEventListener('blur',function(){vf(f);});
+        f.addEventListener('input',function(){if(f.classList.contains('invalid'))vf(f);});
+    });
+    form.addEventListener('submit',function(e){
+        e.preventDefault();var ok=true;
+        form.querySelectorAll('input[required],textarea[required]').forEach(function(f){if(!vf(f))ok=false;});
+        if(!ok){var first=form.querySelector('.invalid');if(first)first.scrollIntoView({behavior:'smooth',block:'center'});return;}
+        btn.classList.add('loading');
+        setTimeout(function(){
+            btn.classList.remove('loading');form.reset();
+            form.querySelectorAll('.valid,.invalid').forEach(function(el){el.classList.remove('valid','invalid');});
+            toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},5000);
+        },1400);
+    });
+})();
+</script>
+</body>
+</html>
