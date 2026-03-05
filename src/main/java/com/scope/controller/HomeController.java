@@ -60,4 +60,10 @@ public class HomeController {
         model.addAttribute("activePage", "login");
         return "login";
     }
+    
+    @GetMapping("/signup")
+    public String signup(Model model) {
+        model.addAttribute("activePage", "signup");
+        return "signup";
+    }
 }

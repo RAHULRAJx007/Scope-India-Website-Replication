@@ -1,54 +1,147 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <title>SCOPE INDIA | Login</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <title>SCOPE INDIA | Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link th:href="@{/css/main.css}" rel="stylesheet">
     <link th:href="@{/css/login.css}" rel="stylesheet">
 </head>
+<body class="login-page">
 
-<body>
+<div class="login-split">
 
-<div class="login-wrapper">
+    <!-- ═══════════════ LEFT PANEL ═══════════════ -->
+    <div class="login-left">
+        <div class="ll-inner">
 
-    <div class="login-card">
+            <!-- Back to site -->
+            <a th:href="@{/}" class="ll-back">← Back to site</a>
 
-        <div class="login-header">
-            <h2>Welcome Back</h2>
-            <p>Login to continue your journey</p>
+            <!-- Brand -->
+            <div class="ll-brand">
+                <img th:src="@{/images/logo.png}" alt="SCOPE INDIA"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+                <div class="ll-brand-text" style="display:none;">
+                    SCOPE<span>INDIA</span>
+                </div>
+            </div>
+
+            <!-- Tagline -->
+            <h1 class="ll-headline">
+                Your IT Career<br>Starts Here.
+            </h1>
+            <p class="ll-sub">
+                18+ years · 15,000+ alumni<br>
+                Technopark · Thampanoor · Kochi · Nagercoil
+            </p>
+
+            <!-- Stats row -->
+            <div class="ll-stats">
+                <div class="ll-stat">
+                    <span class="ll-stat-num">15K+</span>
+                    <span class="ll-stat-label">Alumni</span>
+                </div>
+                <div class="ll-stat-sep"></div>
+                <div class="ll-stat">
+                    <span class="ll-stat-num">18+</span>
+                    <span class="ll-stat-label">Years</span>
+                </div>
+                <div class="ll-stat-sep"></div>
+                <div class="ll-stat">
+                    <span class="ll-stat-num">4</span>
+                    <span class="ll-stat-label">Centres</span>
+                </div>
+            </div>
+
         </div>
 
-        <form th:action="@{/login}" method="post">
+        <!-- Decorative circles -->
+        <div class="ll-circle ll-circle--1"></div>
+        <div class="ll-circle ll-circle--2"></div>
+        <div class="ll-dots"></div>
+    </div>
 
-            <div class="form-group">
-                <label>Email</label>
-                <input type="text" name="username" required>
+    <!-- ═══════════════ RIGHT PANEL ═══════════════ -->
+    <div class="login-right">
+        <div class="lr-inner">
+
+            <h2 class="lr-title">Welcome Back</h2>
+            <p class="lr-sub">Login to continue your journey</p>
+
+            <!-- Alerts -->
+            <div th:if="${param.error}" class="lr-alert lr-alert--error">
+                ⚠ Invalid username or password. Please try again.
+            </div>
+            <div th:if="${param.logout}" class="lr-alert lr-alert--success">
+                ✓ You have been logged out successfully.
             </div>
 
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" name="password" required>
-            </div>
+            <!-- Form -->
+            <form th:action="@{/login}" method="post" id="loginForm" novalidate>
 
-            <button type="submit" class="btn-login">
-                Login →
-            </button>
+                <div class="lr-field">
+                    <label for="username">Email / Username</label>
+                    <input type="text" id="username" name="username"
+                           placeholder="your@email.com" required autocomplete="username">
+                </div>
 
-            <div th:if="${param.error}" class="login-error">
-                Invalid username or password
-            </div>
+                <div class="lr-field">
+                    <label for="password">Password</label>
+                    <div class="lr-pw-wrap">
+                        <input type="password" id="password" name="password"
+                               placeholder="Enter your password" required autocomplete="current-password">
+                        <button type="button" class="lr-pw-toggle" id="pwToggle" aria-label="Toggle password">
+                            <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
 
-            <div th:if="${param.logout}" class="login-success">
-                You have been logged out
-            </div>
+                <button type="submit" class="lr-submit" id="loginBtn">
+                    <span class="lr-submit-text">Login</span>
+                    <span class="lr-submit-arrow">→</span>
+                    <span class="lr-submit-loader"></span>
+                </button>
 
-        </form>
+            </form>
 
+            <!-- Footer -->
+            <p class="lr-footer">
+                Not registered? <a th:href="@{/signup}">Enroll Now →</a>
+            </p>
+
+        </div>
     </div>
 
 </div>
+
+<script>
+/* Password toggle */
+(function () {
+    var btn = document.getElementById('pwToggle');
+    var pwd = document.getElementById('password');
+    if (!btn || !pwd) return;
+    btn.addEventListener('click', function () {
+        var show = pwd.type === 'password';
+        pwd.type = show ? 'text' : 'password';
+        btn.style.color = show ? 'var(--gold)' : '';
+    });
+})();
+
+/* Loader on submit */
+(function () {
+    var form = document.getElementById('loginForm');
+    var btn  = document.getElementById('loginBtn');
+    if (!form || !btn) return;
+    form.addEventListener('submit', function () {
+        btn.classList.add('loading');
+    });
+})();
+</script>
 
 </body>
 </html>
