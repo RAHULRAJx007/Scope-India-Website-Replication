@@ -1,0 +1,414 @@
+/* ==========================================================
+   SIGNUP PAGE — signup.css
+   Extends the login split layout.
+   Import login.css FIRST, then this file.
+   All values hardcoded — no CSS variable dependencies.
+========================================================== */
+
+/* ── Override body for signup — allow scroll (more fields) ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body.signup-page {
+    font-family: 'Inter', sans-serif;
+    background: #030a28;
+    color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    /* allow scroll — form is taller than login */
+    height: auto;
+    overflow: auto;
+}
+
+/* ==========================================================
+   SPLIT CONTAINER  (same as login)
+========================================================== */
+.login-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+}
+
+/* ==========================================================
+   LEFT PANEL  (reused from login.css — redeclared here so
+   signup.css works standalone if needed)
+========================================================== */
+.login-left {
+    background: #030a28;
+    border-right: 1px solid rgba(245,196,0,0.18);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ll-inner {
+    position: relative;
+    z-index: 2;
+    padding: 40px 52px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 480px;
+}
+.ll-back {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    margin-bottom: 52px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.25s ease;
+    width: fit-content;
+}
+.ll-back:hover { color: #f5c400; }
+.ll-brand { margin-bottom: 40px; }
+.ll-brand img { height: 44px; width: auto; display: block; }
+.ll-brand-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 1.6rem;
+    color: #ffffff;
+    letter-spacing: 2px;
+}
+.ll-brand-text span { color: #f5c400; }
+.ll-headline {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: clamp(1.9rem, 3vw, 2.7rem);
+    line-height: 1.12;
+    letter-spacing: -0.5px;
+    color: #ffffff;
+    margin-bottom: 14px;
+}
+.ll-sub {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.9;
+    margin-bottom: 40px;
+}
+
+/* Benefits list — replaces stats on signup */
+.ll-benefits {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.ll-benefits li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.6);
+    transition: color 0.2s ease;
+}
+.ll-benefits li:hover { color: rgba(255,255,255,0.85); }
+.llb-dot {
+    width: 7px; height: 7px;
+    background: #f5c400;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 0 6px rgba(245,196,0,0.5);
+}
+
+/* Decorative circles + dots */
+.ll-circle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+}
+.ll-circle--1 {
+    width: 440px; height: 440px;
+    border: 1px solid rgba(245,196,0,0.06);
+    bottom: -150px; right: -150px;
+}
+.ll-circle--2 {
+    width: 270px; height: 270px;
+    border: 1px solid rgba(245,196,0,0.04);
+    bottom: -70px; right: -70px;
+}
+.ll-dots {
+    position: absolute; inset: 0; z-index: 0;
+    background-image: radial-gradient(circle, rgba(245,196,0,0.07) 1px, transparent 1px);
+    background-size: 36px 36px;
+    mask-image: radial-gradient(ellipse 70% 65% at 85% 85%, black 0%, transparent 68%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 65% at 85% 85%, black 0%, transparent 68%);
+    pointer-events: none;
+}
+
+/* ==========================================================
+   RIGHT PANEL
+========================================================== */
+.login-right.su-right {
+    background: #050f38;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 48px 5% 64px;
+    overflow-y: auto;
+}
+.lr-inner.su-inner {
+    width: 100%;
+    max-width: 420px;
+    padding-top: 8px;
+}
+
+/* Title / sub */
+.lr-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: clamp(1.6rem, 2.8vw, 2rem);
+    color: #ffffff;
+    margin-bottom: 6px;
+    line-height: 1.15;
+}
+.lr-sub {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 30px;
+}
+
+/* Alerts */
+.lr-alert {
+    font-size: 0.84rem;
+    padding: 12px 16px;
+    border-radius: 10px;
+    margin-bottom: 22px;
+    border: 1px solid;
+    font-family: 'Inter', sans-serif;
+}
+.lr-alert a { color: #f5c400; text-decoration: none; font-weight: 600; }
+.lr-alert--error   { color: #fca5a5; background: rgba(239,68,68,0.08);  border-color: rgba(239,68,68,0.25); }
+.lr-alert--success { color: #86efac; background: rgba(74,222,128,0.08); border-color: rgba(74,222,128,0.2); }
+
+/* Two-column name row */
+.su-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+/* Fields */
+.lr-field {
+    margin-bottom: 16px;
+    position: relative;
+}
+.lr-field label {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.7rem;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.42);
+    margin-bottom: 7px;
+}
+.su-req { color: #f5625a; }
+
+.lr-field input {
+    width: 100%;
+    padding: 13px 16px;
+    background: rgba(255,255,255,0.04);
+    border: 1.5px solid rgba(245,196,0,0.18);
+    border-radius: 10px;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.93rem;
+    outline: none;
+    transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+.lr-field input::placeholder { color: rgba(255,255,255,0.18); }
+.lr-field input:focus {
+    border-color: #f5c400;
+    background: rgba(245,196,0,0.04);
+    box-shadow: 0 0 0 3px rgba(245,196,0,0.1);
+}
+
+/* Valid / invalid */
+.lr-field input.su-valid   { border-color: #4ade80; }
+.lr-field input.su-invalid { border-color: #f5625a; box-shadow: 0 0 0 3px rgba(245,98,90,0.1); }
+
+/* Per-field error */
+.su-err {
+    display: none;
+    font-size: 0.72rem;
+    color: #f5625a;
+    margin-top: 5px;
+}
+.lr-field input.su-invalid ~ .su-err { display: block; }
+
+/* Select */
+.su-select-wrap { position: relative; }
+.su-select-wrap select {
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    padding: 13px 40px 13px 16px;
+    background: rgba(255,255,255,0.04);
+    border: 1.5px solid rgba(245,196,0,0.18);
+    border-radius: 10px;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.93rem;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.su-select-wrap select:focus {
+    border-color: #f5c400;
+    box-shadow: 0 0 0 3px rgba(245,196,0,0.1);
+}
+.su-select-wrap select option { background: #041035; color: #ffffff; }
+.su-select-wrap select option:disabled { color: rgba(255,255,255,0.3); }
+.su-arrow {
+    position: absolute;
+    right: 14px; top: 50%;
+    transform: translateY(-50%);
+    color: #f5c400;
+    font-size: 0.82rem;
+    pointer-events: none;
+}
+
+/* Password + toggle */
+.lr-pw-wrap { position: relative; }
+.lr-pw-wrap input { padding-right: 46px; }
+.lr-pw-toggle {
+    position: absolute;
+    right: 13px; top: 50%;
+    transform: translateY(-50%);
+    background: none; border: none;
+    color: rgba(255,255,255,0.25);
+    cursor: pointer; padding: 4px;
+    display: flex; align-items: center;
+    transition: color 0.2s ease;
+    line-height: 1;
+}
+.lr-pw-toggle:hover { color: #f5c400; }
+
+/* Password strength bar */
+.su-strength {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+}
+.su-strength-track {
+    flex: 1;
+    height: 3px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 3px;
+    overflow: hidden;
+}
+.su-strength-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 3px;
+    background: #f5c400;
+    transition: width 0.4s ease, background 0.4s ease;
+}
+.su-strength-label {
+    font-size: 0.68rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: rgba(255,255,255,0.3);
+    min-width: 42px;
+    text-align: right;
+    transition: color 0.4s ease;
+}
+
+/* Submit button */
+.lr-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    margin-top: 10px;
+    padding: 15px 24px;
+    background: #f5c400;
+    color: #030a28;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 0.88rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+.lr-submit::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+}
+.lr-submit:hover::after { transform: translateX(100%); }
+.lr-submit:hover {
+    background: #ffe066;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(245,196,0,0.42);
+}
+.lr-submit-arrow {
+    display: inline-block;
+    transition: transform 0.25s ease;
+}
+.lr-submit:hover .lr-submit-arrow { transform: translateX(4px); }
+
+/* Loader */
+.lr-submit-loader {
+    display: none;
+    width: 16px; height: 16px;
+    border: 2px solid rgba(3,10,40,0.25);
+    border-top-color: #030a28;
+    border-radius: 50%;
+    animation: suSpin 0.65s linear infinite;
+    flex-shrink: 0;
+}
+@keyframes suSpin { to { transform: rotate(360deg); } }
+.lr-submit.loading .lr-submit-text  { display: none; }
+.lr-submit.loading .lr-submit-arrow { display: none; }
+.lr-submit.loading .lr-submit-loader { display: block; }
+.lr-submit.loading { cursor: not-allowed; pointer-events: none; }
+
+/* Footer link */
+.lr-footer {
+    text-align: center;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.28);
+    margin-top: 24px;
+}
+.lr-footer a {
+    color: #f5c400;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+.lr-footer a:hover { color: #ffe066; }
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+@media (max-width: 768px) {
+    .login-split  { grid-template-columns: 1fr; min-height: auto; }
+    .login-left   { min-height: 280px; border-right: none; border-bottom: 1px solid rgba(245,196,0,0.15); position: relative; }
+    .ll-inner     { padding: 40px 24px 36px; }
+    .ll-back      { margin-bottom: 24px; }
+    .ll-brand     { margin-bottom: 18px; }
+    .ll-headline  { font-size: 1.7rem; margin-bottom: 10px; }
+    .ll-sub       { margin-bottom: 20px; }
+    .ll-benefits  { gap: 10px; }
+
+    .login-right.su-right { padding: 36px 24px 56px; align-items: flex-start; }
+    .lr-inner.su-inner    { max-width: 100%; }
+    .su-row               { grid-template-columns: 1fr; gap: 0; }
+}

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCOPE INDIA | Sign Up</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/signup.css}" rel="stylesheet">
+</head>
+<body class="signup-page">
+
+<div class="login-split">
+
+    <!-- ═══════════════ LEFT PANEL (reuses login-left styles) ═══════════════ -->
+    <div class="login-left">
+        <div class="ll-inner">
+
+            <a th:href="@{/}" class="ll-back">← Back to site</a>
+
+            <div class="ll-brand">
+                <img th:src="@{/images/logo.png}" alt="SCOPE INDIA"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+                <div class="ll-brand-text" style="display:none;">SCOPE<span>INDIA</span></div>
+            </div>
+
+            <h1 class="ll-headline">Join 15,000+<br>IT Professionals.</h1>
+            <p class="ll-sub">
+                Real training. Real projects.<br>
+                100% placement support.
+            </p>
+
+            <!-- Benefits list -->
+            <ul class="ll-benefits">
+                <li><span class="llb-dot"></span> Industry trainers from Suffix E Solutions</li>
+                <li><span class="llb-dot"></span> OJT with experience certificate</li>
+                <li><span class="llb-dot"></span> Online &amp; offline batches</li>
+                <li><span class="llb-dot"></span> Free counselling session</li>
+                <li><span class="llb-dot"></span> ISO 9001:2015 certified</li>
+            </ul>
+
+        </div>
+
+        <div class="ll-circle ll-circle--1"></div>
+        <div class="ll-circle ll-circle--2"></div>
+        <div class="ll-dots"></div>
+    </div>
+
+    <!-- ═══════════════ RIGHT PANEL ═══════════════ -->
+    <div class="login-right su-right">
+        <div class="lr-inner su-inner">
+
+            <h2 class="lr-title">Create Account</h2>
+            <p class="lr-sub">Start your IT journey today — it's free.</p>
+
+            <!-- Server error alert -->
+            <div th:if="${error}" class="lr-alert lr-alert--error">
+                ⚠ <span th:text="${error}">Something went wrong. Please try again.</span>
+            </div>
+            <!-- Success -->
+            <div th:if="${success}" class="lr-alert lr-alert--success">
+                ✓ Account created! <a th:href="@{/login}">Login now →</a>
+            </div>
+
+            <form th:action="@{/signup}" method="post" id="signupForm" novalidate>
+
+                <!-- Name row -->
+                <div class="su-row">
+                    <div class="lr-field">
+                        <label for="firstName">First Name <span class="su-req">*</span></label>
+                        <input type="text" id="firstName" name="firstName"
+                               placeholder="Arjun" required autocomplete="given-name">
+                        <span class="su-err">Required</span>
+                    </div>
+                    <div class="lr-field">
+                        <label for="lastName">Last Name <span class="su-req">*</span></label>
+                        <input type="text" id="lastName" name="lastName"
+                               placeholder="Nair" required autocomplete="family-name">
+                        <span class="su-err">Required</span>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="lr-field">
+                    <label for="suEmail">Email Address <span class="su-req">*</span></label>
+                    <input type="email" id="suEmail" name="email"
+                           placeholder="arjun@email.com" required autocomplete="email">
+                    <span class="su-err">Enter a valid email</span>
+                </div>
+
+                <!-- Phone -->
+                <div class="lr-field">
+                    <label for="suPhone">Phone Number <span class="su-req">*</span></label>
+                    <input type="tel" id="suPhone" name="phone"
+                           placeholder="9745936073" required pattern="[6-9][0-9]{9}" autocomplete="tel">
+                    <span class="su-err">Enter a valid 10-digit number</span>
+                </div>
+
+                <!-- Course -->
+                <div class="lr-field">
+                    <label for="suCourse">Course of Interest</label>
+                    <div class="su-select-wrap">
+                        <select id="suCourse" name="course">
+                            <option value="" disabled selected>Select a course…</option>
+                            <option value="data-science-ai">Data Science &amp; AI</option>
+                            <option value="full-stack">Full Stack Development</option>
+                            <option value="devops">DevOps Engineering</option>
+                            <option value="software-testing">Software Testing</option>
+                            <option value="cloud">Cloud Computing</option>
+                            <option value="networking">Networking &amp; Server Admin</option>
+                            <option value="power-bi">Power BI &amp; Data Analytics</option>
+                            <option value="digital-marketing">Digital Marketing</option>
+                            <option value="not-sure">Not Sure — Need Counselling</option>
+                        </select>
+                        <span class="su-arrow">▾</span>
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="lr-field">
+                    <label for="suPassword">Password <span class="su-req">*</span></label>
+                    <div class="lr-pw-wrap">
+                        <input type="password" id="suPassword" name="password"
+                               placeholder="Min. 8 characters" required minlength="8" autocomplete="new-password">
+                        <button type="button" class="lr-pw-toggle" id="pwToggle" aria-label="Toggle password">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2"
+                                 stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- Strength bar -->
+                    <div class="su-strength" id="strengthBar">
+                        <div class="su-strength-track">
+                            <div class="su-strength-fill" id="strengthFill"></div>
+                        </div>
+                        <span class="su-strength-label" id="strengthLabel">—</span>
+                    </div>
+                    <span class="su-err">Minimum 8 characters</span>
+                </div>
+
+                <!-- Confirm password -->
+                <div class="lr-field">
+                    <label for="suConfirm">Confirm Password <span class="su-req">*</span></label>
+                    <div class="lr-pw-wrap">
+                        <input type="password" id="suConfirm" name="confirmPassword"
+                               placeholder="Re-enter password" required autocomplete="new-password">
+                        <button type="button" class="lr-pw-toggle" id="pwToggle2" aria-label="Toggle confirm">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2"
+                                 stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <span class="su-err" id="confirmErr">Passwords do not match</span>
+                </div>
+
+                <button type="submit" class="lr-submit" id="signupBtn">
+                    <span class="lr-submit-text">Create Account</span>
+                    <span class="lr-submit-arrow">→</span>
+                    <span class="lr-submit-loader"></span>
+                </button>
+
+            </form>
+
+            <p class="lr-footer">
+                Already have an account? <a th:href="@{/login}">Login →</a>
+            </p>
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+/* ── Password toggle ── */
+(function () {
+    function makeToggle(btnId, pwdId) {
+        var btn = document.getElementById(btnId);
+        var pwd = document.getElementById(pwdId);
+        if (!btn || !pwd) return;
+        btn.addEventListener('click', function () {
+            var show = pwd.type === 'password';
+            pwd.type = show ? 'text' : 'password';
+            btn.style.color = show ? '#f5c400' : '';
+        });
+    }
+    makeToggle('pwToggle',  'suPassword');
+    makeToggle('pwToggle2', 'suConfirm');
+})();
+
+/* ── Password strength ── */
+(function () {
+    var pwd    = document.getElementById('suPassword');
+    var fill   = document.getElementById('strengthFill');
+    var label  = document.getElementById('strengthLabel');
+    if (!pwd || !fill || !label) return;
+
+    pwd.addEventListener('input', function () {
+        var v = pwd.value;
+        var score = 0;
+        if (v.length >= 8)  score++;
+        if (/[A-Z]/.test(v)) score++;
+        if (/[0-9]/.test(v)) score++;
+        if (/[^A-Za-z0-9]/.test(v)) score++;
+
+        var pct    = ['0%','25%','50%','75%','100%'][score];
+        var colors = ['#f5c400','#f5625a','#f5a623','#4ade80','#22c55e'];
+        var labels = ['—','Weak','Fair','Good','Strong'];
+
+        fill.style.width = pct;
+        fill.style.background = colors[score];
+        label.textContent = labels[score];
+        label.style.color = colors[score];
+    });
+})();
+
+/* ── Form validation + submit ── */
+(function () {
+    var form = document.getElementById('signupForm');
+    var btn  = document.getElementById('signupBtn');
+    if (!form || !btn) return;
+
+    function vf(f) {
+        var ok = f.checkValidity();
+        if (f.id === 'suPhone' && ok) ok = /^[6-9][0-9]{9}$/.test(f.value.trim());
+        f.classList.toggle('su-invalid', !ok);
+        f.classList.toggle('su-valid', ok);
+        return ok;
+    }
+
+    form.querySelectorAll('input[required]').forEach(function (f) {
+        f.addEventListener('blur', function () { vf(f); });
+        f.addEventListener('input', function () { if (f.classList.contains('su-invalid')) vf(f); });
+    });
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var ok = true;
+        form.querySelectorAll('input[required]').forEach(function (f) { if (!vf(f)) ok = false; });
+
+        /* Confirm password match */
+        var pw  = document.getElementById('suPassword');
+        var cfm = document.getElementById('suConfirm');
+        var cerr = document.getElementById('confirmErr');
+        if (pw && cfm && pw.value !== cfm.value) {
+            cfm.classList.add('su-invalid');
+            if (cerr) cerr.textContent = 'Passwords do not match';
+            ok = false;
+        }
+
+        if (!ok) {
+            var first = form.querySelector('.su-invalid');
+            if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return;
+        }
+
+        btn.classList.add('loading');
+        /* Replace with actual form.submit() or AJAX */
+        /* form.submit(); */
+    });
+})();
+</script>
+
+</body>
+</html>
