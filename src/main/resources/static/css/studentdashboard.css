@@ -1,0 +1,995 @@
+/* ==========================================================
+   STUDENT DASHBOARD — dashboard.css
+   All values hardcoded — no CSS variable dependencies
+========================================================== */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body.dashboard-page {
+    font-family: 'Inter', sans-serif;
+    background: #060e30;
+    color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ==========================================================
+   SIDEBAR
+========================================================== */
+.db-sidebar {
+    width: 240px;
+    min-height: 100vh;
+    background: #030a28;
+    border-right: 1px solid rgba(245,196,0,0.12);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    z-index: 200;
+    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+.db-sidebar::-webkit-scrollbar { display: none; }
+
+/* Logo row */
+.db-logo {
+    padding: 20px 20px 18px;
+    border-bottom: 1px solid rgba(245,196,0,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+.db-logo img { height: 34px; width: auto; }
+.db-logo-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: #ffffff;
+    letter-spacing: 1.5px;
+    display: flex;
+    align-items: baseline;
+    gap: 3px;
+}
+.db-logo-text span { color: #f5c400; }
+.db-sidebar-close {
+    display: none;
+    background: none; border: none;
+    color: rgba(255,255,255,0.4);
+    font-size: 1rem; cursor: pointer;
+    padding: 4px;
+}
+
+/* Mini profile */
+.db-profile-mini {
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(245,196,0,0.08);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+.db-avatar {
+    width: 38px; height: 38px;
+    background: linear-gradient(135deg, #f5c400, #d4a800);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 1rem;
+    color: #030a28;
+    flex-shrink: 0;
+}
+.db-profile-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.db-profile-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.db-profile-course {
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.38);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Nav */
+.db-nav {
+    padding: 12px 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.db-nav-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.22);
+    padding: 14px 20px 6px;
+}
+.db-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    font-size: 0.84rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.2s ease, background 0.2s ease;
+    border-radius: 0;
+}
+.db-nav-item:hover { color: #ffffff; background: rgba(255,255,255,0.04); }
+.db-nav-item.active {
+    color: #f5c400;
+    background: rgba(245,196,0,0.08);
+    font-weight: 600;
+}
+.db-nav-item.active::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 6px; bottom: 6px;
+    width: 3px;
+    background: #f5c400;
+    border-radius: 0 3px 3px 0;
+}
+.db-nav-icon { font-size: 0.9rem; flex-shrink: 0; }
+.db-nav-badge {
+    margin-left: auto;
+    background: rgba(245,98,90,0.2);
+    color: #f5625a;
+    border: 1px solid rgba(245,98,90,0.3);
+    font-size: 0.62rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 100px;
+}
+.db-nav-badge--gold {
+    background: rgba(245,196,0,0.15);
+    color: #f5c400;
+    border-color: rgba(245,196,0,0.3);
+}
+
+/* Sidebar foot */
+.db-sidebar-foot {
+    padding: 16px 20px;
+    border-top: 1px solid rgba(245,196,0,0.08);
+    flex-shrink: 0;
+}
+.db-logout {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.35);
+    text-decoration: none;
+    padding: 8px 0;
+    transition: color 0.2s ease;
+}
+.db-logout:hover { color: #f5625a; }
+
+/* ==========================================================
+   OVERLAY (mobile)
+========================================================== */
+.db-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 190;
+    backdrop-filter: blur(2px);
+}
+.db-overlay.show { display: block; }
+
+/* ==========================================================
+   MAIN AREA
+========================================================== */
+.db-main {
+    margin-left: 240px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Top bar */
+.db-topbar {
+    position: sticky;
+    top: 0; z-index: 100;
+    background: rgba(6,14,48,0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(245,196,0,0.1);
+    padding: 0 28px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.db-menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none; border: none;
+    cursor: pointer; padding: 4px;
+    flex-shrink: 0;
+}
+.db-menu-btn span {
+    display: block;
+    width: 22px; height: 2px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 2px;
+    transition: background 0.2s ease;
+}
+.db-menu-btn:hover span { background: #f5c400; }
+
+.db-topbar-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.5px;
+}
+.db-topbar-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.db-notif {
+    position: relative;
+    font-size: 1.1rem;
+    cursor: pointer;
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: background 0.2s ease;
+}
+.db-notif:hover { background: rgba(245,196,0,0.08); }
+.db-notif-dot {
+    position: absolute;
+    top: 5px; right: 5px;
+    width: 8px; height: 8px;
+    background: #f5625a;
+    border-radius: 50%;
+    border: 2px solid #060e30;
+}
+.db-topbar-avatar {
+    width: 34px; height: 34px;
+    background: linear-gradient(135deg, #f5c400, #d4a800);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 0.85rem;
+    color: #030a28;
+    cursor: pointer;
+}
+
+/* ==========================================================
+   CONTENT
+========================================================== */
+.db-content { padding: 28px; flex: 1; }
+
+/* Sections */
+.db-section { display: none; }
+.db-section.active { display: block; }
+
+.db-section-head { margin-bottom: 24px; }
+.db-section-head h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+    color: #ffffff;
+    margin-bottom: 5px;
+    line-height: 1.2;
+}
+.db-section-head p { font-size: 0.88rem; color: rgba(255,255,255,0.45); }
+
+/* ==========================================================
+   SHARED CARD
+========================================================== */
+.db-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(245,196,0,0.12);
+    border-radius: 14px;
+    padding: 22px 24px;
+}
+.db-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+.db-card-head h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: #ffffff;
+}
+.db-card-link {
+    font-size: 0.75rem;
+    color: #f5c400;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+.db-card-link:hover { color: #ffe066; }
+
+/* Progress bar */
+.db-progress-track {
+    height: 5px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 5px;
+    overflow: hidden;
+}
+.db-progress-fill {
+    height: 100%;
+    border-radius: 5px;
+    transition: width 0.6s ease;
+}
+
+/* ==========================================================
+   OVERVIEW — stat cards
+========================================================== */
+.db-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+}
+.db-stat-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(245,196,0,0.12);
+    border-radius: 14px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+}
+.db-stat-card:hover { border-color: rgba(245,196,0,0.3); transform: translateY(-2px); }
+.db-stat-icon {
+    width: 44px; height: 44px;
+    border-radius: 11px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+.db-stat-body { display: flex; flex-direction: column; gap: 2px; }
+.db-stat-num {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 1.4rem;
+    color: #ffffff;
+    line-height: 1;
+}
+.db-stat-label { font-size: 0.72rem; color: rgba(255,255,255,0.4); font-weight: 500; }
+
+/* Overview 2-col grid */
+.db-overview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+/* Course progress list */
+.db-course-progress-list { display: flex; flex-direction: column; gap: 20px; }
+.db-cp-item { display: flex; flex-direction: column; gap: 6px; }
+.db-cp-info { display: flex; justify-content: space-between; align-items: center; }
+.db-cp-name { font-size: 0.85rem; font-weight: 600; color: rgba(255,255,255,0.85); }
+.db-cp-pct  { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.82rem; color: #f5c400; }
+.db-cp-meta { font-size: 0.72rem; color: rgba(255,255,255,0.35); }
+
+/* Announcements mini list */
+.db-announce-list { display: flex; flex-direction: column; gap: 0; }
+.db-announce-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.db-announce-item:last-child { border-bottom: none; }
+.db-ann-dot {
+    width: 8px; height: 8px;
+    background: #f5c400;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 4px;
+    box-shadow: 0 0 6px rgba(245,196,0,0.5);
+}
+.db-ann-dot--read { background: rgba(255,255,255,0.15); box-shadow: none; }
+.db-ann-title { font-size: 0.83rem; color: rgba(255,255,255,0.75); font-weight: 500; margin-bottom: 3px; }
+.db-ann-date  { font-size: 0.7rem;  color: rgba(255,255,255,0.3); }
+
+/* Schedule */
+.db-schedule-list { display: flex; flex-direction: column; gap: 0; }
+.db-schedule-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.db-schedule-item:last-child { border-bottom: none; }
+.db-sch-day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    width: 44px;
+    flex-shrink: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+}
+.db-sch-day span {
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.75);
+    line-height: 1;
+}
+.db-sch-body { flex: 1; display: flex; flex-direction: column; gap: 3px; }
+.db-sch-title { font-size: 0.85rem; font-weight: 600; color: rgba(255,255,255,0.82); }
+.db-sch-meta  { font-size: 0.72rem; color: rgba(255,255,255,0.35); }
+.db-sch-badge {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 4px 10px;
+    border-radius: 100px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.4);
+    flex-shrink: 0;
+}
+.db-sch-badge--today { background: rgba(245,196,0,0.12); border-color: rgba(245,196,0,0.3); color: #f5c400; }
+
+/* ==========================================================
+   COURSES
+========================================================== */
+.db-courses-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+.db-course-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(245,196,0,0.12);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+}
+.db-course-card:hover { border-color: rgba(245,196,0,0.3); transform: translateY(-3px); }
+.db-course-card-top {
+    padding: 24px 20px 20px;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.db-course-icon { font-size: 2rem; }
+.db-course-status {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.62rem; font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 4px 10px;
+    border-radius: 100px;
+}
+.db-course-status--active { background: rgba(245,196,0,0.15); color: #f5c400; }
+.db-course-status--done   { background: rgba(74,222,128,0.12); color: #4ade80; }
+.db-course-card-body { padding: 16px 20px 20px; }
+.db-course-card-body h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 0.95rem;
+    color: #ffffff;
+    margin-bottom: 6px;
+}
+.db-course-card-body p { font-size: 0.74rem; color: rgba(255,255,255,0.38); margin-bottom: 12px; }
+.db-course-meta-row {
+    display: flex;
+    gap: 16px;
+    font-size: 0.74rem;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 5px;
+}
+.db-course-progress-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.35);
+    margin-top: 6px;
+    font-weight: 600;
+}
+
+/* ==========================================================
+   ATTENDANCE
+========================================================== */
+.db-att-summary {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 4px;
+}
+.db-att-card {
+    flex: 1;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(245,196,0,0.12);
+    border-radius: 14px;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.db-att-ring {
+    position: relative;
+    width: 80px; height: 80px;
+}
+.db-att-ring svg { transform: rotate(-90deg); }
+.db-att-ring span {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 1rem;
+    color: #ffffff;
+}
+.db-att-card p { font-size: 0.78rem; color: rgba(255,255,255,0.45); text-align: center; }
+
+/* Table */
+.db-table-wrap { overflow-x: auto; }
+.db-table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+.db-table thead th {
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    padding: 0 12px 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.db-table tbody td {
+    padding: 13px 12px 13px 0;
+    color: rgba(255,255,255,0.65);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    vertical-align: middle;
+}
+.db-table tbody tr:last-child td { border-bottom: none; }
+.db-att-badge {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.62rem; font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 100px;
+}
+.db-att-badge--present { background: rgba(74,222,128,0.12); color: #4ade80; }
+.db-att-badge--absent  { background: rgba(245,98,90,0.12);  color: #f5625a; }
+.db-att-badge--today   { background: rgba(245,196,0,0.12);  color: #f5c400; }
+
+/* ==========================================================
+   ASSIGNMENTS
+========================================================== */
+.db-assign-list { display: flex; flex-direction: column; gap: 14px; }
+.db-assign-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(245,196,0,0.1);
+    border-radius: 14px;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: border-color 0.25s ease;
+}
+.db-assign-item:hover { border-color: rgba(245,196,0,0.25); }
+.db-assign-item--due  { border-color: rgba(245,98,90,0.2); }
+.db-assign-item--done { opacity: 0.6; }
+.db-assign-left {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    flex: 1;
+}
+.db-assign-icon { font-size: 1.3rem; flex-shrink: 0; color: #f5c400; margin-top: 2px; }
+.db-assign-left h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.87rem;
+    color: #ffffff;
+    margin-bottom: 4px;
+}
+.db-assign-left p { font-size: 0.74rem; color: rgba(255,255,255,0.38); }
+.db-assign-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    flex-shrink: 0;
+}
+.db-assign-deadline { font-size: 0.72rem; color: rgba(255,255,255,0.35); }
+.db-assign-badge {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.62rem; font-weight: 700;
+    padding: 3px 10px; border-radius: 100px;
+}
+.db-assign-badge--overdue { background: rgba(245,98,90,0.15); color: #f5625a; }
+.db-assign-badge--pending { background: rgba(245,196,0,0.12); color: #f5c400; }
+.db-assign-badge--done    { background: rgba(74,222,128,0.12); color: #4ade80; }
+.db-assign-btn {
+    background: #f5c400;
+    color: #030a28;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.5px;
+    padding: 7px 14px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.db-assign-btn:hover { background: #ffe066; transform: translateY(-1px); }
+.db-assign-btn--view { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.55); border: 1px solid rgba(255,255,255,0.1); }
+.db-assign-btn--view:hover { background: rgba(255,255,255,0.1); color: #ffffff; }
+
+/* ==========================================================
+   PLACEMENT
+========================================================== */
+.db-placement-readiness {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+.db-pr-left { flex: 1; }
+.db-pr-left h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 0.95rem;
+    color: #ffffff;
+    margin-bottom: 6px;
+}
+.db-pr-left p { font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-bottom: 16px; }
+.db-readiness-bar-wrap { display: flex; align-items: center; gap: 12px; }
+.db-readiness-bar {
+    flex: 1;
+    height: 8px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 8px;
+    overflow: hidden;
+}
+.db-readiness-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #f5c400, #ffe066);
+    border-radius: 8px;
+    transition: width 0.6s ease;
+}
+.db-readiness-bar-wrap span {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 0.9rem;
+    color: #f5c400;
+}
+.db-pr-checklist { display: flex; flex-direction: column; gap: 10px; min-width: 220px; }
+.db-prc-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.38);
+}
+.db-prc-item span { font-size: 0.9rem; color: rgba(255,255,255,0.2); width: 18px; text-align: center; }
+.db-prc-done { color: rgba(255,255,255,0.7); }
+.db-prc-done span { color: #4ade80; }
+
+/* Drives */
+.db-drives-list { display: flex; flex-direction: column; gap: 0; }
+.db-drive-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.db-drive-item:last-child { border-bottom: none; }
+.db-drive-logo {
+    width: 44px; height: 44px;
+    background: #1a3a6b;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 0.68rem;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+}
+.db-drive-body { flex: 1; }
+.db-drive-body h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #ffffff;
+    margin-bottom: 3px;
+}
+.db-drive-body p { font-size: 0.74rem; color: rgba(255,255,255,0.38); }
+.db-drive-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+.db-drive-date { font-size: 0.72rem; color: rgba(255,255,255,0.35); }
+.db-drive-btn {
+    background: rgba(245,196,0,0.1);
+    color: #f5c400;
+    border: 1px solid rgba(245,196,0,0.25);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.72rem;
+    padding: 6px 14px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.db-drive-btn:hover { background: #f5c400; color: #030a28; }
+
+/* Resume card */
+.db-resume-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+.db-resume-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #ffffff;
+    margin-bottom: 4px;
+}
+.db-resume-card p { font-size: 0.78rem; color: rgba(255,255,255,0.38); }
+.db-resume-actions { display: flex; gap: 10px; flex-shrink: 0; }
+.db-resume-btn {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.6);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.75rem;
+    padding: 9px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+}
+.db-resume-btn:hover { background: rgba(255,255,255,0.1); color: #ffffff; }
+.db-resume-btn--upload { background: rgba(245,196,0,0.1); border-color: rgba(245,196,0,0.25); color: #f5c400; }
+.db-resume-btn--upload:hover { background: #f5c400; color: #030a28; }
+
+/* ==========================================================
+   CERTIFICATES
+========================================================== */
+.db-cert-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+.db-cert-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(245,196,0,0.12);
+    border-radius: 14px;
+    padding: 24px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+}
+.db-cert-card--ready { border-color: rgba(74,222,128,0.25); }
+.db-cert-card:hover  { transform: translateY(-3px); }
+.db-cert-icon { font-size: 2.2rem; }
+.db-cert-badge {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.62rem; font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 100px;
+    display: inline-block;
+    margin-bottom: 4px;
+}
+.db-cert-badge--ready   { background: rgba(74,222,128,0.12); color: #4ade80; }
+.db-cert-badge--pending { background: rgba(245,196,0,0.12);  color: #f5c400; }
+.db-cert-body h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 0.9rem;
+    color: #ffffff;
+    margin-bottom: 4px;
+}
+.db-cert-body p { font-size: 0.76rem; color: rgba(255,255,255,0.4); }
+.db-cert-date { font-size: 0.72rem !important; color: rgba(255,255,255,0.28) !important; margin-top: 4px; }
+.db-cert-btn {
+    background: #4ade80;
+    color: #030a28;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    margin-top: auto;
+}
+.db-cert-btn:hover { background: #22c55e; transform: translateY(-1px); }
+
+/* ==========================================================
+   ANNOUNCEMENTS FULL
+========================================================== */
+.db-ann-full-list { display: flex; flex-direction: column; gap: 0; }
+.db-ann-full-item {
+    display: flex;
+    gap: 18px;
+    padding-bottom: 28px;
+}
+.db-ann-full-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    flex-shrink: 0;
+}
+.db-ann-full-icon {
+    width: 42px; height: 42px;
+    border-radius: 11px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+.db-ann-full-line {
+    width: 1px;
+    flex: 1;
+    background: rgba(255,255,255,0.06);
+    margin-top: 10px;
+}
+.db-ann-full-item:last-child .db-ann-full-line { display: none; }
+.db-ann-full-body { flex: 1; padding-top: 6px; }
+.db-ann-full-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+.db-ann-full-head h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: #ffffff;
+}
+.db-ann-tag {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.6rem; font-weight: 700;
+    padding: 2px 9px;
+    border-radius: 100px;
+}
+.db-ann-tag--placement { background: rgba(245,196,0,0.12); color: #f5c400; }
+.db-ann-tag--notice    { background: rgba(96,165,250,0.12); color: #60a5fa; }
+.db-ann-tag--event     { background: rgba(167,139,250,0.12); color: #a78bfa; }
+.db-ann-full-body p { font-size: 0.84rem; color: rgba(255,255,255,0.55); line-height: 1.75; margin-bottom: 10px; }
+.db-ann-full-date { font-size: 0.72rem; color: rgba(255,255,255,0.28); }
+.db-ann-full-item--new .db-ann-full-head h4 { color: #ffffff; }
+
+/* ==========================================================
+   PROFILE
+========================================================== */
+.db-profile-grid {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 18px;
+}
+.db-profile-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    padding: 32px 22px;
+}
+.db-profile-avatar-lg {
+    width: 76px; height: 76px;
+    background: linear-gradient(135deg, #f5c400, #d4a800);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 2rem;
+    color: #030a28;
+    margin-bottom: 6px;
+}
+.db-profile-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: #ffffff;
+}
+.db-profile-card p { font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+.db-profile-tags { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: 6px; }
+.db-profile-tags span {
+    font-size: 0.68rem;
+    background: rgba(245,196,0,0.1);
+    border: 1px solid rgba(245,196,0,0.2);
+    color: rgba(255,255,255,0.55);
+    padding: 4px 10px;
+    border-radius: 100px;
+}
+.db-detail-list { display: flex; flex-direction: column; gap: 0; }
+.db-detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.84rem;
+}
+.db-detail-row:last-child { border-bottom: none; }
+.db-detail-label { color: rgba(255,255,255,0.35); font-weight: 500; }
+.db-detail-row > span:last-child { color: rgba(255,255,255,0.75); font-weight: 500; }
+.db-edit-btn {
+    background: rgba(245,196,0,0.1);
+    border: 1px solid rgba(245,196,0,0.25);
+    color: #f5c400;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 18px;
+    transition: all 0.25s ease;
+}
+.db-edit-btn:hover { background: #f5c400; color: #030a28; }
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+@media (max-width: 1100px) {
+    .db-stats-grid    { grid-template-columns: repeat(2, 1fr); }
+    .db-courses-grid  { grid-template-columns: repeat(2, 1fr); }
+    .db-cert-grid     { grid-template-columns: repeat(2, 1fr); }
+    .db-placement-readiness { flex-direction: column; gap: 20px; }
+}
+
+@media (max-width: 900px) {
+    .db-sidebar { transform: translateX(-100%); }
+    .db-sidebar.open { transform: translateX(0); }
+    .db-sidebar-close { display: block; }
+    .db-main  { margin-left: 0; }
+    .db-menu-btn { display: flex; }
+    .db-overview-grid { grid-template-columns: 1fr; }
+    .db-profile-grid  { grid-template-columns: 1fr; }
+    .db-att-summary   { flex-direction: column; }
+}
+
+@media (max-width: 600px) {
+    .db-content       { padding: 18px; }
+    .db-stats-grid    { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .db-courses-grid  { grid-template-columns: 1fr; }
+    .db-cert-grid     { grid-template-columns: 1fr; }
+    .db-assign-item   { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .db-assign-right  { flex-direction: row; align-items: center; flex-wrap: wrap; }
+    .db-resume-card   { flex-direction: column; align-items: flex-start; }
+    .db-drive-item    { flex-wrap: wrap; }
+}

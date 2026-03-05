@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCOPE INDIA | Student Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/studentdashboard.css}" rel="stylesheet">
+</head>
+<body class="dashboard-page">
+
+<!-- ═══════════════════════════════════════════════════════
+     SIDEBAR
+═══════════════════════════════════════════════════════ -->
+<aside class="db-sidebar" id="sidebar">
+
+    <!-- Logo -->
+    <div class="db-logo">
+        <img th:src="@{/images/logo.png}" alt="SCOPE INDIA"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="db-logo-text" style="display:none;">SCOPE<span>INDIA</span></div>
+        <button class="db-sidebar-close" id="sidebarClose" aria-label="Close sidebar">✕</button>
+    </div>
+
+    <!-- Student mini profile -->
+    <div class="db-profile-mini">
+        <div class="db-avatar" th:text="${#strings.substring(student.name, 0, 1)}">A</div>
+        <div class="db-profile-info">
+            <span class="db-profile-name" th:text="${student.name}">Arjun Nair</span>
+            <span class="db-profile-course" th:text="${student.course}">Full Stack Dev</span>
+        </div>
+    </div>
+
+    <!-- Nav -->
+    <nav class="db-nav">
+        <span class="db-nav-label">Main</span>
+        <a href="#overview"      class="db-nav-item active" data-section="overview">
+            <span class="db-nav-icon">⊞</span> Overview
+        </a>
+        <a href="#courses"       class="db-nav-item" data-section="courses">
+            <span class="db-nav-icon">📚</span> My Courses
+        </a>
+        <a href="#attendance"    class="db-nav-item" data-section="attendance">
+            <span class="db-nav-icon">📅</span> Attendance
+        </a>
+        <a href="#assignments"   class="db-nav-item" data-section="assignments">
+            <span class="db-nav-icon">📝</span> Assignments
+            <span class="db-nav-badge">2</span>
+        </a>
+
+        <span class="db-nav-label">Career</span>
+        <a href="#placement"     class="db-nav-item" data-section="placement">
+            <span class="db-nav-icon">💼</span> Placement
+        </a>
+        <a href="#certificates"  class="db-nav-item" data-section="certificates">
+            <span class="db-nav-icon">🎓</span> Certificates
+        </a>
+
+        <span class="db-nav-label">Info</span>
+        <a href="#announcements" class="db-nav-item" data-section="announcements">
+            <span class="db-nav-icon">📣</span> Announcements
+            <span class="db-nav-badge db-nav-badge--gold">3</span>
+        </a>
+        <a href="#profile"       class="db-nav-item" data-section="profile">
+            <span class="db-nav-icon">👤</span> My Profile
+        </a>
+    </nav>
+
+    <!-- Logout -->
+    <div class="db-sidebar-foot">
+        <a th:href="@{/logout}" class="db-logout">
+            <span>⏻</span> Logout
+        </a>
+    </div>
+
+</aside>
+
+<!-- Overlay for mobile -->
+<div class="db-overlay" id="dbOverlay"></div>
+
+<!-- ═══════════════════════════════════════════════════════
+     MAIN AREA
+═══════════════════════════════════════════════════════ -->
+<div class="db-main">
+
+    <!-- Top bar -->
+    <header class="db-topbar">
+        <button class="db-menu-btn" id="menuBtn" aria-label="Open menu">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="db-topbar-title" id="topbarTitle">Overview</div>
+        <div class="db-topbar-right">
+            <div class="db-notif" id="notifBtn">
+                🔔
+                <span class="db-notif-dot"></span>
+            </div>
+            <div class="db-topbar-avatar" th:text="${#strings.substring(student.name, 0, 1)}">A</div>
+        </div>
+    </header>
+
+    <!-- ─────────────── CONTENT WRAPPER ─────────────── -->
+    <div class="db-content">
+
+        <!-- ══════════ SECTION: OVERVIEW ══════════ -->
+        <section class="db-section active" id="overview">
+
+            <div class="db-section-head">
+                <h1>Good morning, <span th:text="${student.firstName}">Arjun</span> 👋</h1>
+                <p>Here's what's happening with your learning journey.</p>
+            </div>
+
+            <!-- Stat cards -->
+            <div class="db-stats-grid">
+                <div class="db-stat-card">
+                    <div class="db-stat-icon" style="background:rgba(245,196,0,0.12);color:#f5c400;">📚</div>
+                    <div class="db-stat-body">
+                        <span class="db-stat-num">2</span>
+                        <span class="db-stat-label">Active Courses</span>
+                    </div>
+                </div>
+                <div class="db-stat-card">
+                    <div class="db-stat-icon" style="background:rgba(74,222,128,0.1);color:#4ade80;">✓</div>
+                    <div class="db-stat-body">
+                        <span class="db-stat-num">84%</span>
+                        <span class="db-stat-label">Attendance</span>
+                    </div>
+                </div>
+                <div class="db-stat-card">
+                    <div class="db-stat-icon" style="background:rgba(96,165,250,0.1);color:#60a5fa;">📝</div>
+                    <div class="db-stat-body">
+                        <span class="db-stat-num">2</span>
+                        <span class="db-stat-label">Pending Tasks</span>
+                    </div>
+                </div>
+                <div class="db-stat-card">
+                    <div class="db-stat-icon" style="background:rgba(167,139,250,0.1);color:#a78bfa;">🎓</div>
+                    <div class="db-stat-body">
+                        <span class="db-stat-num">1</span>
+                        <span class="db-stat-label">Certificate Ready</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Two column: course progress + announcements -->
+            <div class="db-overview-grid">
+
+                <!-- Course progress -->
+                <div class="db-card">
+                    <div class="db-card-head">
+                        <h3>Course Progress</h3>
+                        <a href="#" class="db-card-link" data-goto="courses">View all →</a>
+                    </div>
+                    <div class="db-course-progress-list">
+                        <div class="db-cp-item">
+                            <div class="db-cp-info">
+                                <span class="db-cp-name">Full Stack Development</span>
+                                <span class="db-cp-pct">68%</span>
+                            </div>
+                            <div class="db-progress-track">
+                                <div class="db-progress-fill" style="width:68%;background:#f5c400;"></div>
+                            </div>
+                            <span class="db-cp-meta">Month 4 of 6 · Next: React Hooks</span>
+                        </div>
+                        <div class="db-cp-item">
+                            <div class="db-cp-info">
+                                <span class="db-cp-name">AWS Cloud Fundamentals</span>
+                                <span class="db-cp-pct">35%</span>
+                            </div>
+                            <div class="db-progress-track">
+                                <div class="db-progress-fill" style="width:35%;background:#60a5fa;"></div>
+                            </div>
+                            <span class="db-cp-meta">Month 2 of 4 · Next: EC2 &amp; S3</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent announcements -->
+                <div class="db-card">
+                    <div class="db-card-head">
+                        <h3>Announcements</h3>
+                        <a href="#" class="db-card-link" data-goto="announcements">View all →</a>
+                    </div>
+                    <div class="db-announce-list">
+                        <div class="db-announce-item db-announce-item--new">
+                            <span class="db-ann-dot"></span>
+                            <div>
+                                <p class="db-ann-title">Placement drive — TCS on 15 Mar</p>
+                                <p class="db-ann-date">2 hours ago</p>
+                            </div>
+                        </div>
+                        <div class="db-announce-item db-announce-item--new">
+                            <span class="db-ann-dot"></span>
+                            <div>
+                                <p class="db-ann-title">Holiday: Holi — 14 Mar (no classes)</p>
+                                <p class="db-ann-date">Yesterday</p>
+                            </div>
+                        </div>
+                        <div class="db-announce-item">
+                            <span class="db-ann-dot db-ann-dot--read"></span>
+                            <div>
+                                <p class="db-ann-title">Mock interview session — 10 Mar 4PM</p>
+                                <p class="db-ann-date">2 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Upcoming schedule -->
+            <div class="db-card" style="margin-top:20px;">
+                <div class="db-card-head">
+                    <h3>This Week's Schedule</h3>
+                </div>
+                <div class="db-schedule-list">
+                    <div class="db-schedule-item">
+                        <div class="db-sch-day">MON<span>10</span></div>
+                        <div class="db-sch-body">
+                            <span class="db-sch-title">Full Stack — React Components</span>
+                            <span class="db-sch-meta">6:00 PM – 8:00 PM · Thampanoor Centre</span>
+                        </div>
+                        <span class="db-sch-badge db-sch-badge--today">Today</span>
+                    </div>
+                    <div class="db-schedule-item">
+                        <div class="db-sch-day">WED<span>12</span></div>
+                        <div class="db-sch-body">
+                            <span class="db-sch-title">AWS — EC2 &amp; Load Balancing</span>
+                            <span class="db-sch-meta">6:00 PM – 8:00 PM · Online</span>
+                        </div>
+                        <span class="db-sch-badge">Upcoming</span>
+                    </div>
+                    <div class="db-schedule-item">
+                        <div class="db-sch-day">FRI<span>14</span></div>
+                        <div class="db-sch-body">
+                            <span class="db-sch-title">Full Stack — Node.js REST APIs</span>
+                            <span class="db-sch-meta">6:00 PM – 8:00 PM · Thampanoor Centre</span>
+                        </div>
+                        <span class="db-sch-badge">Upcoming</span>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ══════════ SECTION: MY COURSES ══════════ -->
+        <section class="db-section" id="courses">
+
+            <div class="db-section-head">
+                <h1>My Courses</h1>
+                <p>Track your enrolled programmes and progress.</p>
+            </div>
+
+            <div class="db-courses-grid">
+
+                <div class="db-course-card">
+                    <div class="db-course-card-top" style="background:linear-gradient(135deg,#0d2070,#050f38);">
+                        <span class="db-course-icon">⚡</span>
+                        <span class="db-course-status db-course-status--active">Active</span>
+                    </div>
+                    <div class="db-course-card-body">
+                        <h3>Full Stack Development</h3>
+                        <p>HTML · CSS · JS · React · Node.js · MySQL</p>
+                        <div class="db-course-meta-row">
+                            <span>📅 Month 4 of 6</span>
+                            <span>👨‍🏫 Koshy Sir</span>
+                        </div>
+                        <div class="db-course-meta-row">
+                            <span>🕐 Mon, Wed, Fri — 6PM</span>
+                            <span>📍 Thampanoor</span>
+                        </div>
+                        <div class="db-progress-track" style="margin-top:14px;">
+                            <div class="db-progress-fill" style="width:68%;background:#f5c400;"></div>
+                        </div>
+                        <div class="db-course-progress-row">
+                            <span>Progress</span><span>68%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="db-course-card">
+                    <div class="db-course-card-top" style="background:linear-gradient(135deg,#1a3a6b,#050f38);">
+                        <span class="db-course-icon">☁</span>
+                        <span class="db-course-status db-course-status--active">Active</span>
+                    </div>
+                    <div class="db-course-card-body">
+                        <h3>AWS Cloud Fundamentals</h3>
+                        <p>EC2 · S3 · Lambda · RDS · CloudFront · IAM</p>
+                        <div class="db-course-meta-row">
+                            <span>📅 Month 2 of 4</span>
+                            <span>👨‍🏫 Aakash Sir</span>
+                        </div>
+                        <div class="db-course-meta-row">
+                            <span>🕐 Tue, Thu — 6PM</span>
+                            <span>📍 Online</span>
+                        </div>
+                        <div class="db-progress-track" style="margin-top:14px;">
+                            <div class="db-progress-fill" style="width:35%;background:#60a5fa;"></div>
+                        </div>
+                        <div class="db-course-progress-row">
+                            <span>Progress</span><span>35%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="db-course-card db-course-card--completed">
+                    <div class="db-course-card-top" style="background:linear-gradient(135deg,#1a2a1a,#050f38);">
+                        <span class="db-course-icon">🐧</span>
+                        <span class="db-course-status db-course-status--done">Completed</span>
+                    </div>
+                    <div class="db-course-card-body">
+                        <h3>Linux &amp; RHCE Basics</h3>
+                        <p>Shell · Networking · Services · Security</p>
+                        <div class="db-course-meta-row">
+                            <span>📅 Completed Jan 2026</span>
+                            <span>👨‍🏫 Vinod Sir</span>
+                        </div>
+                        <div class="db-progress-track" style="margin-top:14px;">
+                            <div class="db-progress-fill" style="width:100%;background:#4ade80;"></div>
+                        </div>
+                        <div class="db-course-progress-row">
+                            <span>Progress</span><span style="color:#4ade80;">100% ✓</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ══════════ SECTION: ATTENDANCE ══════════ -->
+        <section class="db-section" id="attendance">
+
+            <div class="db-section-head">
+                <h1>Attendance</h1>
+                <p>Your class attendance record across all courses.</p>
+            </div>
+
+            <!-- Summary cards -->
+            <div class="db-att-summary">
+                <div class="db-att-card">
+                    <div class="db-att-ring" style="--pct:84;--color:#f5c400;">
+                        <svg viewBox="0 0 36 36">
+                            <circle cx="18" cy="18" r="15.9" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="2.5"/>
+                            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#f5c400" stroke-width="2.5"
+                                    stroke-dasharray="84 16" stroke-dashoffset="25" stroke-linecap="round"/>
+                        </svg>
+                        <span>84%</span>
+                    </div>
+                    <p>Full Stack Dev</p>
+                </div>
+                <div class="db-att-card">
+                    <div class="db-att-ring" style="--pct:72;--color:#60a5fa;">
+                        <svg viewBox="0 0 36 36">
+                            <circle cx="18" cy="18" r="15.9" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="2.5"/>
+                            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#60a5fa" stroke-width="2.5"
+                                    stroke-dasharray="72 28" stroke-dashoffset="25" stroke-linecap="round"/>
+                        </svg>
+                        <span>72%</span>
+                    </div>
+                    <p>AWS Cloud</p>
+                </div>
+                <div class="db-att-card">
+                    <div class="db-att-ring" style="--pct:96;--color:#4ade80;">
+                        <svg viewBox="0 0 36 36">
+                            <circle cx="18" cy="18" r="15.9" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="2.5"/>
+                            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#4ade80" stroke-width="2.5"
+                                    stroke-dasharray="96 4" stroke-dashoffset="25" stroke-linecap="round"/>
+                        </svg>
+                        <span>96%</span>
+                    </div>
+                    <p>Linux RHCE</p>
+                </div>
+            </div>
+
+            <!-- Attendance table -->
+            <div class="db-card" style="margin-top:20px;">
+                <div class="db-card-head"><h3>Full Stack Development — March 2026</h3></div>
+                <div class="db-table-wrap">
+                    <table class="db-table">
+                        <thead>
+                            <tr><th>Date</th><th>Topic</th><th>Trainer</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>03 Mar</td><td>React State Management</td><td>Koshy Sir</td>
+                                <td><span class="db-att-badge db-att-badge--present">Present</span></td>
+                            </tr>
+                            <tr>
+                                <td>05 Mar</td><td>Redux Fundamentals</td><td>Koshy Sir</td>
+                                <td><span class="db-att-badge db-att-badge--absent">Absent</span></td>
+                            </tr>
+                            <tr>
+                                <td>07 Mar</td><td>API Integration</td><td>Koshy Sir</td>
+                                <td><span class="db-att-badge db-att-badge--present">Present</span></td>
+                            </tr>
+                            <tr>
+                                <td>10 Mar</td><td>React Hooks</td><td>Koshy Sir</td>
+                                <td><span class="db-att-badge db-att-badge--today">Today</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════ SECTION: ASSIGNMENTS ══════════ -->
+        <section class="db-section" id="assignments">
+
+            <div class="db-section-head">
+                <h1>Assignments</h1>
+                <p>Your tasks, projects and submission deadlines.</p>
+            </div>
+
+            <div class="db-assign-list">
+
+                <div class="db-assign-item db-assign-item--due">
+                    <div class="db-assign-left">
+                        <span class="db-assign-icon">⚠</span>
+                        <div>
+                            <h4>Build a REST API with Node.js + Express</h4>
+                            <p>Full Stack Development · Koshy Sir</p>
+                        </div>
+                    </div>
+                    <div class="db-assign-right">
+                        <span class="db-assign-deadline">Due: 12 Mar 2026</span>
+                        <span class="db-assign-badge db-assign-badge--overdue">Overdue</span>
+                        <button class="db-assign-btn">Submit →</button>
+                    </div>
+                </div>
+
+                <div class="db-assign-item">
+                    <div class="db-assign-left">
+                        <span class="db-assign-icon" style="color:#60a5fa;">☁</span>
+                        <div>
+                            <h4>Deploy a static site to S3 + CloudFront</h4>
+                            <p>AWS Cloud · Aakash Sir</p>
+                        </div>
+                    </div>
+                    <div class="db-assign-right">
+                        <span class="db-assign-deadline">Due: 18 Mar 2026</span>
+                        <span class="db-assign-badge db-assign-badge--pending">Pending</span>
+                        <button class="db-assign-btn">Submit →</button>
+                    </div>
+                </div>
+
+                <div class="db-assign-item db-assign-item--done">
+                    <div class="db-assign-left">
+                        <span class="db-assign-icon" style="color:#4ade80;">✓</span>
+                        <div>
+                            <h4>React To-Do App with CRUD operations</h4>
+                            <p>Full Stack Development · Koshy Sir</p>
+                        </div>
+                    </div>
+                    <div class="db-assign-right">
+                        <span class="db-assign-deadline">Submitted: 01 Mar 2026</span>
+                        <span class="db-assign-badge db-assign-badge--done">Submitted</span>
+                        <button class="db-assign-btn db-assign-btn--view">View →</button>
+                    </div>
+                </div>
+
+                <div class="db-assign-item db-assign-item--done">
+                    <div class="db-assign-left">
+                        <span class="db-assign-icon" style="color:#4ade80;">✓</span>
+                        <div>
+                            <h4>Setup a Linux server with NGINX</h4>
+                            <p>Linux RHCE · Vinod Sir</p>
+                        </div>
+                    </div>
+                    <div class="db-assign-right">
+                        <span class="db-assign-deadline">Submitted: 10 Jan 2026</span>
+                        <span class="db-assign-badge db-assign-badge--done">Submitted</span>
+                        <button class="db-assign-btn db-assign-btn--view">View →</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ══════════ SECTION: PLACEMENT ══════════ -->
+        <section class="db-section" id="placement">
+
+            <div class="db-section-head">
+                <h1>Placement Support</h1>
+                <p>Job opportunities, drives, and your application status.</p>
+            </div>
+
+            <!-- Readiness meter -->
+            <div class="db-card db-placement-readiness">
+                <div class="db-pr-left">
+                    <h3>Placement Readiness</h3>
+                    <p>Complete the checklist below to improve your profile score.</p>
+                    <div class="db-readiness-bar-wrap">
+                        <div class="db-readiness-bar">
+                            <div class="db-readiness-fill" style="width:60%;"></div>
+                        </div>
+                        <span>60%</span>
+                    </div>
+                </div>
+                <div class="db-pr-checklist">
+                    <div class="db-prc-item db-prc-done"><span>✓</span> Profile complete</div>
+                    <div class="db-prc-item db-prc-done"><span>✓</span> Resume uploaded</div>
+                    <div class="db-prc-item db-prc-done"><span>✓</span> Course 60%+ progress</div>
+                    <div class="db-prc-item"><span>○</span> Mock interview attended</div>
+                    <div class="db-prc-item"><span>○</span> Course completed</div>
+                </div>
+            </div>
+
+            <!-- Upcoming drives -->
+            <div class="db-card" style="margin-top:20px;">
+                <div class="db-card-head"><h3>Upcoming Placement Drives</h3></div>
+                <div class="db-drives-list">
+                    <div class="db-drive-item">
+                        <div class="db-drive-logo">TCS</div>
+                        <div class="db-drive-body">
+                            <h4>Tata Consultancy Services</h4>
+                            <p>Full Stack / Backend · Trivandrum · ₹3.5–5 LPA</p>
+                        </div>
+                        <div class="db-drive-right">
+                            <span class="db-drive-date">15 Mar 2026</span>
+                            <button class="db-drive-btn">Apply →</button>
+                        </div>
+                    </div>
+                    <div class="db-drive-item">
+                        <div class="db-drive-logo" style="background:#ff6900;">INF</div>
+                        <div class="db-drive-body">
+                            <h4>Infosys</h4>
+                            <p>Cloud / DevOps · Bangalore · ₹4–6 LPA</p>
+                        </div>
+                        <div class="db-drive-right">
+                            <span class="db-drive-date">22 Mar 2026</span>
+                            <button class="db-drive-btn">Apply →</button>
+                        </div>
+                    </div>
+                    <div class="db-drive-item">
+                        <div class="db-drive-logo" style="background:#a855f7;">WIP</div>
+                        <div class="db-drive-body">
+                            <h4>Wipro Technologies</h4>
+                            <p>React / Node.js · Remote · ₹3–4.5 LPA</p>
+                        </div>
+                        <div class="db-drive-right">
+                            <span class="db-drive-date">28 Mar 2026</span>
+                            <button class="db-drive-btn">Apply →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resume upload -->
+            <div class="db-card db-resume-card" style="margin-top:20px;">
+                <div>
+                    <h3>Your Resume</h3>
+                    <p>Last updated: 01 Mar 2026 · resume_arjun_nair.pdf</p>
+                </div>
+                <div class="db-resume-actions">
+                    <button class="db-resume-btn">⬇ Download</button>
+                    <button class="db-resume-btn db-resume-btn--upload">⬆ Update</button>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ══════════ SECTION: CERTIFICATES ══════════ -->
+        <section class="db-section" id="certificates">
+
+            <div class="db-section-head">
+                <h1>Certificates</h1>
+                <p>Your earned and upcoming certificates from SCOPE INDIA.</p>
+            </div>
+
+            <div class="db-cert-grid">
+
+                <div class="db-cert-card db-cert-card--ready">
+                    <div class="db-cert-icon">🎓</div>
+                    <div class="db-cert-body">
+                        <span class="db-cert-badge db-cert-badge--ready">Ready to Download</span>
+                        <h3>Linux &amp; RHCE Fundamentals</h3>
+                        <p>Course cum Internship Certificate</p>
+                        <p class="db-cert-date">Issued: 15 Feb 2026 · Suffix E Solutions</p>
+                    </div>
+                    <button class="db-cert-btn">⬇ Download PDF</button>
+                </div>
+
+                <div class="db-cert-card db-cert-card--pending">
+                    <div class="db-cert-icon" style="opacity:0.4;">🎓</div>
+                    <div class="db-cert-body">
+                        <span class="db-cert-badge db-cert-badge--pending">In Progress</span>
+                        <h3>Full Stack Development</h3>
+                        <p>Course cum Internship Certificate</p>
+                        <p class="db-cert-date">Available after course completion + OJT</p>
+                    </div>
+                    <div class="db-progress-track" style="margin-top:auto;">
+                        <div class="db-progress-fill" style="width:68%;background:#f5c400;"></div>
+                    </div>
+                </div>
+
+                <div class="db-cert-card db-cert-card--pending">
+                    <div class="db-cert-icon" style="opacity:0.4;">🎓</div>
+                    <div class="db-cert-body">
+                        <span class="db-cert-badge db-cert-badge--pending">In Progress</span>
+                        <h3>AWS Cloud Fundamentals</h3>
+                        <p>Course cum Internship Certificate</p>
+                        <p class="db-cert-date">Available after course completion + OJT</p>
+                    </div>
+                    <div class="db-progress-track" style="margin-top:auto;">
+                        <div class="db-progress-fill" style="width:35%;background:#60a5fa;"></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ══════════ SECTION: ANNOUNCEMENTS ══════════ -->
+        <section class="db-section" id="announcements">
+
+            <div class="db-section-head">
+                <h1>Announcements</h1>
+                <p>Updates and notices from SCOPE INDIA.</p>
+            </div>
+
+            <div class="db-ann-full-list">
+
+                <div class="db-ann-full-item db-ann-full-item--new">
+                    <div class="db-ann-full-left">
+                        <span class="db-ann-full-icon" style="background:rgba(245,196,0,0.12);color:#f5c400;">💼</span>
+                        <div class="db-ann-full-line"></div>
+                    </div>
+                    <div class="db-ann-full-body">
+                        <div class="db-ann-full-head">
+                            <h4>Placement Drive — TCS on 15 March</h4>
+                            <span class="db-ann-tag db-ann-tag--placement">Placement</span>
+                        </div>
+                        <p>TCS will be conducting a recruitment drive for Full Stack and Backend roles at the Thampanoor centre on 15 March 2026. Students with 60%+ course progress and an updated resume are eligible to attend. Contact your counsellor to register.</p>
+                        <span class="db-ann-full-date">06 Mar 2026 · 10:30 AM</span>
+                    </div>
+                </div>
+
+                <div class="db-ann-full-item db-ann-full-item--new">
+                    <div class="db-ann-full-left">
+                        <span class="db-ann-full-icon" style="background:rgba(96,165,250,0.1);color:#60a5fa;">📅</span>
+                        <div class="db-ann-full-line"></div>
+                    </div>
+                    <div class="db-ann-full-body">
+                        <div class="db-ann-full-head">
+                            <h4>Holiday Notice — Holi (14 March)</h4>
+                            <span class="db-ann-tag db-ann-tag--notice">Notice</span>
+                        </div>
+                        <p>All centres will be closed on 14 March 2026 (Friday) on account of Holi. Online classes are also suspended for the day. Regular classes resume on 17 March (Monday).</p>
+                        <span class="db-ann-full-date">05 Mar 2026 · 3:00 PM</span>
+                    </div>
+                </div>
+
+                <div class="db-ann-full-item">
+                    <div class="db-ann-full-left">
+                        <span class="db-ann-full-icon" style="background:rgba(167,139,250,0.1);color:#a78bfa;">🎤</span>
+                        <div class="db-ann-full-line"></div>
+                    </div>
+                    <div class="db-ann-full-body">
+                        <div class="db-ann-full-head">
+                            <h4>Mock Interview Session — 10 March 4PM</h4>
+                            <span class="db-ann-tag db-ann-tag--event">Event</span>
+                        </div>
+                        <p>A mock interview session will be held on 10 March at 4:00 PM at the Thampanoor centre. This covers technical rounds, aptitude, and HR questions. Attendance is highly recommended for placement-eligible students.</p>
+                        <span class="db-ann-full-date">04 Mar 2026 · 11:00 AM</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ══════════ SECTION: PROFILE ══════════ -->
+        <section class="db-section" id="profile">
+
+            <div class="db-section-head">
+                <h1>My Profile</h1>
+                <p>Your personal and course details.</p>
+            </div>
+
+            <div class="db-profile-grid">
+
+                <div class="db-card db-profile-card">
+                    <div class="db-profile-avatar-lg" th:text="${#strings.substring(student.name, 0, 1)}">A</div>
+                    <h3 th:text="${student.name}">Arjun Nair</h3>
+                    <p th:text="${student.course}">Full Stack Development</p>
+                    <div class="db-profile-tags">
+                        <span>Thampanoor Centre</span>
+                        <span>Batch: Jan 2026</span>
+                    </div>
+                </div>
+
+                <div class="db-card db-profile-details">
+                    <div class="db-card-head"><h3>Personal Details</h3></div>
+                    <div class="db-detail-list">
+                        <div class="db-detail-row">
+                            <span class="db-detail-label">Full Name</span>
+                            <span th:text="${student.name}">Arjun Nair</span>
+                        </div>
+                        <div class="db-detail-row">
+                            <span class="db-detail-label">Email</span>
+                            <span th:text="${student.email}">arjun@email.com</span>
+                        </div>
+                        <div class="db-detail-row">
+                            <span class="db-detail-label">Phone</span>
+                            <span th:text="${student.phone}">9745936073</span>
+                        </div>
+                        <div class="db-detail-row">
+                            <span class="db-detail-label">Nearest Centre</span>
+                            <span>Thampanoor, Trivandrum</span>
+                        </div>
+                        <div class="db-detail-row">
+                            <span class="db-detail-label">Enrolled</span>
+                            <span>15 January 2026</span>
+                        </div>
+                        <div class="db-detail-row">
+                            <span class="db-detail-label">Student ID</span>
+                            <span th:text="${student.id}">TVM-2026-0142</span>
+                        </div>
+                    </div>
+                    <button class="db-edit-btn">Edit Profile →</button>
+                </div>
+
+            </div>
+        </section>
+
+    </div><!-- /db-content -->
+</div><!-- /db-main -->
+
+<script>
+/* ── Section switching ── */
+(function () {
+    var sections = document.querySelectorAll('.db-section');
+    var navItems = document.querySelectorAll('.db-nav-item');
+    var title    = document.getElementById('topbarTitle');
+
+    function activate(id) {
+        sections.forEach(function (s) { s.classList.remove('active'); });
+        navItems.forEach(function (n) { n.classList.remove('active'); });
+        var sec = document.getElementById(id);
+        if (sec) sec.classList.add('active');
+        var nav = document.querySelector('[data-section="' + id + '"]');
+        if (nav) { nav.classList.add('active'); if (title) title.textContent = nav.textContent.trim().replace(/[⊞📚📅📝💼🎓📣👤]/gu,'').trim(); }
+        closeSidebar();
+        window.scrollTo(0, 0);
+    }
+
+    navItems.forEach(function (item) {
+        item.addEventListener('click', function (e) {
+            e.preventDefault();
+            activate(item.dataset.section);
+        });
+    });
+
+    /* "View all" shortcut links */
+    document.querySelectorAll('[data-goto]').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+            e.preventDefault();
+            activate(a.dataset.goto);
+        });
+    });
+})();
+
+/* ── Mobile sidebar ── */
+var sidebar  = document.getElementById('sidebar');
+var overlay  = document.getElementById('dbOverlay');
+var menuBtn  = document.getElementById('menuBtn');
+var closeBtn = document.getElementById('sidebarClose');
+
+function openSidebar()  { sidebar.classList.add('open');  overlay.classList.add('show'); }
+function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('show'); }
+
+if (menuBtn)  menuBtn.addEventListener('click', openSidebar);
+if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+if (overlay)  overlay.addEventListener('click', closeSidebar);
+</script>
+
+</body>
+</html>

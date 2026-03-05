@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 
-	@GetMapping("/")
+    @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("activePage", "home");
         return "index";
@@ -54,16 +54,17 @@ public class HomeController {
         model.addAttribute("activePage", "registration");
         return "registration";
     }
-    
+
     @GetMapping("/login")
     public String login(Model model) {
         model.addAttribute("activePage", "login");
         return "login";
     }
-    
+
     @GetMapping("/signup")
     public String signup(Model model) {
         model.addAttribute("activePage", "signup");
         return "signup";
     }
+
 }

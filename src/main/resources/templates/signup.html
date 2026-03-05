@@ -239,7 +239,6 @@
     });
 
     form.addEventListener('submit', function (e) {
-        e.preventDefault();
         var ok = true;
         form.querySelectorAll('input[required]').forEach(function (f) { if (!vf(f)) ok = false; });
 
