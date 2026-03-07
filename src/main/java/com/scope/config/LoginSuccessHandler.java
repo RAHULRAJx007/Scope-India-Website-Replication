@@ -16,22 +16,24 @@ import jakarta.servlet.http.HttpServletResponse;
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request,
-                                        HttpServletResponse response,
-                                        Authentication authentication)
-                                        throws IOException, ServletException {
+    public void onAuthenticationSuccess(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            Authentication authentication) throws IOException, ServletException {
 
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 
-        for (GrantedAuthority authority : authorities) {
+        for (GrantedAuthority auth : authorities) {
 
-            if (authority.getAuthority().equals("ROLE_ADMIN")) {
-                response.sendRedirect("/admindashboard");
+            if (auth.getAuthority().equals("ROLE_ADMIN")) {
+
+                response.sendRedirect("/admin/dashboard");
                 return;
             }
 
-            if (authority.getAuthority().equals("ROLE_STUDENT")) {
-                response.sendRedirect("/studentdashboard");
+            if (auth.getAuthority().equals("ROLE_STUDENT")) {
+
+                response.sendRedirect("/student/dashboard");
                 return;
             }
         }

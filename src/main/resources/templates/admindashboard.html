@@ -1,994 +1,221 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SCOPE INDIA | Admin Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link th:href="@{/css/main.css}" rel="stylesheet">
-    <link th:href="@{/css/admin.css}" rel="stylesheet">
+
+<title>Admin Panel</title>
+
+<link rel="stylesheet" th:href="@{/css/admindashboard.css}">
+
 </head>
-<body class="admin-page">
 
-<!-- ═══════════════════════════════════════════════════
-     SIDEBAR
-═══════════════════════════════════════════════════ -->
-<aside class="ad-sidebar" id="adSidebar">
+<body>
 
-    <div class="ad-logo">
-        <img th:src="@{/images/logo.png}" alt="SCOPE INDIA"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-        <div class="ad-logo-text" style="display:none;">SCOPE<span>INDIA</span></div>
-        <button class="ad-close-btn" id="adClose">✕</button>
-    </div>
+<div class="layout">
 
-    <div class="ad-admin-badge">
-        <div class="ad-admin-avatar">A</div>
-        <div>
-            <span class="ad-admin-name" th:text="${admin.name}">Admin</span>
-            <span class="ad-admin-role">Super Admin</span>
-        </div>
-    </div>
+<!-- SIDEBAR -->
+<div class="sidebar">
 
-    <nav class="ad-nav">
-        <span class="ad-nav-label">Overview</span>
-        <a class="ad-nav-item active" data-section="overview">
-            <span>⊞</span> Dashboard
-        </a>
+<h2>SCOPE ADMIN</h2>
 
-        <span class="ad-nav-label">Students</span>
-        <a class="ad-nav-item" data-section="students">
-            <span>👥</span> All Students
-        </a>
-        <a class="ad-nav-item" data-section="enrollments">
-            <span>📋</span> Enrollments
-            <span class="ad-badge ad-badge--gold">5</span>
-        </a>
-        <a class="ad-nav-item" data-section="attendance-admin">
-            <span>📅</span> Attendance
-        </a>
-        <a class="ad-nav-item" data-section="assignments-admin">
-            <span>📝</span> Assignments
-        </a>
+<a href="#" onclick="showSection('dashboard')">Dashboard</a>
+<a href="#" onclick="showSection('students')">Students</a>
+<a href="#" onclick="showSection('courses')">Courses</a>
+<a href="#" onclick="showSection('trainers')">Trainers</a>
 
-        <span class="ad-nav-label">Academics</span>
-        <a class="ad-nav-item" data-section="courses-admin">
-            <span>📚</span> Courses
-        </a>
-        <a class="ad-nav-item" data-section="trainers">
-            <span>👨‍🏫</span> Trainers
-        </a>
-        <a class="ad-nav-item" data-section="schedule">
-            <span>🗓</span> Schedule
-        </a>
+<a th:href="@{/logout}" class="logout">Logout</a>
 
-        <span class="ad-nav-label">Placement</span>
-        <a class="ad-nav-item" data-section="placement-admin">
-            <span>💼</span> Placement Drives
-        </a>
-        <a class="ad-nav-item" data-section="certificates-admin">
-            <span>🎓</span> Certificates
-        </a>
+</div>
 
-        <span class="ad-nav-label">System</span>
-        <a class="ad-nav-item" data-section="announcements-admin">
-            <span>📣</span> Announcements
-        </a>
-        <a class="ad-nav-item" data-section="reports">
-            <span>📊</span> Reports
-        </a>
-    </nav>
 
-    <div class="ad-sidebar-foot">
-        <a th:href="@{/}" class="ad-foot-link">🌐 View Site</a>
-        <a th:href="@{/logout}" class="ad-foot-link ad-logout">⏻ Logout</a>
-    </div>
+<!-- MAIN -->
+<div class="main">
 
-</aside>
+<!-- DASHBOARD -->
+<div id="dashboard" class="section active">
 
-<div class="ad-overlay" id="adOverlay"></div>
+<h1>Dashboard</h1>
 
-<!-- ═══════════════════════════════════════════════════
-     MAIN
-═══════════════════════════════════════════════════ -->
-<div class="ad-main">
+<div class="cards">
 
-    <!-- Topbar -->
-    <header class="ad-topbar">
-        <button class="ad-menu-btn" id="adMenuBtn"><span></span><span></span><span></span></button>
-        <div class="ad-topbar-title" id="adTopTitle">Dashboard</div>
-        <div class="ad-topbar-right">
-            <div class="ad-search-box">
-                <span>🔍</span>
-                <input type="text" placeholder="Search students, courses…" id="globalSearch">
-            </div>
-            <div class="ad-notif-btn">🔔<span class="ad-notif-dot"></span></div>
-            <div class="ad-topbar-avatar">A</div>
-        </div>
-    </header>
+<div class="card">
+<h3>Total Students</h3>
+<p th:text="${totalStudents}">0</p>
+</div>
 
-    <div class="ad-content">
+<div class="card">
+<h3>Total Courses</h3>
+<p th:text="${totalCourses}">0</p>
+</div>
 
-        <!-- ══════════ OVERVIEW ══════════ -->
-        <section class="ad-section active" id="overview">
+<div class="card">
+<h3>Total Trainers</h3>
+<p th:text="${totalTrainers}">0</p>
+</div>
 
-            <div class="ad-section-head">
-                <h1>Dashboard Overview</h1>
-                <p>SCOPE INDIA — all branches · as of <strong>March 2026</strong></p>
-            </div>
+</div>
 
-            <!-- KPI row -->
-            <div class="ad-kpi-grid">
-                <div class="ad-kpi-card">
-                    <div class="ad-kpi-icon" style="background:rgba(245,196,0,0.12);color:#f5c400;">👥</div>
-                    <div class="ad-kpi-body">
-                        <span class="ad-kpi-num">1,248</span>
-                        <span class="ad-kpi-label">Total Students</span>
-                        <span class="ad-kpi-trend ad-kpi-trend--up">↑ 12% this month</span>
-                    </div>
-                </div>
-                <div class="ad-kpi-card">
-                    <div class="ad-kpi-icon" style="background:rgba(74,222,128,0.1);color:#4ade80;">📋</div>
-                    <div class="ad-kpi-body">
-                        <span class="ad-kpi-num">342</span>
-                        <span class="ad-kpi-label">Active Enrollments</span>
-                        <span class="ad-kpi-trend ad-kpi-trend--up">↑ 8 new this week</span>
-                    </div>
-                </div>
-                <div class="ad-kpi-card">
-                    <div class="ad-kpi-icon" style="background:rgba(96,165,250,0.1);color:#60a5fa;">💼</div>
-                    <div class="ad-kpi-body">
-                        <span class="ad-kpi-num">87%</span>
-                        <span class="ad-kpi-label">Placement Rate</span>
-                        <span class="ad-kpi-trend ad-kpi-trend--up">↑ 3% vs last batch</span>
-                    </div>
-                </div>
-                <div class="ad-kpi-card">
-                    <div class="ad-kpi-icon" style="background:rgba(167,139,250,0.1);color:#a78bfa;">📚</div>
-                    <div class="ad-kpi-body">
-                        <span class="ad-kpi-num">18</span>
-                        <span class="ad-kpi-label">Active Courses</span>
-                        <span class="ad-kpi-trend" style="color:rgba(255,255,255,0.3);">Across 4 centres</span>
-                    </div>
-                </div>
-                <div class="ad-kpi-card">
-                    <div class="ad-kpi-icon" style="background:rgba(251,146,60,0.1);color:#fb923c;">🕐</div>
-                    <div class="ad-kpi-body">
-                        <span class="ad-kpi-num">78%</span>
-                        <span class="ad-kpi-label">Avg. Attendance</span>
-                        <span class="ad-kpi-trend ad-kpi-trend--down">↓ 2% vs last month</span>
-                    </div>
-                </div>
-                <div class="ad-kpi-card">
-                    <div class="ad-kpi-icon" style="background:rgba(245,98,90,0.1);color:#f5625a;">⏳</div>
-                    <div class="ad-kpi-body">
-                        <span class="ad-kpi-num">5</span>
-                        <span class="ad-kpi-label">Pending Enrollments</span>
-                        <span class="ad-kpi-trend" style="color:#f5625a;">Requires action</span>
-                    </div>
-                </div>
-            </div>
+</div>
 
-            <!-- Charts row -->
-            <div class="ad-charts-row">
 
-                <!-- Enrollment by course -->
-                <div class="ad-card ad-chart-card">
-                    <div class="ad-card-head"><h3>Enrollments by Course</h3></div>
-                    <div class="ad-bar-chart">
-                        <div class="ad-bar-row"><span class="ad-bar-label">Full Stack Dev</span><div class="ad-bar-track"><div class="ad-bar-fill" style="width:82%;background:#f5c400;"></div></div><span class="ad-bar-val">98</span></div>
-                        <div class="ad-bar-row"><span class="ad-bar-label">Data Science AI</span><div class="ad-bar-track"><div class="ad-bar-fill" style="width:68%;background:#a78bfa;"></div></div><span class="ad-bar-val">82</span></div>
-                        <div class="ad-bar-row"><span class="ad-bar-label">AWS Cloud</span><div class="ad-bar-track"><div class="ad-bar-fill" style="width:55%;background:#60a5fa;"></div></div><span class="ad-bar-val">66</span></div>
-                        <div class="ad-bar-row"><span class="ad-bar-label">DevOps</span><div class="ad-bar-track"><div class="ad-bar-fill" style="width:46%;background:#4ade80;"></div></div><span class="ad-bar-val">55</span></div>
-                        <div class="ad-bar-row"><span class="ad-bar-label">Software Testing</span><div class="ad-bar-track"><div class="ad-bar-fill" style="width:38%;background:#fb923c;"></div></div><span class="ad-bar-val">46</span></div>
-                        <div class="ad-bar-row"><span class="ad-bar-label">Networking</span><div class="ad-bar-track"><div class="ad-bar-fill" style="width:28%;background:#f5625a;"></div></div><span class="ad-bar-val">34</span></div>
-                    </div>
-                </div>
+<!-- STUDENTS CRUD -->
+<div id="students" class="section">
 
-                <!-- Branch split -->
-                <div class="ad-card ad-chart-card">
-                    <div class="ad-card-head"><h3>Students by Branch</h3></div>
-                    <div class="ad-branch-chart">
-                        <div class="ad-branch-row">
-                            <span class="ad-branch-name">Thampanoor</span>
-                            <div class="ad-branch-bar-wrap">
-                                <div class="ad-branch-bar" style="width:72%;background:#f5c400;"></div>
-                            </div>
-                            <span class="ad-branch-num">504</span>
-                        </div>
-                        <div class="ad-branch-row">
-                            <span class="ad-branch-name">Technopark</span>
-                            <div class="ad-branch-bar-wrap">
-                                <div class="ad-branch-bar" style="width:58%;background:#60a5fa;"></div>
-                            </div>
-                            <span class="ad-branch-num">407</span>
-                        </div>
-                        <div class="ad-branch-row">
-                            <span class="ad-branch-name">Kochi</span>
-                            <div class="ad-branch-bar-wrap">
-                                <div class="ad-branch-bar" style="width:34%;background:#4ade80;"></div>
-                            </div>
-                            <span class="ad-branch-num">236</span>
-                        </div>
-                        <div class="ad-branch-row">
-                            <span class="ad-branch-name">Nagercoil</span>
-                            <div class="ad-branch-bar-wrap">
-                                <div class="ad-branch-bar" style="width:14%;background:#a78bfa;"></div>
-                            </div>
-                            <span class="ad-branch-num">101</span>
-                        </div>
-                    </div>
-                    <!-- Legend dots -->
-                    <div class="ad-branch-legend">
-                        <span><i style="background:#f5c400;"></i>TVM-T</span>
-                        <span><i style="background:#60a5fa;"></i>TVM-TP</span>
-                        <span><i style="background:#4ade80;"></i>Kochi</span>
-                        <span><i style="background:#a78bfa;"></i>NGL</span>
-                    </div>
-                </div>
+<h1>Students</h1>
 
-            </div>
+<form th:action="@{/admin/students/add}" method="post" class="form">
 
-            <!-- Bottom row: recent enrollments + pending actions -->
-            <div class="ad-bottom-row">
+<input type="text" name="firstName" placeholder="First Name" required>
+<input type="text" name="lastName" placeholder="Last Name" required>
+<input type="email" name="email" placeholder="Email" required>
+<input type="text" name="phone" placeholder="Phone" required>
+<input type="text" name="course" placeholder="Course" required>
+<input type="text" name="branch" placeholder="Branch" required>
 
-                <div class="ad-card">
-                    <div class="ad-card-head">
-                        <h3>Recent Enrollments</h3>
-                        <a class="ad-card-link" data-goto="enrollments">View all →</a>
-                    </div>
-                    <table class="ad-table">
-                        <thead><tr><th>Student</th><th>Course</th><th>Branch</th><th>Date</th><th>Status</th></tr></thead>
-                        <tbody>
-                            <tr>
-                                <td><div class="ad-student-cell"><div class="ad-s-av" style="background:#f5c400;color:#030a28;">R</div>Riya Menon</div></td>
-                                <td>Full Stack Dev</td><td>TVM</td><td>06 Mar</td>
-                                <td><span class="ad-pill ad-pill--green">Active</span></td>
-                            </tr>
-                            <tr>
-                                <td><div class="ad-student-cell"><div class="ad-s-av" style="background:#60a5fa;color:#030a28;">K</div>Kiran R.</div></td>
-                                <td>AWS Cloud</td><td>Kochi</td><td>05 Mar</td>
-                                <td><span class="ad-pill ad-pill--yellow">Pending</span></td>
-                            </tr>
-                            <tr>
-                                <td><div class="ad-student-cell"><div class="ad-s-av" style="background:#4ade80;color:#030a28;">A</div>Anjali S.</div></td>
-                                <td>DevOps</td><td>TVM-TP</td><td>05 Mar</td>
-                                <td><span class="ad-pill ad-pill--green">Active</span></td>
-                            </tr>
-                            <tr>
-                                <td><div class="ad-student-cell"><div class="ad-s-av" style="background:#a78bfa;color:#030a28;">S</div>Sujith V.</div></td>
-                                <td>Data Science</td><td>NGL</td><td>04 Mar</td>
-                                <td><span class="ad-pill ad-pill--yellow">Pending</span></td>
-                            </tr>
-                            <tr>
-                                <td><div class="ad-student-cell"><div class="ad-s-av" style="background:#fb923c;color:#030a28;">M</div>Meera K.</div></td>
-                                <td>Testing</td><td>TVM</td><td>03 Mar</td>
-                                <td><span class="ad-pill ad-pill--green">Active</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+<button type="submit">Add Student</button>
 
-                <div class="ad-card">
-                    <div class="ad-card-head"><h3>Pending Actions</h3></div>
-                    <div class="ad-actions-list">
-                        <div class="ad-action-item ad-action-item--urgent">
-                            <div class="ad-action-icon">📋</div>
-                            <div class="ad-action-body">
-                                <p>5 new enrollment requests awaiting approval</p>
-                                <span>Requires review</span>
-                            </div>
-                            <button class="ad-action-btn" data-goto="enrollments">Review →</button>
-                        </div>
-                        <div class="ad-action-item">
-                            <div class="ad-action-icon">🎓</div>
-                            <div class="ad-action-body">
-                                <p>3 certificates ready to issue</p>
-                                <span>Linux RHCE batch</span>
-                            </div>
-                            <button class="ad-action-btn" data-goto="certificates-admin">Issue →</button>
-                        </div>
-                        <div class="ad-action-item">
-                            <div class="ad-action-icon">💼</div>
-                            <div class="ad-action-body">
-                                <p>TCS placement drive — register students</p>
-                                <span>Deadline: 12 Mar</span>
-                            </div>
-                            <button class="ad-action-btn" data-goto="placement-admin">Manage →</button>
-                        </div>
-                        <div class="ad-action-item">
-                            <div class="ad-action-icon">📣</div>
-                            <div class="ad-action-body">
-                                <p>Post Holi holiday notice to all students</p>
-                                <span>Draft saved</span>
-                            </div>
-                            <button class="ad-action-btn" data-goto="announcements-admin">Post →</button>
-                        </div>
-                    </div>
-                </div>
+</form>
 
-            </div>
-        </section>
+<table>
 
-        <!-- ══════════ ALL STUDENTS ══════════ -->
-        <section class="ad-section" id="students">
-            <div class="ad-section-head">
-                <h1>All Students</h1>
-                <p>1,248 students across all branches and courses.</p>
-            </div>
-            <div class="ad-toolbar">
-                <div class="ad-filter-row">
-                    <select class="ad-select"><option>All Branches</option><option>Thampanoor</option><option>Technopark</option><option>Kochi</option><option>Nagercoil</option></select>
-                    <select class="ad-select"><option>All Courses</option><option>Full Stack Dev</option><option>Data Science AI</option><option>AWS Cloud</option><option>DevOps</option><option>Software Testing</option></select>
-                    <select class="ad-select"><option>All Status</option><option>Active</option><option>Completed</option><option>Dropped</option></select>
-                </div>
-                <button class="ad-btn-gold">+ Add Student</button>
-            </div>
-            <div class="ad-card" style="margin-top:0;padding:0;overflow:hidden;">
-                <div class="ad-table-wrap">
-                    <table class="ad-table ad-table--full">
-                        <thead><tr><th>Student</th><th>ID</th><th>Course</th><th>Branch</th><th>Attendance</th><th>Progress</th><th>Status</th><th>Actions</th></tr></thead>
-                        <tbody>
-                            <tr>
-                                <td><div class="ad-student-cell"><div class="ad-s-av" style="background:#f5c400;color:#030a28;">A</div>Arjun Nair</div></td>
-                                <td class="ad-muted">TVM-2026-0142</td>
-                                <td>Full Stack Dev</td><td>TVM</td>
-                                <td><span style="color:#4ade80;font-weight:700;">84%</span></td>
-                                <td>
-                                    <div class="ad-mini-progress">
-                                        <div class="ad-mini-fill" style="width:68%;background:#f5c400;"></div>
-                                    </div>
-                                    <span class="ad-muted" style="font-size:0.7rem;">68%</span>
-                                </td>
-                                <td><span class="ad-pill ad-pill--green">Active</span></td>
-                                <td><div class="ad-row-actions"><button class="ad-row-btn">View</button><button class="ad-row-btn ad-row-btn--edit">Edit</button></div></td>
-                            </tr>
-                            <tr>
-                                <td><div class="ad-student-cell"><div class="ad-s-av" style="background:#60a5fa;color:#030a28;">R</div>Riya Menon</div></td>
-                                <td class="ad-muted">TVM-2026-0143</td>
-                                <td>Full Stack Dev</td><td>TVM</td>
-                                <td><span style="color:#4ade80;font-weight:700;">91%</span></td>
-                                <td><div class="ad-mini-progress"><div class="ad-mini-fill" style="width:22%;background:#f5c400;"></div></div><span class="ad-muted" style="font-size:0.7rem;">22%</span></td>
-                                <td><span class="ad-pill ad-pill--green">Active</span></td>
-                                <td><div class="ad-row-actions"><button class="ad-row-btn">View</button><button class="ad-row-btn ad-row-btn--edit">Edit</button></div></td>
-                            </tr>
-                            <tr>
-                                <td><div class="ad-student-cell"><div class="ad-s-av" style="background:#4ade80;color:#030a28;">K</div>Kiran R.</div></td>
-                                <td class="ad-muted">EKM-2026-0041</td>
-                                <td>AWS Cloud</td><td>Kochi</td>
-                                <td><span style="color:#fb923c;font-weight:700;">62%</span></td>
-                                <td><div class="ad-mini-progress"><div class="ad-mini-fill" style="width:35%;background:#60a5fa;"></div></div><span class="ad-muted" style="font-size:0.7rem;">35%</span></td>
-                                <td><span class="ad-pill ad-pill--yellow">Pending</span></td>
-                                <td><div class="ad-row-actions"><button class="ad-row-btn">View</button><button class="ad-row-btn ad-row-btn--edit">Edit</button></div></td>
-                            </tr>
-                            <tr>
-                                <td><div class="ad-student-cell"><div class="ad-s-av" style="background:#a78bfa;color:#030a28;">S</div>Sujith V.</div></td>
-                                <td class="ad-muted">NGL-2026-0018</td>
-                                <td>Data Science AI</td><td>NGL</td>
-                                <td><span style="color:#4ade80;font-weight:700;">88%</span></td>
-                                <td><div class="ad-mini-progress"><div class="ad-mini-fill" style="width:50%;background:#a78bfa;"></div></div><span class="ad-muted" style="font-size:0.7rem;">50%</span></td>
-                                <td><span class="ad-pill ad-pill--yellow">Pending</span></td>
-                                <td><div class="ad-row-actions"><button class="ad-row-btn">View</button><button class="ad-row-btn ad-row-btn--edit">Edit</button></div></td>
-                            </tr>
-                            <tr>
-                                <td><div class="ad-student-cell"><div class="ad-s-av" style="background:#fb923c;color:#030a28;">M</div>Meera K.</div></td>
-                                <td class="ad-muted">TVM-2025-0987</td>
-                                <td>Software Testing</td><td>TVM</td>
-                                <td><span style="color:#4ade80;font-weight:700;">96%</span></td>
-                                <td><div class="ad-mini-progress"><div class="ad-mini-fill" style="width:100%;background:#4ade80;"></div></div><span class="ad-muted" style="font-size:0.7rem;">100%</span></td>
-                                <td><span class="ad-pill ad-pill--blue">Completed</span></td>
-                                <td><div class="ad-row-actions"><button class="ad-row-btn">View</button><button class="ad-row-btn ad-row-btn--edit">Edit</button></div></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="ad-pagination">
-                    <span class="ad-page-info">Showing 1–5 of 1,248</span>
-                    <div class="ad-page-btns">
-                        <button class="ad-page-btn" disabled>← Prev</button>
-                        <button class="ad-page-btn ad-page-btn--active">1</button>
-                        <button class="ad-page-btn">2</button>
-                        <button class="ad-page-btn">3</button>
-                        <span class="ad-muted">…</span>
-                        <button class="ad-page-btn">250</button>
-                        <button class="ad-page-btn">Next →</button>
-                    </div>
-                </div>
-            </div>
-        </section>
+<thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Email</th>
+<th>Course</th>
+<th>Branch</th>
+<th>Action</th>
+</tr>
+</thead>
 
-        <!-- ══════════ ENROLLMENTS ══════════ -->
-        <section class="ad-section" id="enrollments">
-            <div class="ad-section-head">
-                <h1>Enrollment Requests</h1>
-                <p>Review and approve new student enrollment applications.</p>
-            </div>
-            <div class="ad-enroll-list">
-                <div class="ad-enroll-item ad-enroll-item--new">
-                    <div class="ad-enroll-left">
-                        <div class="ad-s-av" style="background:#f5c400;color:#030a28;width:42px;height:42px;font-size:1rem;">K</div>
-                        <div>
-                            <h4>Kiran Raj</h4>
-                            <p>AWS Cloud · Kochi · Applied 05 Mar 2026</p>
-                            <p class="ad-enroll-contact">📞 9845123456 · kiran@email.com</p>
-                        </div>
-                    </div>
-                    <div class="ad-enroll-right">
-                        <span class="ad-pill ad-pill--yellow">Pending</span>
-                        <button class="ad-approve-btn">✓ Approve</button>
-                        <button class="ad-reject-btn">✕ Reject</button>
-                    </div>
-                </div>
-                <div class="ad-enroll-item ad-enroll-item--new">
-                    <div class="ad-enroll-left">
-                        <div class="ad-s-av" style="background:#a78bfa;color:#030a28;width:42px;height:42px;font-size:1rem;">S</div>
-                        <div>
-                            <h4>Sujith Varma</h4>
-                            <p>Data Science AI · Nagercoil · Applied 04 Mar 2026</p>
-                            <p class="ad-enroll-contact">📞 9746234567 · sujith@email.com</p>
-                        </div>
-                    </div>
-                    <div class="ad-enroll-right">
-                        <span class="ad-pill ad-pill--yellow">Pending</span>
-                        <button class="ad-approve-btn">✓ Approve</button>
-                        <button class="ad-reject-btn">✕ Reject</button>
-                    </div>
-                </div>
-                <div class="ad-enroll-item">
-                    <div class="ad-enroll-left">
-                        <div class="ad-s-av" style="background:#4ade80;color:#030a28;width:42px;height:42px;font-size:1rem;">P</div>
-                        <div>
-                            <h4>Priya Lal</h4>
-                            <p>Full Stack Dev · Thampanoor · Applied 03 Mar 2026</p>
-                            <p class="ad-enroll-contact">📞 9856345678 · priya@email.com</p>
-                        </div>
-                    </div>
-                    <div class="ad-enroll-right">
-                        <span class="ad-pill ad-pill--green">Approved</span>
-                        <button class="ad-row-btn">View</button>
-                    </div>
-                </div>
-            </div>
-        </section>
+<tbody>
 
-        <!-- ══════════ ATTENDANCE ADMIN ══════════ -->
-        <section class="ad-section" id="attendance-admin">
-            <div class="ad-section-head">
-                <h1>Attendance Management</h1>
-                <p>Mark and review student attendance across all classes.</p>
-            </div>
-            <div class="ad-toolbar">
-                <div class="ad-filter-row">
-                    <select class="ad-select"><option>Full Stack Development</option><option>AWS Cloud</option><option>DevOps</option></select>
-                    <select class="ad-select"><option>Thampanoor</option><option>Technopark</option><option>Kochi</option><option>Nagercoil</option></select>
-                    <input type="date" class="ad-select" value="2026-03-10">
-                </div>
-                <button class="ad-btn-gold">Save Attendance</button>
-            </div>
-            <div class="ad-card" style="margin-top:0;padding:0;overflow:hidden;">
-                <div class="ad-table-wrap">
-                    <table class="ad-table ad-table--full">
-                        <thead><tr><th>Student</th><th>ID</th><th>Overall %</th><th>Today</th></tr></thead>
-                        <tbody>
-                            <tr>
-                                <td><div class="ad-student-cell"><div class="ad-s-av" style="background:#f5c400;color:#030a28;">A</div>Arjun Nair</div></td>
-                                <td class="ad-muted">TVM-2026-0142</td>
-                                <td><span style="color:#4ade80;font-weight:700;">84%</span></td>
-                                <td>
-                                    <div class="ad-att-toggle">
-                                        <button class="ad-att-btn ad-att-btn--present active">Present</button>
-                                        <button class="ad-att-btn ad-att-btn--absent">Absent</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><div class="ad-student-cell"><div class="ad-s-av" style="background:#60a5fa;color:#030a28;">R</div>Riya Menon</div></td>
-                                <td class="ad-muted">TVM-2026-0143</td>
-                                <td><span style="color:#4ade80;font-weight:700;">91%</span></td>
-                                <td>
-                                    <div class="ad-att-toggle">
-                                        <button class="ad-att-btn ad-att-btn--present active">Present</button>
-                                        <button class="ad-att-btn ad-att-btn--absent">Absent</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><div class="ad-student-cell"><div class="ad-s-av" style="background:#4ade80;color:#030a28;">P</div>Priya Lal</div></td>
-                                <td class="ad-muted">TVM-2026-0144</td>
-                                <td><span style="color:#fb923c;font-weight:700;">71%</span></td>
-                                <td>
-                                    <div class="ad-att-toggle">
-                                        <button class="ad-att-btn ad-att-btn--present">Present</button>
-                                        <button class="ad-att-btn ad-att-btn--absent active">Absent</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
+<tr th:each="s : ${students}">
 
-        <!-- ══════════ ASSIGNMENTS ADMIN ══════════ -->
-        <section class="ad-section" id="assignments-admin">
-            <div class="ad-section-head">
-                <h1>Assignments</h1>
-                <p>Create, assign and grade student assignments.</p>
-            </div>
-            <div class="ad-toolbar">
-                <div class="ad-filter-row">
-                    <select class="ad-select"><option>All Courses</option><option>Full Stack Dev</option><option>AWS Cloud</option></select>
-                </div>
-                <button class="ad-btn-gold">+ New Assignment</button>
-            </div>
-            <div class="ad-assign-admin-list">
-                <div class="ad-assign-admin-item">
-                    <div class="ad-assign-admin-left">
-                        <h4>Build a REST API with Node.js</h4>
-                        <p>Full Stack Development · Koshy Sir · Due: 12 Mar 2026</p>
-                    </div>
-                    <div class="ad-assign-admin-stats">
-                        <div class="ad-ass-stat"><span class="ad-ass-num" style="color:#4ade80;">24</span><span>Submitted</span></div>
-                        <div class="ad-ass-stat"><span class="ad-ass-num" style="color:#f5625a;">8</span><span>Overdue</span></div>
-                        <div class="ad-ass-stat"><span class="ad-ass-num" style="color:#f5c400;">6</span><span>Pending</span></div>
-                    </div>
-                    <div class="ad-row-actions">
-                        <button class="ad-row-btn">View</button>
-                        <button class="ad-row-btn ad-row-btn--edit">Grade</button>
-                    </div>
-                </div>
-                <div class="ad-assign-admin-item">
-                    <div class="ad-assign-admin-left">
-                        <h4>Deploy static site to S3 + CloudFront</h4>
-                        <p>AWS Cloud · Aakash Sir · Due: 18 Mar 2026</p>
-                    </div>
-                    <div class="ad-assign-admin-stats">
-                        <div class="ad-ass-stat"><span class="ad-ass-num" style="color:#4ade80;">12</span><span>Submitted</span></div>
-                        <div class="ad-ass-stat"><span class="ad-ass-num" style="color:#f5625a;">2</span><span>Overdue</span></div>
-                        <div class="ad-ass-stat"><span class="ad-ass-num" style="color:#f5c400;">20</span><span>Pending</span></div>
-                    </div>
-                    <div class="ad-row-actions">
-                        <button class="ad-row-btn">View</button>
-                        <button class="ad-row-btn ad-row-btn--edit">Grade</button>
-                    </div>
-                </div>
-            </div>
-        </section>
+<td th:text="${s.id}"></td>
 
-        <!-- ══════════ COURSES ADMIN ══════════ -->
-        <section class="ad-section" id="courses-admin">
-            <div class="ad-section-head">
-                <h1>Courses</h1>
-                <p>Manage all active and upcoming programmes.</p>
-            </div>
-            <div class="ad-toolbar" style="margin-bottom:20px;">
-                <div></div>
-                <button class="ad-btn-gold">+ Add Course</button>
-            </div>
-            <div class="ad-courses-admin-grid">
-                <div class="ad-course-admin-card">
-                    <div class="ad-cac-top" style="background:linear-gradient(135deg,#1a3060,#030a28);">
-                        <span style="font-size:1.8rem;">⚡</span>
-                        <span class="ad-pill ad-pill--green" style="font-size:0.6rem;">Active</span>
-                    </div>
-                    <div class="ad-cac-body">
-                        <h3>Full Stack Development</h3>
-                        <div class="ad-cac-meta"><span>⏱ 6 months</span><span>👥 98 students</span></div>
-                        <div class="ad-cac-meta"><span>👨‍🏫 Koshy Sir</span><span>📍 TVM + Online</span></div>
-                        <div class="ad-row-actions" style="margin-top:14px;">
-                            <button class="ad-row-btn">View</button>
-                            <button class="ad-row-btn ad-row-btn--edit">Edit</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="ad-course-admin-card">
-                    <div class="ad-cac-top" style="background:linear-gradient(135deg,#2a1a5e,#030a28);">
-                        <span style="font-size:1.8rem;">🧠</span>
-                        <span class="ad-pill ad-pill--green" style="font-size:0.6rem;">Active</span>
-                    </div>
-                    <div class="ad-cac-body">
-                        <h3>Data Science &amp; AI</h3>
-                        <div class="ad-cac-meta"><span>⏱ 6 months</span><span>👥 82 students</span></div>
-                        <div class="ad-cac-meta"><span>👨‍🏫 Sanjay Sir</span><span>📍 All Branches</span></div>
-                        <div class="ad-row-actions" style="margin-top:14px;">
-                            <button class="ad-row-btn">View</button>
-                            <button class="ad-row-btn ad-row-btn--edit">Edit</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="ad-course-admin-card">
-                    <div class="ad-cac-top" style="background:linear-gradient(135deg,#1a3a6b,#030a28);">
-                        <span style="font-size:1.8rem;">☁</span>
-                        <span class="ad-pill ad-pill--green" style="font-size:0.6rem;">Active</span>
-                    </div>
-                    <div class="ad-cac-body">
-                        <h3>AWS Cloud</h3>
-                        <div class="ad-cac-meta"><span>⏱ 4 months</span><span>👥 66 students</span></div>
-                        <div class="ad-cac-meta"><span>👨‍🏫 Aakash Sir</span><span>📍 Online</span></div>
-                        <div class="ad-row-actions" style="margin-top:14px;">
-                            <button class="ad-row-btn">View</button>
-                            <button class="ad-row-btn ad-row-btn--edit">Edit</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="ad-course-admin-card">
-                    <div class="ad-cac-top" style="background:linear-gradient(135deg,#1a3a1a,#030a28);">
-                        <span style="font-size:1.8rem;">🔧</span>
-                        <span class="ad-pill ad-pill--green" style="font-size:0.6rem;">Active</span>
-                    </div>
-                    <div class="ad-cac-body">
-                        <h3>DevOps Engineering</h3>
-                        <div class="ad-cac-meta"><span>⏱ 6 months</span><span>👥 55 students</span></div>
-                        <div class="ad-cac-meta"><span>👨‍🏫 Haripriya Ma'am</span><span>📍 TVM-TP</span></div>
-                        <div class="ad-row-actions" style="margin-top:14px;">
-                            <button class="ad-row-btn">View</button>
-                            <button class="ad-row-btn ad-row-btn--edit">Edit</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<td th:text="${s.firstName + ' ' + s.lastName}"></td>
 
-        <!-- ══════════ TRAINERS ══════════ -->
-        <section class="ad-section" id="trainers">
-            <div class="ad-section-head">
-                <h1>Trainers</h1>
-                <p>Manage trainer profiles, assignments and schedules.</p>
-            </div>
-            <div class="ad-toolbar" style="margin-bottom:20px;">
-                <div></div>
-                <button class="ad-btn-gold">+ Add Trainer</button>
-            </div>
-            <div class="ad-trainers-grid">
-                <div class="ad-trainer-card">
-                    <div class="ad-trainer-av" style="background:linear-gradient(135deg,#f5c400,#d4a800);">K</div>
-                    <div class="ad-trainer-info">
-                        <h4>Koshy Sir</h4>
-                        <p>Full Stack Development</p>
-                        <div class="ad-trainer-meta"><span>📍 Thampanoor</span><span>👥 98 students</span></div>
-                        <div class="ad-trainer-meta"><span>⭐ 4.9/5</span><span>📅 6 yrs exp.</span></div>
-                    </div>
-                    <div class="ad-row-actions" style="margin-top:14px;justify-content:center;">
-                        <button class="ad-row-btn">Profile</button>
-                        <button class="ad-row-btn ad-row-btn--edit">Schedule</button>
-                    </div>
-                </div>
-                <div class="ad-trainer-card">
-                    <div class="ad-trainer-av" style="background:linear-gradient(135deg,#60a5fa,#2563eb);">A</div>
-                    <div class="ad-trainer-info">
-                        <h4>Aakash Sir</h4>
-                        <p>AWS Cloud &amp; DevOps</p>
-                        <div class="ad-trainer-meta"><span>📍 Online</span><span>👥 66 students</span></div>
-                        <div class="ad-trainer-meta"><span>⭐ 4.8/5</span><span>📅 4 yrs exp.</span></div>
-                    </div>
-                    <div class="ad-row-actions" style="margin-top:14px;justify-content:center;">
-                        <button class="ad-row-btn">Profile</button>
-                        <button class="ad-row-btn ad-row-btn--edit">Schedule</button>
-                    </div>
-                </div>
-                <div class="ad-trainer-card">
-                    <div class="ad-trainer-av" style="background:linear-gradient(135deg,#a78bfa,#7c3aed);">S</div>
-                    <div class="ad-trainer-info">
-                        <h4>Sanjay Sir</h4>
-                        <p>Data Science &amp; AI</p>
-                        <div class="ad-trainer-meta"><span>📍 All Branches</span><span>👥 82 students</span></div>
-                        <div class="ad-trainer-meta"><span>⭐ 4.9/5</span><span>📅 7 yrs exp.</span></div>
-                    </div>
-                    <div class="ad-row-actions" style="margin-top:14px;justify-content:center;">
-                        <button class="ad-row-btn">Profile</button>
-                        <button class="ad-row-btn ad-row-btn--edit">Schedule</button>
-                    </div>
-                </div>
-                <div class="ad-trainer-card">
-                    <div class="ad-trainer-av" style="background:linear-gradient(135deg,#4ade80,#16a34a);">H</div>
-                    <div class="ad-trainer-info">
-                        <h4>Haripriya Ma'am</h4>
-                        <p>DevOps &amp; Linux</p>
-                        <div class="ad-trainer-meta"><span>📍 Technopark</span><span>👥 55 students</span></div>
-                        <div class="ad-trainer-meta"><span>⭐ 4.7/5</span><span>📅 5 yrs exp.</span></div>
-                    </div>
-                    <div class="ad-row-actions" style="margin-top:14px;justify-content:center;">
-                        <button class="ad-row-btn">Profile</button>
-                        <button class="ad-row-btn ad-row-btn--edit">Schedule</button>
-                    </div>
-                </div>
-            </div>
-        </section>
+<td th:text="${s.email}"></td>
 
-        <!-- ══════════ SCHEDULE ══════════ -->
-        <section class="ad-section" id="schedule">
-            <div class="ad-section-head">
-                <h1>Class Schedule</h1>
-                <p>Weekly timetable across all branches and courses.</p>
-            </div>
-            <div class="ad-toolbar" style="margin-bottom:20px;">
-                <div class="ad-filter-row">
-                    <select class="ad-select"><option>All Branches</option><option>Thampanoor</option><option>Technopark</option><option>Kochi</option><option>Nagercoil</option></select>
-                    <select class="ad-select"><option>Week of 09 Mar 2026</option></select>
-                </div>
-                <button class="ad-btn-gold">+ Add Class</button>
-            </div>
-            <div class="ad-schedule-grid">
-                <div class="ad-schedule-day">
-                    <div class="ad-sch-day-head">MON · 09</div>
-                    <div class="ad-sch-slot" style="border-left-color:#f5c400;"><span class="ad-sch-time">6–8 PM</span><span class="ad-sch-name">Full Stack — React</span><span class="ad-sch-trainer">Koshy · TVM</span></div>
-                    <div class="ad-sch-slot" style="border-left-color:#a78bfa;"><span class="ad-sch-time">4–6 PM</span><span class="ad-sch-name">Data Sci — Python ML</span><span class="ad-sch-trainer">Sanjay · Online</span></div>
-                </div>
-                <div class="ad-schedule-day">
-                    <div class="ad-sch-day-head">TUE · 10</div>
-                    <div class="ad-sch-slot" style="border-left-color:#60a5fa;"><span class="ad-sch-time">6–8 PM</span><span class="ad-sch-name">AWS — EC2 &amp; S3</span><span class="ad-sch-trainer">Aakash · Online</span></div>
-                    <div class="ad-sch-slot" style="border-left-color:#fb923c;"><span class="ad-sch-time">5–7 PM</span><span class="ad-sch-name">Testing — Selenium</span><span class="ad-sch-trainer">Meera · Kochi</span></div>
-                </div>
-                <div class="ad-schedule-day">
-                    <div class="ad-sch-day-head">WED · 11</div>
-                    <div class="ad-sch-slot" style="border-left-color:#f5c400;"><span class="ad-sch-time">6–8 PM</span><span class="ad-sch-name">Full Stack — Node.js</span><span class="ad-sch-trainer">Koshy · TVM</span></div>
-                    <div class="ad-sch-slot" style="border-left-color:#4ade80;"><span class="ad-sch-time">4–6 PM</span><span class="ad-sch-name">DevOps — Docker</span><span class="ad-sch-trainer">Haripriya · TP</span></div>
-                </div>
-                <div class="ad-schedule-day">
-                    <div class="ad-sch-day-head">THU · 12</div>
-                    <div class="ad-sch-slot" style="border-left-color:#60a5fa;"><span class="ad-sch-time">6–8 PM</span><span class="ad-sch-name">AWS — Lambda</span><span class="ad-sch-trainer">Aakash · Online</span></div>
-                </div>
-                <div class="ad-schedule-day">
-                    <div class="ad-sch-day-head">FRI · 13</div>
-                    <div class="ad-sch-slot" style="border-left-color:#f5c400;"><span class="ad-sch-time">6–8 PM</span><span class="ad-sch-name">Full Stack — REST APIs</span><span class="ad-sch-trainer">Koshy · TVM</span></div>
-                    <div class="ad-sch-slot" style="border-left-color:#a78bfa;"><span class="ad-sch-time">4–6 PM</span><span class="ad-sch-name">Data Sci — Pandas</span><span class="ad-sch-trainer">Sanjay · NGL</span></div>
-                </div>
-                <div class="ad-schedule-day ad-schedule-day--weekend">
-                    <div class="ad-sch-day-head">SAT · 14</div>
-                    <div class="ad-sch-slot ad-sch-slot--holiday"><span class="ad-sch-name">🎨 Holi Holiday</span></div>
-                </div>
-            </div>
-        </section>
+<td th:text="${s.course}"></td>
 
-        <!-- ══════════ PLACEMENT ADMIN ══════════ -->
-        <section class="ad-section" id="placement-admin">
-            <div class="ad-section-head">
-                <h1>Placement Management</h1>
-                <p>Manage drives, registrations and placed students.</p>
-            </div>
-            <!-- Summary -->
-            <div class="ad-kpi-grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:20px;">
-                <div class="ad-kpi-card"><div class="ad-kpi-icon" style="background:rgba(74,222,128,0.1);color:#4ade80;">✓</div><div class="ad-kpi-body"><span class="ad-kpi-num">1,087</span><span class="ad-kpi-label">Total Placed</span><span class="ad-kpi-trend ad-kpi-trend--up">87% placement rate</span></div></div>
-                <div class="ad-kpi-card"><div class="ad-kpi-icon" style="background:rgba(245,196,0,0.12);color:#f5c400;">📆</div><div class="ad-kpi-body"><span class="ad-kpi-num">3</span><span class="ad-kpi-label">Upcoming Drives</span><span class="ad-kpi-trend" style="color:rgba(255,255,255,0.3);">This month</span></div></div>
-                <div class="ad-kpi-card"><div class="ad-kpi-icon" style="background:rgba(96,165,250,0.1);color:#60a5fa;">🏢</div><div class="ad-kpi-body"><span class="ad-kpi-num">120+</span><span class="ad-kpi-label">Hiring Partners</span><span class="ad-kpi-trend" style="color:rgba(255,255,255,0.3);">MNCs &amp; startups</span></div></div>
-            </div>
-            <div class="ad-card">
-                <div class="ad-card-head"><h3>Upcoming Drives</h3><button class="ad-btn-gold" style="font-size:0.75rem;padding:8px 16px;">+ Add Drive</button></div>
-                <div class="ad-drives-admin-list">
-                    <div class="ad-drive-admin-item">
-                        <div class="ad-drive-logo-sq">TCS</div>
-                        <div class="ad-drive-admin-body">
-                            <h4>Tata Consultancy Services</h4>
-                            <p>Full Stack / Backend · Trivandrum · ₹3.5–5 LPA · 15 Mar</p>
-                        </div>
-                        <div class="ad-drive-admin-stats">
-                            <span><strong>38</strong> registered</span>
-                            <span><strong>12</strong> eligible</span>
-                        </div>
-                        <div class="ad-row-actions">
-                            <button class="ad-row-btn">Students</button>
-                            <button class="ad-row-btn ad-row-btn--edit">Edit</button>
-                        </div>
-                    </div>
-                    <div class="ad-drive-admin-item">
-                        <div class="ad-drive-logo-sq" style="background:#ff6900;">INF</div>
-                        <div class="ad-drive-admin-body">
-                            <h4>Infosys</h4>
-                            <p>Cloud / DevOps · Bangalore · ₹4–6 LPA · 22 Mar</p>
-                        </div>
-                        <div class="ad-drive-admin-stats">
-                            <span><strong>22</strong> registered</span>
-                            <span><strong>8</strong> eligible</span>
-                        </div>
-                        <div class="ad-row-actions">
-                            <button class="ad-row-btn">Students</button>
-                            <button class="ad-row-btn ad-row-btn--edit">Edit</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<td th:text="${s.branch}"></td>
 
-        <!-- ══════════ CERTIFICATES ADMIN ══════════ -->
-        <section class="ad-section" id="certificates-admin">
-            <div class="ad-section-head">
-                <h1>Certificate Management</h1>
-                <p>Issue and track course cum internship certificates.</p>
-            </div>
-            <div class="ad-card">
-                <div class="ad-card-head"><h3>Ready to Issue</h3></div>
-                <div class="ad-table-wrap">
-                    <table class="ad-table ad-table--full">
-                        <thead><tr><th>Student</th><th>Course</th><th>Completed</th><th>OJT</th><th>Action</th></tr></thead>
-                        <tbody>
-                            <tr>
-                                <td><div class="ad-student-cell"><div class="ad-s-av" style="background:#f5c400;color:#030a28;">M</div>Meera K.</div></td>
-                                <td>Software Testing</td><td>28 Feb 2026</td>
-                                <td><span class="ad-pill ad-pill--green">Done</span></td>
-                                <td><button class="ad-approve-btn" style="font-size:0.75rem;padding:7px 14px;">🎓 Issue Certificate</button></td>
-                            </tr>
-                            <tr>
-                                <td><div class="ad-student-cell"><div class="ad-s-av" style="background:#4ade80;color:#030a28;">N</div>Neethu R.</div></td>
-                                <td>Linux RHCE</td><td>20 Feb 2026</td>
-                                <td><span class="ad-pill ad-pill--green">Done</span></td>
-                                <td><button class="ad-approve-btn" style="font-size:0.75rem;padding:7px 14px;">🎓 Issue Certificate</button></td>
-                            </tr>
-                            <tr>
-                                <td><div class="ad-student-cell"><div class="ad-s-av" style="background:#a78bfa;color:#030a28;">J</div>Jithin P.</div></td>
-                                <td>Networking</td><td>15 Feb 2026</td>
-                                <td><span class="ad-pill ad-pill--yellow">Pending</span></td>
-                                <td><span class="ad-muted" style="font-size:0.8rem;">OJT incomplete</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
+<td>
 
-        <!-- ══════════ ANNOUNCEMENTS ADMIN ══════════ -->
-        <section class="ad-section" id="announcements-admin">
-            <div class="ad-section-head">
-                <h1>Announcements</h1>
-                <p>Post notices and updates to students.</p>
-            </div>
-            <!-- Compose -->
-            <div class="ad-card ad-compose-card">
-                <h3>New Announcement</h3>
-                <div class="ad-compose-form">
-                    <input type="text" class="ad-compose-input" placeholder="Announcement title…">
-                    <div class="ad-compose-row">
-                        <select class="ad-select"><option>All Students</option><option>Full Stack Dev</option><option>AWS Cloud</option><option>Thampanoor</option><option>Kochi</option></select>
-                        <select class="ad-select"><option>Notice</option><option>Placement</option><option>Event</option><option>Holiday</option></select>
-                    </div>
-                    <textarea class="ad-compose-textarea" rows="3" placeholder="Write your announcement here…"></textarea>
-                    <div style="display:flex;justify-content:flex-end;gap:10px;">
-                        <button class="ad-row-btn">Save Draft</button>
-                        <button class="ad-btn-gold">📣 Publish Now</button>
-                    </div>
-                </div>
-            </div>
-            <!-- Past -->
-            <div class="ad-card" style="margin-top:18px;">
-                <div class="ad-card-head"><h3>Published Announcements</h3></div>
-                <div class="ad-past-ann-list">
-                    <div class="ad-past-ann-item">
-                        <div>
-                            <h4>Placement Drive — TCS on 15 March</h4>
-                            <p>All Students · Published 06 Mar 2026 · <span style="color:#4ade80;">148 seen</span></p>
-                        </div>
-                        <div class="ad-row-actions">
-                            <button class="ad-row-btn">Edit</button>
-                            <button class="ad-row-btn" style="color:#f5625a;border-color:rgba(245,98,90,0.3);">Delete</button>
-                        </div>
-                    </div>
-                    <div class="ad-past-ann-item">
-                        <div>
-                            <h4>Holiday Notice — Holi (14 March)</h4>
-                            <p>All Students · Published 05 Mar 2026 · <span style="color:#4ade80;">312 seen</span></p>
-                        </div>
-                        <div class="ad-row-actions">
-                            <button class="ad-row-btn">Edit</button>
-                            <button class="ad-row-btn" style="color:#f5625a;border-color:rgba(245,98,90,0.3);">Delete</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<a th:href="@{/admin/students/delete/{id}(id=${s.id})}" class="delete">Delete</a>
 
-        <!-- ══════════ REPORTS ══════════ -->
-        <section class="ad-section" id="reports">
-            <div class="ad-section-head">
-                <h1>Reports</h1>
-                <p>Export and download data reports for all branches.</p>
-            </div>
-            <div class="ad-reports-grid">
-                <div class="ad-report-card" style="border-color:rgba(245,196,0,0.2);">
-                    <div class="ad-report-icon" style="color:#f5c400;">📊</div>
-                    <h4>Student Report</h4>
-                    <p>All students, courses, attendance and status</p>
-                    <div class="ad-report-btns">
-                        <button class="ad-row-btn">⬇ CSV</button>
-                        <button class="ad-row-btn">⬇ PDF</button>
-                    </div>
-                </div>
-                <div class="ad-report-card" style="border-color:rgba(74,222,128,0.2);">
-                    <div class="ad-report-icon" style="color:#4ade80;">💼</div>
-                    <h4>Placement Report</h4>
-                    <p>Placed students, companies, salary ranges</p>
-                    <div class="ad-report-btns">
-                        <button class="ad-row-btn">⬇ CSV</button>
-                        <button class="ad-row-btn">⬇ PDF</button>
-                    </div>
-                </div>
-                <div class="ad-report-card" style="border-color:rgba(96,165,250,0.2);">
-                    <div class="ad-report-icon" style="color:#60a5fa;">📅</div>
-                    <h4>Attendance Report</h4>
-                    <p>Monthly attendance by course and branch</p>
-                    <div class="ad-report-btns">
-                        <button class="ad-row-btn">⬇ CSV</button>
-                        <button class="ad-row-btn">⬇ PDF</button>
-                    </div>
-                </div>
-                <div class="ad-report-card" style="border-color:rgba(167,139,250,0.2);">
-                    <div class="ad-report-icon" style="color:#a78bfa;">🎓</div>
-                    <h4>Certificate Report</h4>
-                    <p>Issued certificates, pending OJT, completions</p>
-                    <div class="ad-report-btns">
-                        <button class="ad-row-btn">⬇ CSV</button>
-                        <button class="ad-row-btn">⬇ PDF</button>
-                    </div>
-                </div>
-            </div>
-        </section>
+</td>
 
-    </div>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<!-- COURSES -->
+<div id="courses" class="section">
+
+<h1>Courses</h1>
+
+<form th:action="@{/admin/courses/add}" method="post" class="form">
+
+<input type="text" name="name" placeholder="Course Name">
+<input type="text" name="duration" placeholder="Duration">
+
+<button>Add Course</button>
+
+</form>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Duration</th>
+<th>Action</th>
+</tr>
+
+<tr th:each="c : ${courses}">
+
+<td th:text="${c.id}"></td>
+<td th:text="${c.name}"></td>
+<td th:text="${c.duration}"></td>
+
+<td>
+<a th:href="@{/admin/courses/delete/{id}(id=${c.id})}" class="delete">Delete</a>
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+
+<!-- TRAINERS -->
+<div id="trainers" class="section">
+
+<h1>Trainers</h1>
+
+<form th:action="@{/admin/trainers/add}" method="post" class="form">
+
+<input type="text" name="name" placeholder="Trainer Name">
+<input type="text" name="specialisation" placeholder="Specialisation">
+<input type="text" name="branch" placeholder="Branch">
+
+<button>Add Trainer</button>
+
+</form>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Specialisation</th>
+<th>Branch</th>
+<th>Action</th>
+</tr>
+
+<tr th:each="t : ${trainers}">
+
+<td th:text="${t.id}"></td>
+<td th:text="${t.name}"></td>
+<td th:text="${t.specialisation}"></td>
+<td th:text="${t.branch}"></td>
+
+<td>
+<a th:href="@{/admin/trainers/delete/{id}(id=${t.id})}" class="delete">Delete</a>
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
 </div>
 
 <script>
-/* Section switcher */
-(function () {
-    var sections = document.querySelectorAll('.ad-section');
-    var navItems = document.querySelectorAll('.ad-nav-item');
-    var title    = document.getElementById('adTopTitle');
 
-    function activate(id) {
-        sections.forEach(function (s) { s.classList.remove('active'); });
-        navItems.forEach(function (n) { n.classList.remove('active'); });
-        var sec = document.getElementById(id);
-        if (sec) sec.classList.add('active');
-        var nav = document.querySelector('[data-section="' + id + '"]');
-        if (nav) {
-            nav.classList.add('active');
-            if (title) title.textContent = nav.textContent.trim().replace(/[⊞👥📋📅📝📚👨‍🏫🗓💼🎓📣📊⏻🌐]/gu,'').trim().replace(/\s+/g,' ').trim();
-        }
-        closeSidebar();
-        window.scrollTo(0,0);
-    }
+function showSection(section){
 
-    navItems.forEach(function (item) {
-        item.addEventListener('click', function (e) {
-            e.preventDefault();
-            activate(item.dataset.section);
-        });
-    });
-    document.querySelectorAll('[data-goto]').forEach(function (el) {
-        el.addEventListener('click', function (e) {
-            e.preventDefault();
-            activate(el.dataset.goto);
-        });
-    });
-})();
+document.querySelectorAll(".section")
+.forEach(s => s.classList.remove("active"))
 
-/* Sidebar mobile */
-var adSidebar = document.getElementById('adSidebar');
-var adOverlay = document.getElementById('adOverlay');
-var adMenuBtn = document.getElementById('adMenuBtn');
-var adClose   = document.getElementById('adClose');
-function openSidebar()  { adSidebar.classList.add('open'); adOverlay.classList.add('show'); }
-function closeSidebar() { adSidebar.classList.remove('open'); adOverlay.classList.remove('show'); }
-if (adMenuBtn) adMenuBtn.addEventListener('click', openSidebar);
-if (adClose)   adClose.addEventListener('click', closeSidebar);
-if (adOverlay) adOverlay.addEventListener('click', closeSidebar);
+document.getElementById(section)
+.classList.add("active")
 
-/* Attendance toggle */
-document.querySelectorAll('.ad-att-toggle').forEach(function (wrap) {
-    wrap.querySelectorAll('.ad-att-btn').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-            wrap.querySelectorAll('.ad-att-btn').forEach(function (b) { b.classList.remove('active'); });
-            btn.classList.add('active');
-        });
-    });
-});
+}
 
-/* Approve / reject animation */
-document.querySelectorAll('.ad-approve-btn').forEach(function (btn) {
-    if (btn.textContent.includes('Approve')) {
-        btn.addEventListener('click', function () {
-            var item = btn.closest('.ad-enroll-item');
-            if (item) { item.style.opacity = '0.4'; item.style.pointerEvents = 'none'; }
-        });
-    }
-});
 </script>
+
 </body>
 </html>

@@ -10,18 +10,21 @@ public class Student {
     private Long id;
 
     private String firstName;
+    
     private String lastName;
 
     @Column(unique = true)
     private String email;
 
     private String phone;
+    
     private String course;
 
     private String password;
 
     private String role;
-
+    
+    private String branch;
     // getters and setters
 
 
@@ -89,7 +92,15 @@ public class Student {
         this.role = role;
     }
 
-    // ⭐ ADD THIS METHOD
+    public String getBranch() {
+		return branch;
+	}
+
+	public void setBranch(String branch) {
+		this.branch = branch;
+	}
+
+	// ⭐ ADD THIS METHOD
     public String getName() {
         return firstName + " " + lastName;
     }

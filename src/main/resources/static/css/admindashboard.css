@@ -1,864 +1,108 @@
-/* ==========================================================
-   ADMIN DASHBOARD — admin.css
-   All values hardcoded — no CSS variable dependencies
-========================================================== */
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-body.admin-page {
-    font-family: 'Inter', sans-serif;
-    background: #060e30;
-    color: #ffffff;
-    -webkit-font-smoothing: antialiased;
-    display: flex;
-    min-height: 100vh;
-    overflow-x: hidden;
+body{
+font-family:Arial;
+margin:0;
+background:#0f172a;
+color:white;
 }
 
-/* ==========================================================
-   SIDEBAR
-========================================================== */
-.ad-sidebar {
-    width: 250px;
-    min-height: 100vh;
-    background: #030a28;
-    border-right: 1px solid rgba(245,196,0,0.1);
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 0; left: 0; bottom: 0;
-    z-index: 200;
-    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
-    overflow-y: auto;
-    scrollbar-width: none;
-}
-.ad-sidebar::-webkit-scrollbar { display: none; }
-
-.ad-logo {
-    padding: 18px 20px;
-    border-bottom: 1px solid rgba(245,196,0,0.08);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-shrink: 0;
-}
-.ad-logo img { height: 32px; width: auto; }
-.ad-logo-text {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 900;
-    font-size: 1.05rem;
-    color: #ffffff;
-    letter-spacing: 1.5px;
-    display: flex;
-    align-items: baseline;
-    gap: 3px;
-}
-.ad-logo-text span { color: #f5c400; }
-.ad-close-btn {
-    display: none;
-    background: none; border: none;
-    color: rgba(255,255,255,0.35);
-    font-size: 1rem; cursor: pointer; padding: 4px;
+.layout{
+display:flex;
 }
 
-/* Admin badge */
-.ad-admin-badge {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 20px;
-    border-bottom: 1px solid rgba(245,196,0,0.08);
-    flex-shrink: 0;
-}
-.ad-admin-avatar {
-    width: 36px; height: 36px;
-    background: linear-gradient(135deg, #f5625a, #c0392b);
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 900;
-    font-size: 0.95rem;
-    color: #ffffff;
-    flex-shrink: 0;
-}
-.ad-admin-name {
-    display: block;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 0.82rem;
-    color: #ffffff;
-}
-.ad-admin-role {
-    display: block;
-    font-size: 0.65rem;
-    color: #f5625a;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
+.sidebar{
+width:220px;
+background:#020617;
+height:100vh;
+padding:20px;
 }
 
-/* Nav */
-.ad-nav { padding: 10px 0; flex: 1; display: flex; flex-direction: column; }
-.ad-nav-label {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.58rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.2);
-    padding: 13px 20px 5px;
-}
-.ad-nav-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 9px 20px;
-    font-size: 0.83rem;
-    font-weight: 500;
-    color: rgba(255,255,255,0.42);
-    text-decoration: none;
-    cursor: pointer;
-    position: relative;
-    transition: color 0.2s ease, background 0.2s ease;
-}
-.ad-nav-item:hover { color: #ffffff; background: rgba(255,255,255,0.04); }
-.ad-nav-item.active {
-    color: #f5c400;
-    background: rgba(245,196,0,0.08);
-    font-weight: 600;
-}
-.ad-nav-item.active::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 5px; bottom: 5px;
-    width: 3px;
-    background: #f5c400;
-    border-radius: 0 3px 3px 0;
-}
-.ad-nav-item span:first-child { font-size: 0.88rem; flex-shrink: 0; }
-.ad-badge {
-    margin-left: auto;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.6rem; font-weight: 700;
-    padding: 2px 7px;
-    border-radius: 100px;
-    background: rgba(245,98,90,0.2);
-    color: #f5625a;
-    border: 1px solid rgba(245,98,90,0.3);
-}
-.ad-badge--gold {
-    background: rgba(245,196,0,0.15);
-    color: #f5c400;
-    border-color: rgba(245,196,0,0.3);
+.sidebar h2{
+color:#facc15;
 }
 
-/* Sidebar footer */
-.ad-sidebar-foot {
-    padding: 14px 20px;
-    border-top: 1px solid rgba(245,196,0,0.08);
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    flex-shrink: 0;
-}
-.ad-foot-link {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.8rem;
-    color: rgba(255,255,255,0.3);
-    text-decoration: none;
-    padding: 7px 0;
-    transition: color 0.2s ease;
-}
-.ad-foot-link:hover { color: rgba(255,255,255,0.7); }
-.ad-logout:hover { color: #f5625a; }
-
-/* ==========================================================
-   OVERLAY
-========================================================== */
-.ad-overlay {
-    display: none;
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,0.65);
-    z-index: 190;
-    backdrop-filter: blur(2px);
-}
-.ad-overlay.show { display: block; }
-
-/* ==========================================================
-   MAIN
-========================================================== */
-.ad-main {
-    margin-left: 250px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+.sidebar a{
+display:block;
+color:white;
+text-decoration:none;
+padding:10px;
+margin:8px 0;
+border-radius:6px;
 }
 
-/* Topbar */
-.ad-topbar {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(6,14,48,0.96);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(245,196,0,0.08);
-    padding: 0 24px;
-    height: 58px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
-.ad-menu-btn {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none; border: none;
-    cursor: pointer; padding: 4px;
-}
-.ad-menu-btn span { display: block; width: 20px; height: 2px; background: rgba(255,255,255,0.5); border-radius: 2px; }
-.ad-topbar-title {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700; font-size: 0.9rem;
-    color: rgba(255,255,255,0.6);
-}
-.ad-topbar-right { margin-left: auto; display: flex; align-items: center; gap: 14px; }
-
-/* Search */
-.ad-search-box {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(245,196,0,0.12);
-    border-radius: 8px;
-    padding: 7px 14px;
-    transition: border-color 0.25s ease;
-}
-.ad-search-box:focus-within { border-color: rgba(245,196,0,0.35); }
-.ad-search-box span { font-size: 0.82rem; opacity: 0.4; }
-.ad-search-box input {
-    background: none; border: none; outline: none;
-    color: #ffffff; font-family: 'Inter', sans-serif;
-    font-size: 0.83rem; width: 200px;
-}
-.ad-search-box input::placeholder { color: rgba(255,255,255,0.22); }
-
-.ad-notif-btn {
-    position: relative;
-    width: 34px; height: 34px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1rem; cursor: pointer;
-}
-.ad-notif-dot {
-    position: absolute; top: 5px; right: 5px;
-    width: 7px; height: 7px;
-    background: #f5625a;
-    border-radius: 50%;
-    border: 2px solid #060e30;
-}
-.ad-topbar-avatar {
-    width: 32px; height: 32px;
-    background: linear-gradient(135deg, #f5625a, #c0392b);
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 900; font-size: 0.82rem;
-    color: #ffffff; cursor: pointer;
+.sidebar a:hover{
+background:#1e293b;
 }
 
-/* ==========================================================
-   CONTENT
-========================================================== */
-.ad-content { padding: 26px; flex: 1; }
-
-.ad-section { display: none; }
-.ad-section.active { display: block; }
-
-.ad-section-head { margin-bottom: 22px; }
-.ad-section-head h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 900;
-    font-size: clamp(1.4rem, 2.5vw, 1.85rem);
-    color: #ffffff;
-    margin-bottom: 5px;
-    line-height: 1.2;
-}
-.ad-section-head p { font-size: 0.86rem; color: rgba(255,255,255,0.4); }
-.ad-section-head strong { color: #f5c400; }
-
-/* ==========================================================
-   SHARED CARD
-========================================================== */
-.ad-card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(245,196,0,0.1);
-    border-radius: 14px;
-    padding: 20px 22px;
-}
-.ad-card-head {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 16px;
-}
-.ad-card-head h3 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700; font-size: 0.9rem; color: #ffffff;
-}
-.ad-card-link {
-    font-size: 0.74rem; color: #f5c400;
-    text-decoration: none; font-weight: 600;
-    cursor: pointer; background: none; border: none;
-    transition: color 0.2s ease;
-}
-.ad-card-link:hover { color: #ffe066; }
-.ad-muted { color: rgba(255,255,255,0.3); font-size: 0.82rem; }
-
-/* Shared pills */
-.ad-pill {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.62rem; font-weight: 700;
-    padding: 3px 10px; border-radius: 100px;
-}
-.ad-pill--green  { background: rgba(74,222,128,0.12); color: #4ade80; }
-.ad-pill--yellow { background: rgba(245,196,0,0.12);  color: #f5c400; }
-.ad-pill--red    { background: rgba(245,98,90,0.12);   color: #f5625a; }
-.ad-pill--blue   { background: rgba(96,165,250,0.12);  color: #60a5fa; }
-
-/* Gold button */
-.ad-btn-gold {
-    background: #f5c400;
-    color: #030a28;
-    border: none;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800; font-size: 0.78rem;
-    letter-spacing: 0.5px;
-    padding: 10px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    white-space: nowrap;
-    flex-shrink: 0;
-}
-.ad-btn-gold:hover { background: #ffe066; transform: translateY(-1px); box-shadow: 0 6px 18px rgba(245,196,0,0.38); }
-
-/* Row action buttons */
-.ad-row-actions { display: flex; gap: 8px; align-items: center; }
-.ad-row-btn {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    color: rgba(255,255,255,0.55);
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600; font-size: 0.72rem;
-    padding: 6px 12px; border-radius: 7px;
-    cursor: pointer; transition: all 0.2s ease;
-    white-space: nowrap;
-}
-.ad-row-btn:hover { background: rgba(255,255,255,0.1); color: #ffffff; }
-.ad-row-btn--edit {
-    background: rgba(245,196,0,0.08);
-    border-color: rgba(245,196,0,0.2);
-    color: #f5c400;
-}
-.ad-row-btn--edit:hover { background: #f5c400; color: #030a28; }
-
-/* Toolbar */
-.ad-toolbar {
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 14px; margin-bottom: 16px; flex-wrap: wrap;
-}
-.ad-filter-row { display: flex; gap: 10px; flex-wrap: wrap; }
-.ad-select {
-    appearance: none; -webkit-appearance: none;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(245,196,0,0.15);
-    border-radius: 8px;
-    color: #ffffff; font-family: 'Inter', sans-serif;
-    font-size: 0.82rem; padding: 9px 14px;
-    outline: none; cursor: pointer;
-    transition: border-color 0.25s ease;
-}
-.ad-select:focus { border-color: #f5c400; }
-.ad-select option { background: #041035; color: #ffffff; }
-
-/* ==========================================================
-   TABLE
-========================================================== */
-.ad-table-wrap { overflow-x: auto; }
-.ad-table { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
-.ad-table thead th {
-    text-align: left;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.62rem; font-weight: 700;
-    letter-spacing: 1.2px; text-transform: uppercase;
-    color: rgba(255,255,255,0.28);
-    padding: 14px 12px;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    white-space: nowrap;
-    background: rgba(255,255,255,0.02);
-}
-.ad-table tbody td {
-    padding: 12px 12px;
-    color: rgba(255,255,255,0.65);
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-    vertical-align: middle;
-    white-space: nowrap;
-}
-.ad-table tbody tr:last-child td { border-bottom: none; }
-.ad-table tbody tr:hover td { background: rgba(245,196,0,0.03); }
-.ad-table--full { min-width: 700px; }
-
-.ad-student-cell {
-    display: flex; align-items: center; gap: 10px;
-}
-.ad-s-av {
-    width: 32px; height: 32px;
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 900; font-size: 0.82rem;
-    flex-shrink: 0;
+.logout{
+margin-top:40px;
+color:#ef4444;
 }
 
-.ad-mini-progress {
-    width: 72px; height: 4px;
-    background: rgba(255,255,255,0.07);
-    border-radius: 4px; overflow: hidden;
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 6px;
+.main{
+flex:1;
+padding:40px;
 }
-.ad-mini-fill { height: 100%; border-radius: 4px; }
 
-/* Pagination */
-.ad-pagination {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 14px 22px;
-    border-top: 1px solid rgba(255,255,255,0.05);
+.section{
+display:none;
 }
-.ad-page-info { font-size: 0.78rem; color: rgba(255,255,255,0.3); }
-.ad-page-btns { display: flex; gap: 6px; align-items: center; }
-.ad-page-btn {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    color: rgba(255,255,255,0.45);
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600; font-size: 0.72rem;
-    padding: 5px 10px; border-radius: 6px;
-    cursor: pointer; transition: all 0.2s ease;
-}
-.ad-page-btn:hover:not(:disabled) { background: rgba(255,255,255,0.1); color: #ffffff; }
-.ad-page-btn--active { background: rgba(245,196,0,0.15); border-color: rgba(245,196,0,0.3); color: #f5c400; }
-.ad-page-btn:disabled { opacity: 0.3; cursor: not-allowed; }
 
-/* ==========================================================
-   OVERVIEW KPI
-========================================================== */
-.ad-kpi-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 14px;
-    margin-bottom: 18px;
+.section.active{
+display:block;
 }
-.ad-kpi-card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(245,196,0,0.1);
-    border-radius: 14px;
-    padding: 16px 18px;
-    display: flex; align-items: flex-start; gap: 12px;
-    transition: border-color 0.25s ease, transform 0.25s ease;
-}
-.ad-kpi-card:hover { border-color: rgba(245,196,0,0.25); transform: translateY(-2px); }
-.ad-kpi-icon {
-    width: 40px; height: 40px;
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.1rem; flex-shrink: 0;
-}
-.ad-kpi-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.ad-kpi-num {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 900; font-size: 1.3rem;
-    color: #ffffff; line-height: 1;
-}
-.ad-kpi-label { font-size: 0.68rem; color: rgba(255,255,255,0.38); font-weight: 500; }
-.ad-kpi-trend { font-size: 0.66rem; font-weight: 600; margin-top: 2px; }
-.ad-kpi-trend--up   { color: #4ade80; }
-.ad-kpi-trend--down { color: #f5625a; }
 
-/* Charts row */
-.ad-charts-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 18px;
+.cards{
+display:flex;
+gap:20px;
 }
-.ad-chart-card {}
 
-/* Bar chart */
-.ad-bar-chart { display: flex; flex-direction: column; gap: 12px; }
-.ad-bar-row { display: flex; align-items: center; gap: 10px; }
-.ad-bar-label { font-size: 0.76rem; color: rgba(255,255,255,0.5); width: 120px; flex-shrink: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.ad-bar-track { flex: 1; height: 8px; background: rgba(255,255,255,0.06); border-radius: 8px; overflow: hidden; }
-.ad-bar-fill  { height: 100%; border-radius: 8px; transition: width 0.6s ease; }
-.ad-bar-val   { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.76rem; color: rgba(255,255,255,0.5); width: 28px; text-align: right; }
+.card{
+background:#1e293b;
+padding:20px;
+border-radius:8px;
+width:200px;
+}
 
-/* Branch chart */
-.ad-branch-chart { display: flex; flex-direction: column; gap: 14px; margin-bottom: 16px; }
-.ad-branch-row { display: flex; align-items: center; gap: 10px; }
-.ad-branch-name { font-size: 0.76rem; color: rgba(255,255,255,0.5); width: 80px; flex-shrink: 0; }
-.ad-branch-bar-wrap { flex: 1; height: 10px; background: rgba(255,255,255,0.06); border-radius: 10px; overflow: hidden; }
-.ad-branch-bar { height: 100%; border-radius: 10px; transition: width 0.6s ease; }
-.ad-branch-num { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.76rem; color: rgba(255,255,255,0.5); width: 34px; text-align: right; }
-.ad-branch-legend { display: flex; gap: 14px; flex-wrap: wrap; }
-.ad-branch-legend span { display: flex; align-items: center; gap: 5px; font-size: 0.68rem; color: rgba(255,255,255,0.38); }
-.ad-branch-legend i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.card p{
+font-size:28px;
+font-weight:bold;
+color:#facc15;
+}
 
-/* Bottom row */
-.ad-bottom-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+background:#020617;
+}
 
-/* Pending actions */
-.ad-actions-list { display: flex; flex-direction: column; gap: 0; }
-.ad-action-item {
-    display: flex; align-items: center; gap: 12px;
-    padding: 12px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+th,td{
+padding:12px;
+border-bottom:1px solid #334155;
+text-align:left;
 }
-.ad-action-item:last-child { border-bottom: none; }
-.ad-action-item--urgent .ad-action-icon { color: #f5625a; }
-.ad-action-icon { font-size: 1.1rem; flex-shrink: 0; }
-.ad-action-body { flex: 1; }
-.ad-action-body p { font-size: 0.83rem; color: rgba(255,255,255,0.75); font-weight: 500; margin-bottom: 2px; }
-.ad-action-body span { font-size: 0.72rem; color: rgba(255,255,255,0.3); }
-.ad-action-btn {
-    background: rgba(245,196,0,0.08);
-    border: 1px solid rgba(245,196,0,0.2);
-    color: #f5c400;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700; font-size: 0.7rem;
-    padding: 6px 12px; border-radius: 7px;
-    cursor: pointer; white-space: nowrap;
-    transition: all 0.2s ease; flex-shrink: 0;
-}
-.ad-action-btn:hover { background: #f5c400; color: #030a28; }
 
-/* ==========================================================
-   ENROLLMENTS
-========================================================== */
-.ad-enroll-list { display: flex; flex-direction: column; gap: 12px; }
-.ad-enroll-item {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(245,196,0,0.1);
-    border-radius: 12px;
-    padding: 18px 20px;
-    display: flex; align-items: center; gap: 16px;
-    transition: border-color 0.25s ease;
+.form{
+margin-bottom:20px;
 }
-.ad-enroll-item:hover { border-color: rgba(245,196,0,0.25); }
-.ad-enroll-item--new { border-color: rgba(245,196,0,0.2); }
-.ad-enroll-left { display: flex; align-items: flex-start; gap: 14px; flex: 1; }
-.ad-enroll-left h4 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700; font-size: 0.9rem;
-    color: #ffffff; margin-bottom: 4px;
-}
-.ad-enroll-left p { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-bottom: 3px; }
-.ad-enroll-contact { font-size: 0.74rem !important; color: rgba(255,255,255,0.28) !important; }
-.ad-enroll-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
-.ad-approve-btn {
-    background: rgba(74,222,128,0.1);
-    border: 1px solid rgba(74,222,128,0.25);
-    color: #4ade80;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700; font-size: 0.78rem;
-    padding: 8px 16px; border-radius: 8px;
-    cursor: pointer; transition: all 0.2s ease;
-}
-.ad-approve-btn:hover { background: #4ade80; color: #030a28; }
-.ad-reject-btn {
-    background: rgba(245,98,90,0.08);
-    border: 1px solid rgba(245,98,90,0.2);
-    color: #f5625a;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700; font-size: 0.78rem;
-    padding: 8px 16px; border-radius: 8px;
-    cursor: pointer; transition: all 0.2s ease;
-}
-.ad-reject-btn:hover { background: #f5625a; color: #ffffff; }
 
-/* ==========================================================
-   ATTENDANCE TOGGLE
-========================================================== */
-.ad-att-toggle { display: flex; gap: 0; border-radius: 7px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); width: fit-content; }
-.ad-att-btn {
-    background: none; border: none;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600; font-size: 0.7rem;
-    padding: 6px 14px; cursor: pointer;
-    color: rgba(255,255,255,0.35);
-    transition: all 0.2s ease;
+.form input{
+padding:10px;
+margin-right:10px;
+border-radius:5px;
+border:none;
 }
-.ad-att-btn--present.active { background: rgba(74,222,128,0.15); color: #4ade80; }
-.ad-att-btn--absent.active  { background: rgba(245,98,90,0.15);  color: #f5625a; }
 
-/* ==========================================================
-   ASSIGNMENTS ADMIN
-========================================================== */
-.ad-assign-admin-list { display: flex; flex-direction: column; gap: 12px; }
-.ad-assign-admin-item {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(245,196,0,0.1);
-    border-radius: 12px;
-    padding: 18px 20px;
-    display: flex; align-items: center; gap: 20px;
-    transition: border-color 0.25s ease;
+button{
+background:#facc15;
+border:none;
+padding:10px 16px;
+border-radius:6px;
+cursor:pointer;
 }
-.ad-assign-admin-item:hover { border-color: rgba(245,196,0,0.25); }
-.ad-assign-admin-left { flex: 1; }
-.ad-assign-admin-left h4 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700; font-size: 0.88rem;
-    color: #ffffff; margin-bottom: 4px;
-}
-.ad-assign-admin-left p { font-size: 0.76rem; color: rgba(255,255,255,0.38); }
-.ad-assign-admin-stats { display: flex; gap: 20px; flex-shrink: 0; }
-.ad-ass-stat { display: flex; flex-direction: column; align-items: center; gap: 2px; }
-.ad-ass-num { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.1rem; line-height: 1; }
-.ad-ass-stat > span:last-child { font-size: 0.62rem; color: rgba(255,255,255,0.3); }
 
-/* ==========================================================
-   COURSES ADMIN
-========================================================== */
-.ad-courses-admin-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-}
-.ad-course-admin-card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(245,196,0,0.1);
-    border-radius: 14px;
-    overflow: hidden;
-    transition: border-color 0.25s ease, transform 0.25s ease;
-}
-.ad-course-admin-card:hover { border-color: rgba(245,196,0,0.28); transform: translateY(-3px); }
-.ad-cac-top {
-    padding: 20px 18px 16px;
-    display: flex; align-items: flex-start;
-    justify-content: space-between;
-}
-.ad-cac-body { padding: 14px 18px 18px; }
-.ad-cac-body h3 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800; font-size: 0.88rem;
-    color: #ffffff; margin-bottom: 10px;
-}
-.ad-cac-meta { display: flex; gap: 12px; font-size: 0.73rem; color: rgba(255,255,255,0.4); margin-bottom: 5px; }
-
-/* ==========================================================
-   TRAINERS
-========================================================== */
-.ad-trainers-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-}
-.ad-trainer-card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(245,196,0,0.1);
-    border-radius: 14px;
-    padding: 22px 18px;
-    display: flex; flex-direction: column; align-items: center;
-    text-align: center;
-    transition: border-color 0.25s ease, transform 0.25s ease;
-}
-.ad-trainer-card:hover { border-color: rgba(245,196,0,0.28); transform: translateY(-3px); }
-.ad-trainer-av {
-    width: 58px; height: 58px;
-    border-radius: 14px;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 900; font-size: 1.4rem;
-    color: #ffffff; margin-bottom: 12px;
-}
-.ad-trainer-info h4 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800; font-size: 0.88rem;
-    color: #ffffff; margin-bottom: 3px;
-}
-.ad-trainer-info > p { font-size: 0.75rem; color: rgba(255,255,255,0.38); margin-bottom: 10px; }
-.ad-trainer-meta { display: flex; justify-content: center; gap: 12px; font-size: 0.72rem; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
-
-/* ==========================================================
-   SCHEDULE
-========================================================== */
-.ad-schedule-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 12px;
-}
-.ad-schedule-day {
-    background: rgba(255,255,255,0.02);
-    border: 1px solid rgba(245,196,0,0.08);
-    border-radius: 12px;
-    overflow: hidden;
-}
-.ad-schedule-day--weekend { opacity: 0.6; }
-.ad-sch-day-head {
-    padding: 10px 14px;
-    background: rgba(255,255,255,0.03);
-    border-bottom: 1px solid rgba(245,196,0,0.08);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.68rem; font-weight: 800;
-    letter-spacing: 1px; text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
-}
-.ad-sch-slot {
-    padding: 10px 14px;
-    border-left: 3px solid #f5c400;
-    margin: 10px;
-    background: rgba(255,255,255,0.02);
-    border-radius: 0 6px 6px 0;
-    display: flex; flex-direction: column; gap: 3px;
-}
-.ad-sch-slot--holiday { border-left-color: rgba(255,255,255,0.15); opacity: 0.5; }
-.ad-sch-slot + .ad-sch-slot { margin-top: 0; }
-.ad-sch-time  { font-size: 0.62rem; color: rgba(255,255,255,0.3); font-weight: 600; }
-.ad-sch-name  { font-size: 0.75rem; color: rgba(255,255,255,0.8); font-weight: 600; line-height: 1.3; }
-.ad-sch-trainer { font-size: 0.65rem; color: rgba(255,255,255,0.3); }
-
-/* ==========================================================
-   PLACEMENT ADMIN
-========================================================== */
-.ad-drives-admin-list { display: flex; flex-direction: column; gap: 0; }
-.ad-drive-admin-item {
-    display: flex; align-items: center; gap: 16px;
-    padding: 14px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-.ad-drive-admin-item:last-child { border-bottom: none; }
-.ad-drive-logo-sq {
-    width: 44px; height: 44px;
-    background: #1a3a6b;
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 900; font-size: 0.65rem;
-    color: #ffffff; letter-spacing: 0.5px;
-    flex-shrink: 0;
-}
-.ad-drive-admin-body { flex: 1; }
-.ad-drive-admin-body h4 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700; font-size: 0.86rem;
-    color: #ffffff; margin-bottom: 3px;
-}
-.ad-drive-admin-body p { font-size: 0.74rem; color: rgba(255,255,255,0.38); }
-.ad-drive-admin-stats { display: flex; flex-direction: column; gap: 4px; font-size: 0.74rem; color: rgba(255,255,255,0.38); flex-shrink: 0; }
-.ad-drive-admin-stats strong { color: #ffffff; }
-
-/* ==========================================================
-   ANNOUNCEMENTS
-========================================================== */
-.ad-compose-card { margin-bottom: 0; }
-.ad-compose-card h3 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700; font-size: 0.9rem;
-    color: #ffffff; margin-bottom: 16px;
-}
-.ad-compose-form { display: flex; flex-direction: column; gap: 12px; }
-.ad-compose-input {
-    width: 100%;
-    padding: 12px 16px;
-    background: rgba(255,255,255,0.04);
-    border: 1.5px solid rgba(245,196,0,0.15);
-    border-radius: 9px;
-    color: #ffffff; font-family: 'Inter', sans-serif;
-    font-size: 0.9rem; outline: none;
-    transition: border-color 0.25s ease;
-}
-.ad-compose-input:focus { border-color: #f5c400; }
-.ad-compose-input::placeholder { color: rgba(255,255,255,0.2); }
-.ad-compose-row { display: flex; gap: 10px; }
-.ad-compose-textarea {
-    width: 100%;
-    padding: 12px 16px;
-    background: rgba(255,255,255,0.04);
-    border: 1.5px solid rgba(245,196,0,0.15);
-    border-radius: 9px;
-    color: #ffffff; font-family: 'Inter', sans-serif;
-    font-size: 0.88rem; outline: none; resize: vertical;
-    transition: border-color 0.25s ease;
-}
-.ad-compose-textarea:focus { border-color: #f5c400; }
-.ad-compose-textarea::placeholder { color: rgba(255,255,255,0.2); }
-
-.ad-past-ann-list { display: flex; flex-direction: column; gap: 0; }
-.ad-past-ann-item {
-    display: flex; align-items: flex-start; justify-content: space-between;
-    gap: 16px; padding: 14px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-.ad-past-ann-item:last-child { border-bottom: none; }
-.ad-past-ann-item h4 { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.86rem; color: #ffffff; margin-bottom: 4px; }
-.ad-past-ann-item p { font-size: 0.74rem; color: rgba(255,255,255,0.35); }
-
-/* ==========================================================
-   REPORTS
-========================================================== */
-.ad-reports-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-}
-.ad-report-card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(245,196,0,0.1);
-    border-radius: 14px;
-    padding: 26px 22px;
-    display: flex; flex-direction: column; gap: 10px;
-    text-align: center; align-items: center;
-    transition: border-color 0.25s ease, transform 0.25s ease;
-}
-.ad-report-card:hover { transform: translateY(-3px); }
-.ad-report-icon { font-size: 2rem; }
-.ad-report-card h4 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 0.9rem; color: #ffffff; }
-.ad-report-card p { font-size: 0.77rem; color: rgba(255,255,255,0.38); line-height: 1.6; }
-.ad-report-btns { display: flex; gap: 8px; margin-top: 6px; }
-
-/* ==========================================================
-   RESPONSIVE
-========================================================== */
-@media (max-width: 1300px) {
-    .ad-kpi-grid { grid-template-columns: repeat(3, 1fr); }
-    .ad-courses-admin-grid { grid-template-columns: repeat(2, 1fr); }
-    .ad-trainers-grid { grid-template-columns: repeat(2, 1fr); }
-    .ad-reports-grid { grid-template-columns: repeat(2, 1fr); }
-    .ad-schedule-grid { grid-template-columns: repeat(3, 1fr); }
-}
-@media (max-width: 1024px) {
-    .ad-charts-row { grid-template-columns: 1fr; }
-    .ad-bottom-row { grid-template-columns: 1fr; }
-    .ad-search-box { display: none; }
-}
-@media (max-width: 900px) {
-    .ad-sidebar { transform: translateX(-100%); }
-    .ad-sidebar.open { transform: translateX(0); }
-    .ad-close-btn { display: block; }
-    .ad-main { margin-left: 0; }
-    .ad-menu-btn { display: flex; }
-    .ad-kpi-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 600px) {
-    .ad-content { padding: 16px; }
-    .ad-kpi-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-    .ad-courses-admin-grid { grid-template-columns: 1fr; }
-    .ad-trainers-grid { grid-template-columns: 1fr 1fr; }
-    .ad-reports-grid { grid-template-columns: 1fr 1fr; }
-    .ad-schedule-grid { grid-template-columns: 1fr 1fr; }
-    .ad-assign-admin-item { flex-direction: column; align-items: flex-start; }
-    .ad-drive-admin-item { flex-wrap: wrap; }
+.delete{
+color:#ef4444;
+text-decoration:none;
+font-weight:bold;
 }

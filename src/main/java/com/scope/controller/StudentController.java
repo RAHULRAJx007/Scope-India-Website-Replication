@@ -17,7 +17,7 @@ public class StudentController {
     @Autowired
     private StudentRepository studentRepository;
 
-    @GetMapping("/studentdashboard")
+    @GetMapping("/dashboard")
     public String studentDashboard(Authentication authentication, Model model) {
 
         String email = authentication.getName();

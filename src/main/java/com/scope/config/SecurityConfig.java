@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -44,20 +44,19 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(auth -> auth
                     .requestMatchers("/", "/signup", "/login", "/css/**", "/images/**").permitAll()
-                    .requestMatchers("/admindashboard").hasRole("ADMIN")
-                    .requestMatchers("/studentdashboard").hasRole("STUDENT")
+                    .requestMatchers("/admin/**").hasRole("ADMIN")
+                    .requestMatchers("/student/**").hasRole("STUDENT")
                     .anyRequest().authenticated()
             )
+
             .formLogin(form -> form
                     .loginPage("/login")
                     .usernameParameter("email")
                     .successHandler(successHandler)
                     .permitAll()
             )
-            .logout(logout -> logout
-                    .logoutSuccessUrl("/")
-                    .permitAll()
-            );
+
+            .logout(logout -> logout.logoutSuccessUrl("/"));
 
         return http.build();
     }
