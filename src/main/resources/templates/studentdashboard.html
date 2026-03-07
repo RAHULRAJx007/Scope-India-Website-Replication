@@ -27,7 +27,7 @@
     <div class="db-profile-mini">
         <div class="db-avatar" th:text="${#strings.substring(student.name, 0, 1)}">A</div>
         <div class="db-profile-info">
-            <span class="db-profile-name" th:text="${student.name}">Arjun Nair</span>
+            <span class="db-profile-name" th:text="${student.firstName}">Arjun Nair</span>
             <span class="db-profile-course" th:text="${student.course}">Full Stack Dev</span>
         </div>
     </div>
@@ -95,7 +95,7 @@
                 🔔
                 <span class="db-notif-dot"></span>
             </div>
-            <div class="db-topbar-avatar" th:text="${#strings.substring(student.name, 0, 1)}">A</div>
+            <div class="db-topbar-avatar" th:text="${#strings.substring(student.firstName, 0, 1)}">A</div>
         </div>
     </header>
 

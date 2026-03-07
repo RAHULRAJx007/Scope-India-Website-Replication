@@ -20,86 +20,77 @@ public class Student {
 
     private String password;
 
-    private String role; // ROLE_ADMIN or ROLE_STUDENT
-    
+    private String role;
+
     // getters and setters
 
-	public Long getId() {
-		return id;
-	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public String getPhone() {
-		return phone;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public String getPhone() {
+        return phone;
+    }
 
-	public String getCourse() {
-		return course;
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-	public void setCourse(String course) {
-		this.course = course;
-	}
+    public String getCourse() {
+        return course;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void setCourse(String course) {
+        this.course = course;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public String getRole() {
-		return role;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setRole(String role) {
-		this.role = role;
-	}
+    public String getRole() {
+        return role;
+    }
 
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    public void setRole(String role) {
+        this.role = role;
+    }
 
-	public Student orElseThrow(Object object) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-	
-    
+    // ⭐ ADD THIS METHOD
+    public String getName() {
+        return firstName + " " + lastName;
+    }
 }

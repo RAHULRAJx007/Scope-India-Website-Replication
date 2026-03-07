@@ -20,9 +20,9 @@ public class StudentController {
     @GetMapping("/studentdashboard")
     public String studentDashboard(Authentication authentication, Model model) {
 
-        String email = authentication.getName(); // logged in user email
+        String email = authentication.getName();
 
-        Optional<Student> student = studentRepository.findByEmail(email);
+        Student student = studentRepository.findByEmail(email).orElse(null);
 
         model.addAttribute("student", student);
 
