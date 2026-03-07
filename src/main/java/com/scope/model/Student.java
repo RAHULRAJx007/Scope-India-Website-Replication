@@ -88,6 +88,16 @@ public class Student {
 		this.role = role;
 	}
 
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public Student orElseThrow(Object object) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 	

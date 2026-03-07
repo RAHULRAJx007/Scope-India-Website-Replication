@@ -2,6 +2,7 @@ package com.scope.service;
 
 import java.util.Collections;
 
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,9 @@ public class CustomUserDetailsService implements UserDetailsService {
         return new User(
                 student.getEmail(),
                 student.getPassword(),
-                Collections.emptyList()
+                Collections.singletonList(
+                        new SimpleGrantedAuthority(student.getRole())
+                )
         );
     }
 }
