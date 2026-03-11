@@ -1,17 +1,27 @@
 package com.scope.controller;
 
-import org.springframework.security.core.Authentication;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.scope.model.Student;
+import com.scope.repository.StudentRepository;
+
 @Controller
 public class AdminController {
 
-    @GetMapping("/admin/dashboard")
-    public String adminDashboard(Authentication auth, Model model) {
+    @Autowired
+    private StudentRepository studentRepo;
 
-        model.addAttribute("adminEmail", auth.getName());
+    @GetMapping("/admin/dashboard")
+    public String adminDashboard(Model model) {
+
+    	List<Student> students = studentRepo.findByRole("ROLE_STUDENT");
+
+        model.addAttribute("students", students);
 
         return "admindashboard";
     }
