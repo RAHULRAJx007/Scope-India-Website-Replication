@@ -21,15 +21,29 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        Student student = studentRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    	if ("admin@scope.com".equals(email)) {
+    	    return new User(
+    	        "admin@scope.com",
+    	        "$2a$10$Dow1xX0Z3qkM9FQ7bC2eUOZ7yS0mPz7nJ0FQK5zYfYpZlXk9jZ9u2",
+    	        Collections.singletonList(
+    	            new SimpleGrantedAuthority("ROLE_ADMIN")
+    	        )
+    	    );
+    	}
+
+        Student student = studentRepository.findByEmail(email);
+
+        if (student == null) {
+            throw new UsernameNotFoundException("User not found");
+        }
 
         return new User(
                 student.getEmail(),
                 student.getPassword(),
                 Collections.singletonList(
-                        new SimpleGrantedAuthority(student.getRole())
+                        new SimpleGrantedAuthority("ROLE_STUDENT")
                 )
         );
     }
 }
+

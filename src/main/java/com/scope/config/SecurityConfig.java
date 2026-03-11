@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.*;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -27,6 +28,8 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+
+
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
 
@@ -42,6 +45,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
+            .authenticationProvider(authenticationProvider())   // ⭐ IMPORTANT
+
             .authorizeHttpRequests(auth -> auth
                     .requestMatchers("/", "/signup", "/login", "/css/**", "/images/**").permitAll()
                     .requestMatchers("/admin/**").hasRole("ADMIN")
@@ -60,4 +65,5 @@ public class SecurityConfig {
 
         return http.build();
     }
+
 }

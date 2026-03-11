@@ -104,4 +104,14 @@ public class Student {
     public String getName() {
         return firstName + " " + lastName;
     }
+
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public Student orElseThrow(Object object) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

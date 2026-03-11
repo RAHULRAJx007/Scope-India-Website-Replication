@@ -21,14 +21,15 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
             HttpServletResponse response,
             Authentication authentication) throws IOException {
 
-        boolean isAdmin = authentication.getAuthorities()
-                .stream()
-                .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
+    	boolean isAdmin = authentication.getAuthorities()
+    	        .stream()
+    	        .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
 
-        if (isAdmin) {
-            response.sendRedirect("/admin/dashboard");
-        } else {
-            response.sendRedirect("/student/dashboard");
-        }
+    	if (isAdmin) {
+    	    response.sendRedirect("/admin/dashboard");
+    	} else {
+    	    response.sendRedirect("/student/dashboard");
+    	}
+
     }
 }
