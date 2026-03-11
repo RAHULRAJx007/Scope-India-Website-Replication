@@ -315,3 +315,177 @@ body {
     .ad-input { min-width: 0; width: 100%; }
     .ad-btn-gold { width: 100%; text-align: center; }
 }
+
+/* ==========================================================
+   ANNOUNCEMENTS
+========================================================== */
+.ad-ann-form {
+    display: flex; flex-direction: column; gap: 10px; margin-top: 14px;
+}
+.ad-ann-form-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+}
+.ad-textarea {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(245,196,0,0.15);
+    border-radius: 8px; padding: 10px 14px;
+    color: #ffffff; font-family: 'Inter', sans-serif;
+    font-size: 0.84rem; outline: none; resize: vertical;
+    transition: border-color 0.2s;
+}
+.ad-textarea::placeholder { color: rgba(255,255,255,0.25); }
+.ad-textarea:focus { border-color: rgba(245,196,0,0.5); }
+
+.ad-ann-list { display: flex; flex-direction: column; }
+.ad-ann-item {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; padding: 14px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.ad-ann-item:last-child { border-bottom: none; }
+.ad-ann-body h4 { font-size: 0.86rem; font-weight: 600; color: #ffffff; margin-bottom: 3px; }
+.ad-ann-body p  { font-size: 0.75rem; color: rgba(255,255,255,0.35); }
+
+@media (max-width: 640px) {
+    .ad-ann-form-row { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================
+   MODALS
+========================================================== */
+.ad-modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(3,10,40,0.85);
+    backdrop-filter: blur(4px);
+    z-index: 500; align-items: center;
+    justify-content: center; padding: 20px;
+}
+.ad-modal-overlay.show { display: flex; }
+.ad-modal {
+    background: #0b1640;
+    border: 1px solid rgba(245,196,0,0.18);
+    border-radius: 14px; width: 100%; max-width: 480px;
+    max-height: 90vh; overflow-y: auto;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.6);
+    animation: modalIn 0.22s cubic-bezier(0.4,0,0.2,1);
+}
+.ad-modal--sm { max-width: 360px; }
+@keyframes modalIn {
+    from { opacity:0; transform:translateY(16px) scale(0.97); }
+    to   { opacity:1; transform:translateY(0) scale(1); }
+}
+.ad-modal-head {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px 14px;
+    border-bottom: 1px solid rgba(245,196,0,0.08);
+}
+.ad-modal-head h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700; font-size: 0.92rem; color: #ffffff;
+}
+.ad-modal-close {
+    background: none; border: none;
+    color: rgba(255,255,255,0.35);
+    font-size: 1rem; cursor: pointer;
+    padding: 4px 8px; border-radius: 6px;
+    transition: color 0.2s;
+}
+.ad-modal-close:hover { color: #ffffff; }
+.ad-modal-body { padding: 18px 20px 20px; }
+
+/* Shared form styles (used in both modal and inline) */
+.sd-edit-form  { display: flex; flex-direction: column; gap: 14px; }
+.sd-edit-row   { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.sd-edit-group { display: flex; flex-direction: column; gap: 5px; }
+.sd-edit-group label {
+    font-size: 0.72rem; font-weight: 600;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase; letter-spacing: 0.4px;
+}
+.sd-edit-input {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(245,196,0,0.15);
+    border-radius: 8px; padding: 9px 14px;
+    color: #ffffff; font-family: 'Inter', sans-serif;
+    font-size: 0.84rem; outline: none;
+    transition: border-color 0.2s; width: 100%;
+}
+.sd-edit-input::placeholder { color: rgba(255,255,255,0.22); }
+.sd-edit-input:focus { border-color: rgba(245,196,0,0.5); }
+.sd-edit-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 4px; }
+.sd-cancel-btn {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px; padding: 8px 16px;
+    color: rgba(255,255,255,0.5);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem; cursor: pointer;
+    transition: background 0.2s;
+}
+.sd-cancel-btn:hover { background: rgba(255,255,255,0.1); }
+.sd-save-btn {
+    background: #f5c400; color: #030a28;
+    border: none; border-radius: 8px;
+    padding: 8px 18px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700; font-size: 0.82rem;
+    cursor: pointer; transition: background 0.2s;
+}
+.sd-save-btn:hover { background: #ffe066; }
+
+/* Table action buttons */
+.ad-edit-btn {
+    color: #f5c400; font-weight: 600; font-size: 0.78rem;
+    background: rgba(245,196,0,0.08);
+    border: 1px solid rgba(245,196,0,0.25);
+    border-radius: 6px; padding: 5px 12px;
+    cursor: pointer; transition: background 0.2s;
+    font-family: 'Inter', sans-serif;
+}
+.ad-edit-btn:hover { background: rgba(245,196,0,0.18); }
+.ad-pw-btn {
+    color: #60a5fa; font-weight: 600; font-size: 0.78rem;
+    background: rgba(96,165,250,0.08);
+    border: 1px solid rgba(96,165,250,0.25);
+    border-radius: 6px; padding: 5px 12px;
+    cursor: pointer; transition: background 0.2s;
+    font-family: 'Inter', sans-serif;
+}
+.ad-pw-btn:hover { background: rgba(96,165,250,0.18); }
+
+@media (max-width: 640px) {
+    .sd-edit-row { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================
+   GLOBAL FORM RESET — force dark theme on all inputs
+========================================================== */
+input, textarea, select, button {
+    font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
+}
+input:not([type="hidden"]):not([type="submit"]):not([type="button"]),
+textarea,
+select {
+    background: rgba(255,255,255,0.05) !important;
+    border: 1px solid rgba(245,196,0,0.15) !important;
+    border-radius: 8px !important;
+    color: #ffffff !important;
+    font-size: 0.84rem !important;
+    outline: none !important;
+    -webkit-appearance: none;
+    appearance: none;
+}
+input:not([type="hidden"]):not([type="submit"]):not([type="button"]):focus,
+textarea:focus,
+select:focus {
+    border-color: rgba(245,196,0,0.5) !important;
+    box-shadow: 0 0 0 3px rgba(245,196,0,0.08) !important;
+}
+input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.25) !important; }
+select option { background: #0b1640 !important; color: #ffffff !important; }
+
+/* Modal always hidden until .show */
+.ad-modal-overlay { display: none !important; }
+.ad-modal-overlay.show { display: flex !important; }

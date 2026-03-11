@@ -1,10 +1,8 @@
 package com.scope.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import java.time.LocalDateTime;
+
+import jakarta.persistence.*;
 
 @Entity
 public class Announcement {
@@ -15,11 +13,15 @@ public class Announcement {
 
     private String title;
 
-    @Column(length = 2000)
-    private String message;
+    private String body;
+
+    private String category;
 
     private String target;
-    
+
+    private LocalDateTime publishedAt;
+
+    // getters setters
     
 
 	public Long getId() {
@@ -38,12 +40,20 @@ public class Announcement {
 		this.title = title;
 	}
 
-	public String getMessage() {
-		return message;
+	public String getBody() {
+		return body;
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
+	public void setBody(String body) {
+		this.body = body;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public String getTarget() {
@@ -53,6 +63,13 @@ public class Announcement {
 	public void setTarget(String target) {
 		this.target = target;
 	}
-    
-    
+
+	public LocalDateTime getPublishedAt() {
+		return publishedAt;
+	}
+
+	public void setPublishedAt(LocalDateTime publishedAt) {
+		this.publishedAt = publishedAt;
+	}
+
 }

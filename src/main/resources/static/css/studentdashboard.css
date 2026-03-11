@@ -396,3 +396,138 @@ body {
     .sd-course-card { padding: 24px 18px; }
     .sd-profile-card { padding: 18px; }
 }
+
+/* ==========================================================
+   ANNOUNCEMENT BOX
+========================================================== */
+.announcement-box { display: flex; flex-direction: column; gap: 14px; }
+.announcement-box h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900; font-size: 1.5rem;
+    color: #ffffff; margin-bottom: 8px;
+}
+.announcement-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(245,196,0,0.12);
+    border-radius: 12px;
+    padding: 18px 20px;
+    transition: border-color 0.2s;
+}
+.announcement-card:hover { border-color: rgba(245,196,0,0.28); }
+.announcement-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700; font-size: 0.92rem;
+    color: #ffffff; margin-bottom: 8px;
+}
+.announcement-card p {
+    font-size: 0.84rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.6; margin-bottom: 10px;
+}
+.announcement-card small {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.28);
+}
+
+/* ==========================================================
+   EDIT PROFILE / CHANGE PASSWORD
+========================================================== */
+.sd-profile-avatar-wrap {
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.sd-edit-toggle-btn {
+    margin-left: auto;
+    background: rgba(245,196,0,0.1);
+    border: 1px solid rgba(245,196,0,0.3);
+    border-radius: 8px;
+    color: #f5c400;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem; font-weight: 600;
+    padding: 7px 14px; cursor: pointer;
+    transition: background 0.2s;
+}
+.sd-edit-toggle-btn:hover { background: rgba(245,196,0,0.18); }
+
+.sd-edit-form { display: flex; flex-direction: column; gap: 14px; }
+.sd-edit-row  { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.sd-edit-group { display: flex; flex-direction: column; gap: 5px; }
+.sd-edit-group label {
+    font-size: 0.72rem; font-weight: 600;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase; letter-spacing: 0.4px;
+}
+.sd-edit-input {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(245,196,0,0.15);
+    border-radius: 8px; padding: 10px 14px;
+    color: #ffffff; font-family: 'Inter', sans-serif;
+    font-size: 0.86rem; outline: none;
+    transition: border-color 0.2s;
+}
+.sd-edit-input::placeholder { color: rgba(255,255,255,0.22); }
+.sd-edit-input:focus { border-color: rgba(245,196,0,0.5); }
+.sd-edit-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 4px; }
+.sd-cancel-btn {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px; padding: 9px 18px;
+    color: rgba(255,255,255,0.5);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem; cursor: pointer;
+    transition: background 0.2s;
+}
+.sd-cancel-btn:hover { background: rgba(255,255,255,0.1); }
+.sd-save-btn {
+    background: #f5c400; color: #030a28;
+    border: none; border-radius: 8px;
+    padding: 9px 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700; font-size: 0.82rem;
+    cursor: pointer; transition: background 0.2s;
+}
+.sd-save-btn:hover { background: #ffe066; }
+
+.sd-pw-head {
+    display: flex; align-items: center;
+    justify-content: space-between; gap: 12px;
+}
+.sd-pw-head h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700; font-size: 0.92rem; color: #ffffff;
+    margin-bottom: 3px;
+}
+.sd-pw-head p { font-size: 0.78rem; color: rgba(255,255,255,0.35); }
+
+@media (max-width: 600px) {
+    .sd-edit-row { grid-template-columns: 1fr; }
+    .sd-edit-toggle-btn { margin-left: 0; }
+}
+
+/* ==========================================================
+   GLOBAL FORM RESET — force dark theme on all inputs
+========================================================== */
+input, textarea, select, button {
+    font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
+}
+input:not([type="hidden"]):not([type="submit"]):not([type="button"]),
+textarea,
+select {
+    background: rgba(255,255,255,0.05) !important;
+    border: 1px solid rgba(245,196,0,0.15) !important;
+    border-radius: 8px !important;
+    color: #ffffff !important;
+    font-size: 0.84rem !important;
+    outline: none !important;
+    -webkit-appearance: none;
+    appearance: none;
+}
+input:not([type="hidden"]):not([type="submit"]):not([type="button"]):focus,
+textarea:focus,
+select:focus {
+    border-color: rgba(245,196,0,0.5) !important;
+    box-shadow: 0 0 0 3px rgba(245,196,0,0.08) !important;
+}
+input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.25) !important; }
+select option { background: #0b1640 !important; color: #ffffff !important; }
