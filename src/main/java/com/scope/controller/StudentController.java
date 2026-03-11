@@ -14,6 +14,8 @@ import com.scope.model.Student;
 import com.scope.repository.AnnouncementRepository;
 import com.scope.repository.StudentRepository;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/student")
 public class StudentController {
@@ -21,16 +23,20 @@ public class StudentController {
 			@Autowired
 			StudentRepository studentRepo;
 			
-			@GetMapping("/dashboard")
-			public String dashboard(Model model, Principal principal){
-			
-			Student student = studentRepo
-			        .findByEmail(principal.getName())
-			        .orElseThrow(() -> new RuntimeException("Student not found"));
-			
+			@GetMapping("/student/dashboard")
+			public String dashboard(HttpSession session, Model model){
+
+			Student student = (Student) session.getAttribute("student");
+
+			if(student == null){
+
+			return "redirect:/login";
+			}
+
 			model.addAttribute("student", student);
-			
+
 			return "studentdashboard";
-		}
+			}
+
 }
 
