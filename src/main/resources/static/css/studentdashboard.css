@@ -1,95 +1,398 @@
-body{
-font-family:Arial;
-margin:0;
-background:#0f172a;
-color:white;
+/* ==========================================================
+   STUDENT DASHBOARD — studentdashboard.css
+   Navy/gold theme. All values hardcoded — no CSS variables.
+========================================================== */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #060e30;
+    color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
-.layout{
-display:flex;
+/* ==========================================================
+   LAYOUT
+========================================================== */
+.sd-layout {
+    display: flex;
+    min-height: 100vh;
 }
 
-.sidebar{
-width:220px;
-background:#020617;
-height:100vh;
-padding:20px;
+/* ==========================================================
+   SIDEBAR
+========================================================== */
+.sd-sidebar {
+    width: 240px;
+    min-height: 100vh;
+    background: #030a28;
+    border-right: 1px solid rgba(245,196,0,0.1);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    z-index: 200;
+    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+.sd-sidebar::-webkit-scrollbar { display: none; }
+
+.sd-logo {
+    padding: 18px 20px;
+    border-bottom: 1px solid rgba(245,196,0,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+.sd-logo img { height: 30px; width: auto; }
+.sd-logo-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 1rem;
+    color: #ffffff;
+    letter-spacing: 1.5px;
+    align-items: baseline;
+    gap: 3px;
+}
+.sd-logo-text span { color: #f5c400; }
+.sd-close-btn {
+    display: none;
+    background: none; border: none;
+    color: rgba(255,255,255,0.3);
+    font-size: 1rem; cursor: pointer; padding: 4px;
 }
 
-.sidebar h2{
-color:#22c55e;
+/* Student badge */
+.sd-student-badge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(245,196,0,0.08);
+    flex-shrink: 0;
+}
+.sd-avatar {
+    width: 38px; height: 38px; min-width: 38px;
+    background: linear-gradient(135deg, #f5c400, #d4a800);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900; font-size: 1rem;
+    color: #030a28;
+}
+.sd-badge-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.sd-badge-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700; font-size: 0.82rem;
+    color: #ffffff;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.sd-badge-course { font-size: 0.72rem; color: rgba(255,255,255,0.35); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Nav */
+.sd-nav { padding: 12px 0; flex: 1; }
+.sd-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    font-size: 0.84rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.42);
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s, background 0.2s;
+    user-select: none;
+    border-left: 3px solid transparent;
+}
+.sd-nav-item:hover { color: rgba(255,255,255,0.75); background: rgba(255,255,255,0.04); }
+.sd-nav-item.active { color: #f5c400; background: rgba(245,196,0,0.07); border-left-color: #f5c400; font-weight: 600; }
+.sd-nav-icon { font-size: 0.95rem; width: 18px; text-align: center; }
+
+/* Sidebar footer */
+.sd-sidebar-foot {
+    padding: 16px 20px;
+    border-top: 1px solid rgba(245,196,0,0.08);
+    flex-shrink: 0;
+}
+.sd-logout {
+    display: block; width: 100%;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: rgba(245,98,90,0.75);
+    background: none; border: none; cursor: pointer;
+    text-decoration: none; text-align: left;
+    padding: 8px 0;
+    transition: color 0.2s;
+    font-family: 'Inter', sans-serif;
+}
+.sd-logout:hover { color: #f5625a; }
+
+/* Overlay */
+.sd-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(3,10,40,0.7);
+    z-index: 190;
+}
+.sd-overlay.show { display: block; }
+
+/* ==========================================================
+   MAIN
+========================================================== */
+.sd-main {
+    flex: 1;
+    margin-left: 240px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-.sidebar a{
-display:block;
-color:white;
-text-decoration:none;
-padding:10px;
-margin:8px 0;
-border-radius:6px;
+/* Topbar */
+.sd-topbar {
+    position: sticky; top: 0; z-index: 100;
+    height: 56px;
+    background: rgba(6,14,48,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(245,196,0,0.08);
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    gap: 16px;
+}
+.sd-menu-btn {
+    display: none; flex-direction: column; gap: 4px;
+    background: none; border: none; cursor: pointer; padding: 4px;
+}
+.sd-menu-btn span { display: block; width: 20px; height: 2px; background: rgba(255,255,255,0.5); border-radius: 2px; }
+.sd-topbar-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700; font-size: 0.88rem;
+    color: rgba(255,255,255,0.55);
+}
+.sd-topbar-right { margin-left: auto; }
+.sd-topbar-avatar {
+    width: 32px; height: 32px;
+    background: linear-gradient(135deg, #f5c400, #d4a800);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900; font-size: 0.85rem;
+    color: #030a28;
 }
 
-.sidebar a:hover{
-background:#1e293b;
+/* Content */
+.sd-content { padding: 28px 28px 40px; flex: 1; }
+
+/* Section */
+.sd-section { display: none; }
+.sd-section.active { display: block; animation: sdFadeIn 0.25s ease; }
+@keyframes sdFadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+
+.sd-section-head { margin-bottom: 24px; }
+.sd-section-head h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900; font-size: 1.5rem;
+    color: #ffffff; margin-bottom: 4px;
+}
+.sd-section-head p { font-size: 0.84rem; color: rgba(255,255,255,0.38); }
+
+/* ==========================================================
+   KPI CARDS
+========================================================== */
+.sd-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+.sd-kpi-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(245,196,0,0.1);
+    border-radius: 12px;
+    padding: 18px 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: border-color 0.2s, transform 0.2s;
+}
+.sd-kpi-card:hover { border-color: rgba(245,196,0,0.25); transform: translateY(-2px); }
+.sd-kpi-icon {
+    width: 42px; height: 42px; min-width: 42px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900; font-size: 0.75rem;
+}
+.sd-kpi-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.sd-kpi-val {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700; font-size: 0.9rem;
+    color: #ffffff;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.sd-kpi-label { font-size: 0.72rem; color: rgba(255,255,255,0.35); }
+
+/* ==========================================================
+   CARD
+========================================================== */
+.sd-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(245,196,0,0.1);
+    border-radius: 12px;
+    padding: 20px;
+}
+.sd-card-head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 16px;
+}
+.sd-card-head h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700; font-size: 0.9rem; color: #ffffff;
+}
+.sd-card-link {
+    font-size: 0.78rem; color: #f5c400;
+    text-decoration: none; cursor: pointer;
+    transition: opacity 0.2s;
+}
+.sd-card-link:hover { opacity: 0.7; }
+
+/* ==========================================================
+   ANNOUNCEMENT PREVIEW (dashboard)
+========================================================== */
+.sd-ann-preview { display: flex; flex-direction: column; gap: 0; }
+.sd-ann-preview-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.sd-ann-preview-item:last-child { border-bottom: none; }
+.sd-ann-dot {
+    width: 8px; height: 8px; min-width: 8px;
+    background: #f5c400; border-radius: 50%;
+    margin-top: 5px;
+}
+.sd-ann-preview-item h4 { font-size: 0.84rem; font-weight: 600; color: #ffffff; margin-bottom: 2px; }
+.sd-ann-preview-item p  { font-size: 0.74rem; color: rgba(255,255,255,0.35); }
+
+/* ==========================================================
+   PROFILE
+========================================================== */
+.sd-profile-card { padding: 28px; }
+.sd-profile-avatar-wrap {
+    display: flex; align-items: center; gap: 20px;
+    margin-bottom: 28px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(245,196,0,0.1);
+}
+.sd-profile-avatar {
+    width: 64px; height: 64px;
+    background: linear-gradient(135deg, #f5c400, #d4a800);
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900; font-size: 1.6rem;
+    color: #030a28;
+    flex-shrink: 0;
+}
+.sd-profile-avatar-wrap h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900; font-size: 1.15rem;
+    color: #ffffff; margin-bottom: 8px;
+}
+.sd-profile-table-wrap { overflow-x: auto; }
+.sd-profile-table { width: 100%; border-collapse: collapse; }
+.sd-profile-table tr { border-bottom: 1px solid rgba(255,255,255,0.06); }
+.sd-profile-table tr:last-child { border-bottom: none; }
+.sd-profile-table td { padding: 12px 8px; font-size: 0.86rem; }
+.sd-profile-key { color: rgba(255,255,255,0.38); width: 140px; font-weight: 500; }
+.sd-profile-table td:last-child { color: #ffffff; font-weight: 500; }
+
+/* ==========================================================
+   COURSE CARD
+========================================================== */
+.sd-course-card {
+    padding: 36px 32px;
+    text-align: center;
+    max-width: 520px;
+}
+.sd-course-icon { font-size: 3rem; margin-bottom: 16px; }
+.sd-course-card h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900; font-size: 1.4rem;
+    color: #f5c400; margin-bottom: 12px;
+}
+.sd-course-meta {
+    display: flex; justify-content: center; gap: 20px;
+    font-size: 0.82rem; color: rgba(255,255,255,0.45);
+    margin-bottom: 18px;
+}
+.sd-course-desc {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.7;
 }
 
-.logout{
-margin-top:40px;
-color:#ef4444;
+/* ==========================================================
+   ANNOUNCEMENTS LIST
+========================================================== */
+.sd-ann-list { display: flex; flex-direction: column; gap: 14px; }
+.sd-ann-item {
+    display: flex; gap: 16px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(245,196,0,0.08);
+    border-radius: 12px;
+    padding: 18px 20px;
+    transition: border-color 0.2s;
 }
-
-.main{
-flex:1;
-padding:40px;
+.sd-ann-item:hover { border-color: rgba(245,196,0,0.2); }
+.sd-ann-left { padding-top: 4px; }
+.sd-ann-dot--lg {
+    width: 10px; height: 10px;
+    background: #f5c400; border-radius: 50%;
 }
+.sd-ann-body { flex: 1; }
+.sd-ann-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.sd-ann-date { font-size: 0.74rem; color: rgba(255,255,255,0.3); }
+.sd-ann-body h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.92rem; color: #ffffff; margin-bottom: 6px; }
+.sd-ann-body p  { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
 
-.section{
-display:none;
+/* ==========================================================
+   PILLS
+========================================================== */
+.sd-pill {
+    display: inline-flex; align-items: center;
+    padding: 3px 9px; border-radius: 20px;
+    font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.3px;
 }
+.sd-pill--gold { background: rgba(245,196,0,0.12); color: #f5c400; border: 1px solid rgba(245,196,0,0.25); }
+.sd-pill--blue { background: rgba(96,165,250,0.1); color: #60a5fa; border: 1px solid rgba(96,165,250,0.2); }
 
-.section.active{
-display:block;
+/* ==========================================================
+   EMPTY STATE
+========================================================== */
+.sd-empty { color: rgba(255,255,255,0.28); font-size: 0.84rem; text-align: center; padding: 20px; }
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+@media (max-width: 992px) {
+    .sd-sidebar { transform: translateX(-100%); }
+    .sd-sidebar.open { transform: translateX(0); }
+    .sd-close-btn { display: block; }
+    .sd-main { margin-left: 0; }
+    .sd-menu-btn { display: flex; }
+    .sd-kpi-grid { grid-template-columns: repeat(2, 1fr); }
 }
-
-.cards{
-display:flex;
-gap:20px;
-}
-
-.card{
-background:#1e293b;
-padding:20px;
-border-radius:8px;
-width:200px;
-}
-
-.card p{
-font-size:20px;
-font-weight:bold;
-color:#22c55e;
-}
-
-.card-large{
-background:#1e293b;
-padding:30px;
-border-radius:10px;
-}
-
-table{
-background:#020617;
-padding:20px;
-border-radius:10px;
-width:400px;
-}
-
-td{
-padding:10px;
-border-bottom:1px solid #334155;
-}
-
-.announcement{
-background:#1e293b;
-padding:20px;
-border-radius:8px;
-margin-bottom:10px;
+@media (max-width: 600px) {
+    .sd-content { padding: 16px; }
+    .sd-kpi-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .sd-course-card { padding: 24px 18px; }
+    .sd-profile-card { padding: 18px; }
 }

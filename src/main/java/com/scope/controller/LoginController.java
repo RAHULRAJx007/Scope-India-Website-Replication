@@ -16,38 +16,9 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class LoginController {
 
-    @Autowired
-    private StudentRepository studentRepo;
+	    @GetMapping("/login")
+	    public String loginPage() {
+	        return "login";
+	    }
 
-    @Autowired
-    private AdminRepository adminRepo;
-
-    @PostMapping("/login")
-    public String login(@RequestParam String email, 
-                        @RequestParam String password, 
-                        HttpSession session) {
-
-        // Check Admin
-        Admin admin = adminRepo.findByEmailAndPassword(email, password);
-        if (admin != null) {
-            session.setAttribute("admin", admin);
-            return "redirect:/admin/dashboard";
-        }
-
-        // Check Student
-        Student student = studentRepo.findByEmailAndPassword(email, password);
-        if (student != null) {
-            session.setAttribute("student", student);
-            return "redirect:/student/dashboard";
-        }
-
-        // If both fail
-        return "redirect:/login?error=true";
-    }
-
-    @GetMapping("/logout")
-    public String logout(HttpSession session) {
-        session.invalidate();
-        return "redirect:/login";
-    }
-}
+	}

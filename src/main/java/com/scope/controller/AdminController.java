@@ -23,7 +23,7 @@ public class AdminController {
     @Autowired
     private StudentRepository studentRepository;
 
-    @GetMapping("/admin/dashboard")
+    @GetMapping("/admindashboard")
     public String dashboard(HttpSession session, Model model){
 
     Admin admin = (Admin) session.getAttribute("admin");

@@ -1,220 +1,256 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-
-<title>Admin Panel</title>
-
-<link rel="stylesheet" th:href="@{/css/admindashboard.css}">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCOPE INDIA | Admin Panel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/admindashboard.css}">
 </head>
-
 <body>
 
-<div class="layout">
-
-<!-- SIDEBAR -->
-<div class="sidebar">
-
-<h2>SCOPE ADMIN</h2>
-
-<a href="#" onclick="showSection('dashboard')">Dashboard</a>
-<a href="#" onclick="showSection('students')">Students</a>
-<a href="#" onclick="showSection('courses')">Courses</a>
-<a href="#" onclick="showSection('trainers')">Trainers</a>
-
-<a th:href="@{/logout}" class="logout">Logout</a>
-
-</div>
-
-
-<!-- MAIN -->
-<div class="main">
-
-<!-- DASHBOARD -->
-<div id="dashboard" class="section active">
-
-<h1>Dashboard</h1>
-
-<div class="cards">
-
-<div class="card">
-<h3>Total Students</h3>
-<p th:text="${totalStudents}">0</p>
-</div>
-
-<div class="card">
-<h3>Total Courses</h3>
-<p th:text="${totalCourses}">0</p>
-</div>
-
-<div class="card">
-<h3>Total Trainers</h3>
-<p th:text="${totalTrainers}">0</p>
-</div>
-
-</div>
-
-</div>
-
-
-<!-- STUDENTS CRUD -->
-<div id="students" class="section">
-
-<h1>Students</h1>
-
-<form th:action="@{/admin/students/add}" method="post" class="form">
-
-<input type="text" name="firstName" placeholder="First Name" required>
-<input type="text" name="lastName" placeholder="Last Name" required>
-<input type="email" name="email" placeholder="Email" required>
-<input type="text" name="phone" placeholder="Phone" required>
-<input type="text" name="course" placeholder="Course" required>
-<input type="text" name="branch" placeholder="Branch" required>
-
-<button type="submit">Add Student</button>
-
-</form>
-
-<table>
-
-<thead>
-<tr>
-<th>ID</th>
-<th>Name</th>
-<th>Email</th>
-<th>Course</th>
-<th>Branch</th>
-<th>Action</th>
-</tr>
-</thead>
-
-<tbody>
-
-<tr th:each="s : ${students}">
-
-<td th:text="${s.id}"></td>
-
-<td th:text="${s.firstName + ' ' + s.lastName}"></td>
-
-<td th:text="${s.email}"></td>
-
-<td th:text="${s.course}"></td>
-
-<td th:text="${s.branch}"></td>
-
-<td>
-
-<a th:href="@{/admin/students/delete/{id}(id=${s.id})}" class="delete">Delete</a>
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-
-<!-- COURSES -->
-<div id="courses" class="section">
-
-<h1>Courses</h1>
-
-<form th:action="@{/admin/courses/add}" method="post" class="form">
-
-<input type="text" name="name" placeholder="Course Name">
-<input type="text" name="duration" placeholder="Duration">
-
-<button>Add Course</button>
-
-</form>
-
-<table>
-
-<tr>
-<th>ID</th>
-<th>Name</th>
-<th>Duration</th>
-<th>Action</th>
-</tr>
-
-<tr th:each="c : ${courses}">
-
-<td th:text="${c.id}"></td>
-<td th:text="${c.name}"></td>
-<td th:text="${c.duration}"></td>
-
-<td>
-<a th:href="@{/admin/courses/delete/{id}(id=${c.id})}" class="delete">Delete</a>
-</td>
-
-</tr>
-
-</table>
-
-</div>
-
-
-<!-- TRAINERS -->
-<div id="trainers" class="section">
-
-<h1>Trainers</h1>
-
-<form th:action="@{/admin/trainers/add}" method="post" class="form">
-
-<input type="text" name="name" placeholder="Trainer Name">
-<input type="text" name="specialisation" placeholder="Specialisation">
-<input type="text" name="branch" placeholder="Branch">
-
-<button>Add Trainer</button>
-
-</form>
-
-<table>
-
-<tr>
-<th>ID</th>
-<th>Name</th>
-<th>Specialisation</th>
-<th>Branch</th>
-<th>Action</th>
-</tr>
-
-<tr th:each="t : ${trainers}">
-
-<td th:text="${t.id}"></td>
-<td th:text="${t.name}"></td>
-<td th:text="${t.specialisation}"></td>
-<td th:text="${t.branch}"></td>
-
-<td>
-<a th:href="@{/admin/trainers/delete/{id}(id=${t.id})}" class="delete">Delete</a>
-</td>
-
-</tr>
-
-</table>
-
-</div>
-
-</div>
-
+<div class="ad-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="ad-sidebar" id="adSidebar">
+        <div class="ad-logo">
+            <img th:src="@{/images/logo.png}" alt="SCOPE INDIA"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="ad-logo-text" style="display:none;">SCOPE<span>INDIA</span></div>
+            <button class="ad-close-btn" id="adClose">&#x2715;</button>
+        </div>
+        <div class="ad-admin-badge">
+            <div class="ad-admin-av">A</div>
+            <div>
+                <span class="ad-admin-name">Super Admin</span>
+                <span class="ad-admin-role">Administrator</span>
+            </div>
+        </div>
+        <nav class="ad-nav">
+            <span class="ad-nav-label">Overview</span>
+            <a href="javascript:void(0)" class="ad-nav-item active" data-section="dashboard">&#x229E; Dashboard</a>
+            <span class="ad-nav-label">Manage</span>
+            <a href="javascript:void(0)" class="ad-nav-item" data-section="students">&#x1F465; Students</a>
+            <a href="javascript:void(0)" class="ad-nav-item" data-section="courses">&#x1F4DA; Courses</a>
+            <a href="javascript:void(0)" class="ad-nav-item" data-section="trainers">&#x1F9D1;&#x200D;&#x1F4BB; Trainers</a>
+        </nav>
+        <div class="ad-sidebar-foot">
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="ad-logout">&#x23FB; Logout</button>
+            </form>
+        </div>
+    </aside>
+
+    <div class="ad-overlay" id="adOverlay"></div>
+
+    <!-- MAIN -->
+    <div class="ad-main">
+        <header class="ad-topbar">
+            <button class="ad-menu-btn" id="adMenuBtn"><span></span><span></span><span></span></button>
+            <div class="ad-topbar-title" id="adTopTitle">Dashboard</div>
+            <div class="ad-topbar-right">
+                <div class="ad-topbar-av">A</div>
+            </div>
+        </header>
+
+        <div class="ad-content">
+
+            <!-- DASHBOARD -->
+            <div id="dashboard" class="ad-section active">
+                <div class="ad-section-head">
+                    <h1>Dashboard</h1>
+                    <p>Overview of your institute</p>
+                </div>
+                <div class="ad-kpi-grid">
+                    <div class="ad-kpi-card">
+                        <div class="ad-kpi-icon" style="background:rgba(245,196,0,0.12);color:#f5c400;">S</div>
+                        <div class="ad-kpi-body">
+                            <span class="ad-kpi-num" th:text="${totalStudents}">0</span>
+                            <span class="ad-kpi-label">Total Students</span>
+                        </div>
+                    </div>
+                    <div class="ad-kpi-card">
+                        <div class="ad-kpi-icon" style="background:rgba(74,222,128,0.1);color:#4ade80;">C</div>
+                        <div class="ad-kpi-body">
+                            <span class="ad-kpi-num" th:text="${totalCourses}">0</span>
+                            <span class="ad-kpi-label">Total Courses</span>
+                        </div>
+                    </div>
+                    <div class="ad-kpi-card">
+                        <div class="ad-kpi-icon" style="background:rgba(96,165,250,0.1);color:#60a5fa;">T</div>
+                        <div class="ad-kpi-body">
+                            <span class="ad-kpi-num" th:text="${totalTrainers}">0</span>
+                            <span class="ad-kpi-label">Total Trainers</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STUDENTS -->
+            <div id="students" class="ad-section">
+                <div class="ad-section-head">
+                    <h1>Students</h1>
+                    <p>Add, view and delete students</p>
+                </div>
+
+                <!-- Add form -->
+                <div class="ad-form-card">
+                    <h3>Add Student</h3>
+                    <form th:action="@{/admin/students/add}" method="post" class="ad-inline-form">
+                        <input type="text"  name="firstName"  class="ad-input" placeholder="First Name"  required>
+                        <input type="text"  name="lastName"   class="ad-input" placeholder="Last Name"   required>
+                        <input type="email" name="email"      class="ad-input" placeholder="Email"       required>
+                        <input type="text"  name="phone"      class="ad-input" placeholder="Phone"       required>
+                        <input type="text"  name="course"     class="ad-input" placeholder="Course"      required>
+                        <input type="text"  name="branch"     class="ad-input" placeholder="Branch"      required>
+                        <button type="submit" class="ad-btn-gold">+ Add</button>
+                    </form>
+                </div>
+
+                <!-- Table -->
+                <div class="ad-card" style="padding:0;overflow:hidden;margin-top:16px;">
+                    <div class="ad-table-wrap">
+                        <table class="ad-table">
+                            <thead>
+                                <tr><th>ID</th><th>Name</th><th>Email</th><th>Course</th><th>Branch</th><th>Action</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="s : ${students}">
+                                    <td class="ad-muted" th:text="${s.id}">—</td>
+                                    <td th:text="${s.firstName + ' ' + s.lastName}">—</td>
+                                    <td class="ad-muted" th:text="${s.email}">—</td>
+                                    <td th:text="${s.course}">—</td>
+                                    <td th:text="${s.branch}">—</td>
+                                    <td>
+                                        <a th:href="@{/admin/students/delete/{id}(id=${s.id})}"
+                                           class="ad-delete-btn"
+                                           onclick="return confirm('Delete this student?')">Delete</a>
+                                    </td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(students)}">
+                                    <td colspan="6" class="ad-empty">No students found.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COURSES -->
+            <div id="courses" class="ad-section">
+                <div class="ad-section-head">
+                    <h1>Courses</h1>
+                    <p>Add, view and delete courses</p>
+                </div>
+
+                <div class="ad-form-card">
+                    <h3>Add Course</h3>
+                    <form th:action="@{/admin/courses/add}" method="post" class="ad-inline-form">
+                        <input type="text" name="name"     class="ad-input" placeholder="Course Name" required>
+                        <input type="text" name="duration" class="ad-input" placeholder="Duration"    required>
+                        <button type="submit" class="ad-btn-gold">+ Add</button>
+                    </form>
+                </div>
+
+                <div class="ad-card" style="padding:0;overflow:hidden;margin-top:16px;">
+                    <div class="ad-table-wrap">
+                        <table class="ad-table">
+                            <thead>
+                                <tr><th>ID</th><th>Name</th><th>Duration</th><th>Action</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="c : ${courses}">
+                                    <td class="ad-muted" th:text="${c.id}">—</td>
+                                    <td th:text="${c.name}">—</td>
+                                    <td class="ad-muted" th:text="${c.duration}">—</td>
+                                    <td>
+                                        <a th:href="@{/admin/courses/delete/{id}(id=${c.id})}"
+                                           class="ad-delete-btn"
+                                           onclick="return confirm('Delete this course?')">Delete</a>
+                                    </td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(courses)}">
+                                    <td colspan="4" class="ad-empty">No courses found.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TRAINERS -->
+            <div id="trainers" class="ad-section">
+                <div class="ad-section-head">
+                    <h1>Trainers</h1>
+                    <p>Add, view and delete trainers</p>
+                </div>
+
+                <div class="ad-form-card">
+                    <h3>Add Trainer</h3>
+                    <form th:action="@{/admin/trainers/add}" method="post" class="ad-inline-form">
+                        <input type="text" name="name"           class="ad-input" placeholder="Trainer Name"    required>
+                        <input type="text" name="specialisation" class="ad-input" placeholder="Specialisation"  required>
+                        <input type="text" name="branch"         class="ad-input" placeholder="Branch"          required>
+                        <button type="submit" class="ad-btn-gold">+ Add</button>
+                    </form>
+                </div>
+
+                <div class="ad-card" style="padding:0;overflow:hidden;margin-top:16px;">
+                    <div class="ad-table-wrap">
+                        <table class="ad-table">
+                            <thead>
+                                <tr><th>ID</th><th>Name</th><th>Specialisation</th><th>Branch</th><th>Action</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="t : ${trainers}">
+                                    <td class="ad-muted" th:text="${t.id}">—</td>
+                                    <td th:text="${t.name}">—</td>
+                                    <td class="ad-muted" th:text="${t.specialisation}">—</td>
+                                    <td th:text="${t.branch}">—</td>
+                                    <td>
+                                        <a th:href="@{/admin/trainers/delete/{id}(id=${t.id})}"
+                                           class="ad-delete-btn"
+                                           onclick="return confirm('Delete this trainer?')">Delete</a>
+                                    </td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(trainers)}">
+                                    <td colspan="5" class="ad-empty">No trainers found.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
 
 <script>
-
-function showSection(section){
-
-document.querySelectorAll(".section")
-.forEach(s => s.classList.remove("active"))
-
-document.getElementById(section)
-.classList.add("active")
-
-}
-
+(function(){
+    var navItems = document.querySelectorAll('.ad-nav-item');
+    var sections = document.querySelectorAll('.ad-section');
+    var titleEl  = document.getElementById('adTopTitle');
+    function activate(id) {
+        sections.forEach(function(s){ s.classList.remove('active'); });
+        navItems.forEach(function(n){ n.classList.remove('active'); });
+        var sec = document.getElementById(id);
+        var nav = document.querySelector('[data-section="'+id+'"]');
+        if (sec) sec.classList.add('active');
+        if (nav) { nav.classList.add('active'); if (titleEl) titleEl.textContent = nav.textContent.trim(); }
+        closeSidebar(); window.scrollTo(0,0);
+    }
+    navItems.forEach(function(item){
+        item.addEventListener('click', function(e){ e.preventDefault(); activate(item.dataset.section); });
+    });
+})();
+var adSidebar = document.getElementById('adSidebar');
+var adOverlay = document.getElementById('adOverlay');
+function openSidebar()  { adSidebar.classList.add('open');  adOverlay.classList.add('show'); }
+function closeSidebar() { adSidebar.classList.remove('open'); adOverlay.classList.remove('show'); }
+document.getElementById('adMenuBtn').addEventListener('click', openSidebar);
+document.getElementById('adClose').addEventListener('click', closeSidebar);
+adOverlay.addEventListener('click', closeSidebar);
 </script>
 
 </body>

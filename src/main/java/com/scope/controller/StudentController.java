@@ -20,23 +20,21 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("/student")
 public class StudentController {
 
-			@Autowired
-			StudentRepository studentRepo;
-			
-			@GetMapping("/student/dashboard")
-			public String dashboard(HttpSession session, Model model){
+    @Autowired
+    private StudentRepository studentRepo;
 
-			Student student = (Student) session.getAttribute("student");
+    @GetMapping("/dashboard")
+    public String studentDashboard(Authentication auth, Model model) {
 
-			if(student == null){
+        String email = auth.getName();
 
-			return "redirect:/login";
-			}
+        Student student = studentRepo.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Student not found"));
 
-			model.addAttribute("student", student);
+        model.addAttribute("student", student);
 
-			return "studentdashboard";
-			}
-
+        return "studentdashboard";
+    }
 }
+
 

@@ -19,25 +19,16 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(
             HttpServletRequest request,
             HttpServletResponse response,
-            Authentication authentication) throws IOException, ServletException {
+            Authentication authentication) throws IOException {
 
-        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+        boolean isAdmin = authentication.getAuthorities()
+                .stream()
+                .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
 
-        for (GrantedAuthority auth : authorities) {
-
-            if (auth.getAuthority().equals("ROLE_ADMIN")) {
-
-                response.sendRedirect("/admin/dashboard");
-                return;
-            }
-
-            if (auth.getAuthority().equals("ROLE_STUDENT")) {
-
-                response.sendRedirect("/student/dashboard");
-                return;
-            }
+        if (isAdmin) {
+            response.sendRedirect("/admin/dashboard");
+        } else {
+            response.sendRedirect("/student/dashboard");
         }
-
-        response.sendRedirect("/");
     }
 }

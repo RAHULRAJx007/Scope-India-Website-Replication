@@ -1,146 +1,256 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-
-<title>Student Dashboard</title>
-
-<link rel="stylesheet" th:href="@{/css/studentdashboard.css}">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCOPE INDIA | Student Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/studentdashboard.css}">
 </head>
-
 <body>
 
-<div class="layout">
+<div class="sd-layout">
 
-<!-- SIDEBAR -->
-<div class="sidebar">
+    <!-- SIDEBAR -->
+    <aside class="sd-sidebar" id="sdSidebar">
 
-<h2>STUDENT</h2>
+        <div class="sd-logo">
+            <img th:src="@{/images/logo.png}" alt="SCOPE INDIA"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="sd-logo-text" style="display:none;">SCOPE<span>INDIA</span></div>
+            <button class="sd-close-btn" id="sdClose">&#x2715;</button>
+        </div>
 
-<a href="#" onclick="showSection('dashboard')">Dashboard</a>
-<a href="#" onclick="showSection('profile')">My Profile</a>
-<a href="#" onclick="showSection('course')">My Course</a>
-<a href="#" onclick="showSection('announcements')">Announcements</a>
+        <!-- Student avatar -->
+        <div class="sd-student-badge">
+            <div class="sd-avatar" th:text="${#strings.substring(student.firstName,0,1)}">S</div>
+            <div class="sd-badge-info">
+                <span class="sd-badge-name" th:text="${student.firstName+' '+student.lastName}">Student</span>
+                <span class="sd-badge-course" th:text="${student.course}">Course</span>
+            </div>
+        </div>
 
-<a th:href="@{/logout}" class="logout">Logout</a>
+        <nav class="sd-nav">
+            <a href="javascript:void(0)" class="sd-nav-item active" data-section="dashboard">
+                <span class="sd-nav-icon">&#x229E;</span> Dashboard
+            </a>
+            <a href="javascript:void(0)" class="sd-nav-item" data-section="profile">
+                <span class="sd-nav-icon">&#x1F464;</span> My Profile
+            </a>
+            <a href="javascript:void(0)" class="sd-nav-item" data-section="course">
+                <span class="sd-nav-icon">&#x1F4DA;</span> My Course
+            </a>
+            <a href="javascript:void(0)" class="sd-nav-item" data-section="announcements">
+                <span class="sd-nav-icon">&#x1F4E3;</span> Announcements
+            </a>
+        </nav>
 
-</div>
+        <div class="sd-sidebar-foot">
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="sd-logout">&#x23FB; Logout</button>
+            </form>
+        </div>
 
+    </aside>
 
-<!-- MAIN -->
-<div class="main">
+    <div class="sd-overlay" id="sdOverlay"></div>
 
-<!-- DASHBOARD -->
-<div id="dashboard" class="section active">
+    <!-- MAIN -->
+    <div class="sd-main">
 
-<h1>Welcome</h1>
+        <header class="sd-topbar">
+            <button class="sd-menu-btn" id="sdMenuBtn">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="sd-topbar-title" id="sdTopTitle">Dashboard</div>
+            <div class="sd-topbar-right">
+                <div class="sd-topbar-avatar" th:text="${#strings.substring(student.firstName,0,1)}">S</div>
+            </div>
+        </header>
 
-<div class="cards">
+        <div class="sd-content">
 
-<div class="card">
-<h3>Name</h3>
-<p th:text="${student.firstName + ' ' + student.lastName}"></p>
-</div>
+            <!-- DASHBOARD -->
+            <div id="dashboard" class="sd-section active">
+                <div class="sd-section-head">
+                    <h1>Welcome back, <span th:text="${student.firstName}">Student</span></h1>
+                    <p>Here's your overview</p>
+                </div>
 
-<div class="card">
-<h3>Course</h3>
-<p th:text="${student.course}"></p>
-</div>
+                <div class="sd-kpi-grid">
+                    <div class="sd-kpi-card">
+                        <div class="sd-kpi-icon" style="background:rgba(245,196,0,0.12);color:#f5c400;">S</div>
+                        <div class="sd-kpi-body">
+                            <span class="sd-kpi-val" th:text="${student.firstName+' '+student.lastName}">—</span>
+                            <span class="sd-kpi-label">Full Name</span>
+                        </div>
+                    </div>
+                    <div class="sd-kpi-card">
+                        <div class="sd-kpi-icon" style="background:rgba(74,222,128,0.1);color:#4ade80;">C</div>
+                        <div class="sd-kpi-body">
+                            <span class="sd-kpi-val" th:text="${student.course}">—</span>
+                            <span class="sd-kpi-label">Enrolled Course</span>
+                        </div>
+                    </div>
+                    <div class="sd-kpi-card">
+                        <div class="sd-kpi-icon" style="background:rgba(96,165,250,0.1);color:#60a5fa;">B</div>
+                        <div class="sd-kpi-body">
+                            <span class="sd-kpi-val" th:text="${student.branch}">—</span>
+                            <span class="sd-kpi-label">Branch</span>
+                        </div>
+                    </div>
+                    <div class="sd-kpi-card">
+                        <div class="sd-kpi-icon" style="background:rgba(167,139,250,0.1);color:#a78bfa;">ID</div>
+                        <div class="sd-kpi-body">
+                            <span class="sd-kpi-val" th:text="${student.id}">—</span>
+                            <span class="sd-kpi-label">Student ID</span>
+                        </div>
+                    </div>
+                </div>
 
-<div class="card">
-<h3>Branch</h3>
-<p th:text="${student.branch}"></p>
-</div>
+                <!-- Latest announcements preview -->
+                <div class="sd-card" style="margin-top:24px;">
+                    <div class="sd-card-head">
+                        <h3>Latest Announcements</h3>
+                        <a href="javascript:void(0)" class="sd-card-link" data-goto="announcements">View all</a>
+                    </div>
+                    <div class="sd-ann-preview">
+                        <div th:each="a,i : ${announcements}" th:if="${i.index < 3}" class="sd-ann-preview-item">
+                            <div class="sd-ann-dot"></div>
+                            <div>
+                                <h4 th:text="${a.title}">—</h4>
+                                <p th:text="${#temporals.format(a.publishedAt,'dd MMM yyyy')}">—</p>
+                            </div>
+                        </div>
+                        <div th:if="${#lists.isEmpty(announcements)}" class="sd-empty">No announcements yet.</div>
+                    </div>
+                </div>
+            </div>
 
-</div>
+            <!-- PROFILE -->
+            <div id="profile" class="sd-section">
+                <div class="sd-section-head">
+                    <h1>My Profile</h1>
+                    <p>Your personal information</p>
+                </div>
+                <div class="sd-card sd-profile-card">
+                    <div class="sd-profile-avatar-wrap">
+                        <div class="sd-profile-avatar" th:text="${#strings.substring(student.firstName,0,1)}">S</div>
+                        <div>
+                            <h2 th:text="${student.firstName+' '+student.lastName}">—</h2>
+                            <span class="sd-pill sd-pill--gold" th:text="${student.course}">—</span>
+                        </div>
+                    </div>
+                    <div class="sd-profile-table-wrap">
+                        <table class="sd-profile-table">
+                            <tr>
+                                <td class="sd-profile-key">Full Name</td>
+                                <td th:text="${student.firstName+' '+student.lastName}">—</td>
+                            </tr>
+                            <tr>
+                                <td class="sd-profile-key">Email</td>
+                                <td th:text="${student.email}">—</td>
+                            </tr>
+                            <tr>
+                                <td class="sd-profile-key">Phone</td>
+                                <td th:text="${student.phone}">—</td>
+                            </tr>
+                            <tr>
+                                <td class="sd-profile-key">Course</td>
+                                <td th:text="${student.course}">—</td>
+                            </tr>
+                            <tr>
+                                <td class="sd-profile-key">Branch</td>
+                                <td th:text="${student.branch}">—</td>
+                            </tr>
+                            <tr>
+                                <td class="sd-profile-key">Student ID</td>
+                                <td th:text="${student.id}">—</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
-</div>
+            <!-- COURSE -->
+            <div id="course" class="sd-section">
+                <div class="sd-section-head">
+                    <h1>My Course</h1>
+                    <p>Your enrolled programme</p>
+                </div>
+                <div class="sd-card sd-course-card">
+                    <div class="sd-course-icon">&#x1F4DA;</div>
+                    <h2 th:text="${student.course}">—</h2>
+                    <div class="sd-course-meta">
+                        <span th:text="'Branch: '+${student.branch}">—</span>
+                    </div>
+                    <p class="sd-course-desc">You are currently enrolled in this programme at Scope India. Attend all sessions and complete assignments on time to stay on track.</p>
+                </div>
+            </div>
 
+            <!-- ANNOUNCEMENTS -->
+            <div id="announcements" class="sd-section">
+                <div class="sd-section-head">
+                    <h1>Announcements</h1>
+                    <p>Latest notices from your institute</p>
+                </div>
+                <div class="sd-ann-list">
+                    <div th:each="a : ${announcements}" class="sd-ann-item">
+                        <div class="sd-ann-left">
+                            <div class="sd-ann-dot sd-ann-dot--lg"></div>
+                        </div>
+                        <div class="sd-ann-body">
+                            <div class="sd-ann-meta">
+                                <span class="sd-pill sd-pill--blue" th:text="${a.category}">Notice</span>
+                                <span class="sd-ann-date" th:text="${#temporals.format(a.publishedAt,'dd MMM yyyy')}">—</span>
+                            </div>
+                            <h3 th:text="${a.title}">—</h3>
+                            <p th:text="${a.body}">—</p>
+                        </div>
+                    </div>
+                    <div th:if="${#lists.isEmpty(announcements)}" class="sd-empty" style="padding:40px;text-align:center;">
+                        No announcements at this time.
+                    </div>
+                </div>
+            </div>
 
-<!-- PROFILE -->
-<div id="profile" class="section">
-
-<h1>My Profile</h1>
-
-<table>
-
-<tr>
-<td>Name</td>
-<td th:text="${student.firstName + ' ' + student.lastName}"></td>
-</tr>
-
-<tr>
-<td>Email</td>
-<td th:text="${student.email}"></td>
-</tr>
-
-<tr>
-<td>Phone</td>
-<td th:text="${student.phone}"></td>
-</tr>
-
-<tr>
-<td>Course</td>
-<td th:text="${student.course}"></td>
-</tr>
-
-<tr>
-<td>Branch</td>
-<td th:text="${student.branch}"></td>
-</tr>
-
-</table>
-
-</div>
-
-
-<!-- COURSE -->
-<div id="course" class="section">
-
-<h1>My Course</h1>
-
-<div class="card-large">
-
-<h3 th:text="${student.course}"></h3>
-
-<p>Welcome to your course dashboard.</p>
-
-</div>
-
-</div>
-
-
-<!-- ANNOUNCEMENTS -->
-<div id="announcements" class="section">
-
-<h1>Announcements</h1>
-
-<div th:each="a : ${announcements}" class="announcement">
-
-<h3 th:text="${a.title}"></h3>
-
-<p th:text="${a.body}"></p>
-
-</div>
-
-</div>
-
-</div>
-
+        </div>
+    </div>
 </div>
 
 <script>
+/* Section switcher */
+(function(){
+    var navItems = document.querySelectorAll('.sd-nav-item');
+    var sections = document.querySelectorAll('.sd-section');
+    var titleEl  = document.getElementById('sdTopTitle');
 
-function showSection(section){
+    function activate(id) {
+        sections.forEach(function(s){ s.classList.remove('active'); });
+        navItems.forEach(function(n){ n.classList.remove('active'); });
+        var sec = document.getElementById(id);
+        var nav = document.querySelector('[data-section="'+id+'"]');
+        if (sec) sec.classList.add('active');
+        if (nav) { nav.classList.add('active'); if (titleEl) titleEl.textContent = nav.textContent.trim(); }
+        closeSidebar(); window.scrollTo(0,0);
+    }
 
-document.querySelectorAll(".section")
-.forEach(s => s.classList.remove("active"))
+    navItems.forEach(function(item){
+        item.addEventListener('click', function(e){ e.preventDefault(); activate(item.dataset.section); });
+    });
+    document.querySelectorAll('[data-goto]').forEach(function(el){
+        el.addEventListener('click', function(e){ e.preventDefault(); activate(el.dataset.goto); });
+    });
+})();
 
-document.getElementById(section)
-.classList.add("active")
-
-}
-
+/* Mobile sidebar */
+var sdSidebar = document.getElementById('sdSidebar');
+var sdOverlay = document.getElementById('sdOverlay');
+function openSidebar()  { sdSidebar.classList.add('open');  sdOverlay.classList.add('show'); }
+function closeSidebar() { sdSidebar.classList.remove('open'); sdOverlay.classList.remove('show'); }
+document.getElementById('sdMenuBtn').addEventListener('click', openSidebar);
+document.getElementById('sdClose').addEventListener('click', closeSidebar);
+sdOverlay.addEventListener('click', closeSidebar);
 </script>
 
 </body>
