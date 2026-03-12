@@ -12,29 +12,23 @@ import com.scope.repository.StudentRepository;
 public class AdminInitializer {
 
     @Bean
-    CommandLineRunner createAdmin(StudentRepository repo, PasswordEncoder encoder) {
-
+    CommandLineRunner initAdmin(StudentRepository studentRepo, PasswordEncoder encoder) {
         return args -> {
 
-            String adminEmail = "admin@scope.com";
+            Student admin = studentRepo.findByEmail("admin@scope.com");
 
-            if (repo.findByEmail(adminEmail).isEmpty()) {
+            if (admin == null) {
 
-                Student admin = new Student();
+                Student newAdmin = new Student();
+                newAdmin.setFirstName("Admin");
+                newAdmin.setLastName("Scope");
+                newAdmin.setEmail("admin@scope.com");
+                newAdmin.setPassword(encoder.encode("admin123"));
+                newAdmin.setRole("ROLE_ADMIN");
 
-                admin.setFirstName("Admin");
-                admin.setLastName("Scope");
-                admin.setEmail(adminEmail);
-                admin.setPhone("9999999999");
-                admin.setCourse("Administrator");
+                studentRepo.save(newAdmin);
 
-                admin.setPassword(encoder.encode("admin123"));
-
-                admin.setRole("ROLE_ADMIN");
-
-                repo.save(admin);
-
-                System.out.println("Admin account created!");
+                System.out.println("Admin created successfully");
             }
         };
     }
