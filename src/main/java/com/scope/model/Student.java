@@ -28,6 +28,8 @@ public class Student {
 
     @Column(name = "email_verified")
     private Boolean emailVerified = false;
+    
+    private String resetToken;
 
     // =========================
     // GETTERS & SETTERS
@@ -112,8 +114,16 @@ public class Student {
     public void setEmailVerified(Boolean emailVerified) {
         this.emailVerified = emailVerified;
     }
+    
+    public String getResetToken() {
+		return resetToken;
+	}
 
-    // Helper method
+	public void setResetToken(String resetToken) {
+		this.resetToken = resetToken;
+	}
+
+	// Helper method
     public String getName() {
         return firstName + " " + lastName;
     }

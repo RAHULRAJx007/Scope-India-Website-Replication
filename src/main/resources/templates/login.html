@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SCOPE INDIA | Login</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
     <link th:href="@{/css/login.css}" rel="stylesheet">
 </head>
 <body class="login-page">
@@ -77,18 +77,24 @@
             <div th:if="${param.logout}" class="lr-alert lr-alert--success">
                 ✓ You have been logged out successfully.
             </div>
+            <div th:if="${param.passwordReset}" class="lr-alert lr-alert--success">
+                ✓ Password reset successfully. You can now log in.
+            </div>
 
             <!-- Form -->
             <form th:action="@{/login}" method="post" id="loginForm" novalidate>
 
                 <div class="lr-field">
-                    <label for="email">Email / Username</label>
-                    <input type="text" id="email" name="email"
-                           placeholder="your@email.com" required autocomplete="email">
+                    <label for="username">Email / Username</label>
+                    <input type="text" id="username" name="username"
+                           placeholder="your@email.com" required autocomplete="username">
                 </div>
 
                 <div class="lr-field">
-                    <label for="password">Password</label>
+                    <div class="lr-field-head">
+                        <label for="password">Password</label>
+                        <a th:href="@{/forgot-password}" class="lr-forgot">Forgot password?</a>
+                    </div>
                     <div class="lr-pw-wrap">
                         <input type="password" id="password" name="password"
                                placeholder="Enter your password" required autocomplete="current-password">
@@ -111,7 +117,7 @@
 
             <!-- Footer -->
             <p class="lr-footer">
-                Not registered? <a th:href="@{/signup}">Enroll Now →</a>
+                Not registered? <a th:href="@{/registration}">Enroll Now →</a>
             </p>
 
         </div>

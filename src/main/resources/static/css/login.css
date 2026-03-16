@@ -353,3 +353,20 @@ body.login-page {
     .login-right    { padding: 40px 24px 56px; }
     .lr-inner       { max-width: 100%; }
 }
+
+/* Forgot password link */
+.lr-field-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+.lr-field-head label { margin-bottom: 0; }
+.lr-forgot {
+    font-size: 0.76rem;
+    color: rgba(245,196,0,0.7);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+.lr-forgot:hover { color: #f5c400; }
