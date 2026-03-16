@@ -45,14 +45,26 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-            .authenticationProvider(authenticationProvider())   // ⭐ IMPORTANT
+        .authorizeHttpRequests(auth -> auth
+                .requestMatchers(
+                        "/", 
+                        "/login",
+                        "/signup",
+                        "/courses",
+                        "/about",
+                        "/faq",
+                        "/reviews",
+                        "/contact",
+                        "/registration",
+                        "/css/**",
+                        "/images/**"
+                ).permitAll()
 
-            .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/", "/signup", "/login", "/css/**", "/images/**").permitAll()
-                    .requestMatchers("/admin/**").hasRole("ADMIN")
-                    .requestMatchers("/student/**").hasRole("STUDENT")
-                    .anyRequest().authenticated()
-            )
+                .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers("/student/**").hasRole("STUDENT")
+
+                .anyRequest().authenticated()
+        )
 
             .formLogin(form -> form
                     .loginPage("/login")
