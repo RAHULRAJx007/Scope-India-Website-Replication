@@ -489,3 +489,31 @@ select option { background: #0b1640 !important; color: #ffffff !important; }
 /* Modal always hidden until .show */
 .ad-modal-overlay { display: none !important; }
 .ad-modal-overlay.show { display: flex !important; }
+
+/* ==========================================================
+   PASSWORD SHOW / HIDE (modal)
+========================================================== */
+.ad-pw-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.ad-pw-wrap .sd-edit-input {
+    padding-right: 42px !important;
+    width: 100%;
+}
+.ad-pw-eye {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none !important;
+    cursor: pointer;
+    font-size: 1rem;
+    opacity: 0.4;
+    padding: 4px !important;
+    border-radius: 4px !important;
+    line-height: 1;
+    transition: opacity 0.2s;
+    color: #ffffff;
+}
+.ad-pw-eye:hover { opacity: 0.8 !important; }

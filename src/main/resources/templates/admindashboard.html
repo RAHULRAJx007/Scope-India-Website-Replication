@@ -69,11 +69,17 @@
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                 <div class="sd-edit-group">
                     <label>New Password</label>
-                    <input type="password" name="newPassword" class="sd-edit-input" placeholder="Enter new password" required>
+                    <div class="ad-pw-wrap">
+                        <input type="password" name="password" id="rp_password" class="sd-edit-input" placeholder="Enter new password" required>
+                        <button type="button" class="ad-pw-eye" onclick="toggleAdminPw('rp_password',this)" tabindex="-1">&#x1F441;</button>
+                    </div>
                 </div>
                 <div class="sd-edit-group">
                     <label>Confirm Password</label>
-                    <input type="password" name="confirmPassword" class="sd-edit-input" placeholder="Confirm new password" required>
+                    <div class="ad-pw-wrap">
+                        <input type="password" name="confirmPassword" id="rp_confirm" class="sd-edit-input" placeholder="Confirm new password" required>
+                        <button type="button" class="ad-pw-eye" onclick="toggleAdminPw('rp_confirm',this)" tabindex="-1">&#x1F441;</button>
+                    </div>
                 </div>
                 <div class="sd-edit-actions">
                     <button type="button" class="sd-cancel-btn" onclick="closeResetPw()">Cancel</button>
@@ -206,8 +212,8 @@
                                     <td th:text="${s.branch}">—</td>
                                     <td>
                                         <div style="display:flex;gap:8px;flex-wrap:wrap;">
-                                            <button class="ad-edit-btn" onclick="openEditStudentFromRow(this)">Edit</button>
-                                            <button class="ad-pw-btn"   onclick="openResetPwFromRow(this)">Reset PW</button>
+                                            <a th:href="@{/admin/students/edit/{id}(id=${s.id})}" class="ad-edit-btn">Edit</a>
+                                            <button class="ad-pw-btn" onclick="openResetPwFromRow(this)">Reset PW</button>
                                             <a th:href="@{/admin/students/delete/{id}(id=${s.id})}"
                                                class="ad-delete-btn"
                                                onclick="return confirm('Delete this student?')">Delete</a>
@@ -394,6 +400,13 @@ function closeSidebar() { adSidebar.classList.remove('open'); adOverlay.classLis
 document.getElementById('adMenuBtn').addEventListener('click', openSidebar);
 document.getElementById('adClose').addEventListener('click', closeSidebar);
 adOverlay.addEventListener('click', closeSidebar);
+
+function toggleAdminPw(id, btn) {
+    var input = document.getElementById(id);
+    var isHidden = input.type === 'password';
+    input.type = isHidden ? 'text' : 'password';
+    btn.style.opacity = isHidden ? '1' : '0.4';
+}
 
 /* Edit student modal */
 function openEditStudentFromRow(btn) {

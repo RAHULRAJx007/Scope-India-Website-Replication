@@ -10,23 +10,28 @@ public class Student {
     private Long id;
 
     private String firstName;
-    
+
     private String lastName;
 
     @Column(unique = true)
     private String email;
 
     private String phone;
-    
+
     private String course;
 
     private String password;
 
     private String role;
-    
-    private String branch;
-    // getters and setters
 
+    private String branch;
+
+    @Column(name = "email_verified")
+    private Boolean emailVerified = false;
+
+    // =========================
+    // GETTERS & SETTERS
+    // =========================
 
     public Long getId() {
         return id;
@@ -93,25 +98,23 @@ public class Student {
     }
 
     public String getBranch() {
-		return branch;
-	}
+        return branch;
+    }
 
-	public void setBranch(String branch) {
-		this.branch = branch;
-	}
+    public void setBranch(String branch) {
+        this.branch = branch;
+    }
 
-	// ⭐ ADD THIS METHOD
+    public Boolean getEmailVerified() {
+        return emailVerified;
+    }
+
+    public void setEmailVerified(Boolean emailVerified) {
+        this.emailVerified = emailVerified;
+    }
+
+    // Helper method
     public String getName() {
         return firstName + " " + lastName;
     }
-
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public Student orElseThrow(Object object) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

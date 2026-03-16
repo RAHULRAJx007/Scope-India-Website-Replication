@@ -15,18 +15,30 @@ public class AuthController {
 
     public AuthController(StudentRepository studentRepository,
                           PasswordEncoder passwordEncoder) {
+
         this.studentRepository = studentRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
+    // ===============================
+    // REGISTER / SIGNUP
+    // ===============================
     @PostMapping("/signup")
     public String registerStudent(@ModelAttribute Student student) {
 
+        // Encrypt password
         student.setPassword(passwordEncoder.encode(student.getPassword()));
+
+        // Set role
         student.setRole("ROLE_STUDENT");
 
+        // Email not verified initially
+        student.setEmailVerified(false);
+
+        // Save student
         studentRepository.save(student);
 
         return "redirect:/login";
     }
+
 }

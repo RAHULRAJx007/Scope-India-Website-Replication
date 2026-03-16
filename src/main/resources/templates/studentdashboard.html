@@ -195,24 +195,43 @@
                         </div>
                         <button class="sd-edit-toggle-btn" onclick="toggleChangePw()">&#x1F512; Change</button>
                     </div>
+
+                    <!-- Success message -->
+                    <div id="pwSuccess" style="display:none;margin-top:14px;padding:10px 14px;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.25);border-radius:8px;color:#4ade80;font-size:0.82rem;font-weight:500;">
+                        &#x2713; Password updated successfully.
+                    </div>
+                    <!-- Error message -->
+                    <div id="pwError" style="display:none;margin-top:14px;padding:10px 14px;background:rgba(245,98,90,0.1);border:1px solid rgba(245,98,90,0.25);border-radius:8px;color:#f5625a;font-size:0.82rem;font-weight:500;">
+                        &#x2715; Current password is incorrect.
+                    </div>
+
                     <div id="changePwForm" style="display:none;margin-top:18px;">
                         <form th:action="@{/student/profile/change-password}" method="post" class="sd-edit-form">
                             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                             <div class="sd-edit-group">
                                 <label>Current Password</label>
-                                <input type="password" name="currentPassword" class="sd-edit-input"
-                                       placeholder="Enter current password" required>
+                                <div class="sd-pw-wrap">
+                                    <input type="password" name="currentPassword" id="pw_current" class="sd-edit-input"
+                                           placeholder="Enter current password" required>
+                                    <button type="button" class="sd-pw-eye" onclick="togglePw('pw_current',this)" tabindex="-1">&#x1F441;</button>
+                                </div>
                             </div>
                             <div class="sd-edit-row">
                                 <div class="sd-edit-group">
                                     <label>New Password</label>
-                                    <input type="password" name="newPassword" class="sd-edit-input"
-                                           placeholder="New password" required>
+                                    <div class="sd-pw-wrap">
+                                        <input type="password" name="newPassword" id="pw_new" class="sd-edit-input"
+                                               placeholder="New password" required>
+                                        <button type="button" class="sd-pw-eye" onclick="togglePw('pw_new',this)" tabindex="-1">&#x1F441;</button>
+                                    </div>
                                 </div>
                                 <div class="sd-edit-group">
                                     <label>Confirm Password</label>
-                                    <input type="password" name="confirmPassword" class="sd-edit-input"
-                                           placeholder="Confirm new password" required>
+                                    <div class="sd-pw-wrap">
+                                        <input type="password" name="confirmPassword" id="pw_confirm" class="sd-edit-input"
+                                               placeholder="Confirm new password" required>
+                                        <button type="button" class="sd-pw-eye" onclick="togglePw('pw_confirm',this)" tabindex="-1">&#x1F441;</button>
+                                    </div>
                                 </div>
                             </div>
                             <div class="sd-edit-actions">
@@ -287,6 +306,37 @@
         el.addEventListener('click', function(e){ e.preventDefault(); activate(el.dataset.goto); });
     });
 })();
+
+/* Handle redirect params for password change */
+(function(){
+    var params = window.location.search;
+    if (params.includes('passwordChanged')) {
+        // activate profile section and show success
+        document.querySelectorAll('.sd-section').forEach(function(s){ s.classList.remove('active'); });
+        document.querySelectorAll('.sd-nav-item').forEach(function(n){ n.classList.remove('active'); });
+        document.getElementById('profile').classList.add('active');
+        document.querySelector('[data-section="profile"]').classList.add('active');
+        document.getElementById('pwSuccess').style.display = 'block';
+        // clean URL
+        history.replaceState({}, '', '/student/dashboard');
+    }
+    if (params.includes('passwordError')) {
+        document.querySelectorAll('.sd-section').forEach(function(s){ s.classList.remove('active'); });
+        document.querySelectorAll('.sd-nav-item').forEach(function(n){ n.classList.remove('active'); });
+        document.getElementById('profile').classList.add('active');
+        document.querySelector('[data-section="profile"]').classList.add('active');
+        document.getElementById('pwError').style.display = 'block';
+        document.getElementById('changePwForm').style.display = 'block';
+        history.replaceState({}, '', '/student/dashboard');
+    }
+})();
+
+function togglePw(id, btn) {
+    var input = document.getElementById(id);
+    var isHidden = input.type === 'password';
+    input.type = isHidden ? 'text' : 'password';
+    btn.style.opacity = isHidden ? '1' : '0.4';
+}
 
 /* Profile edit toggle */
 function toggleEditProfile() {

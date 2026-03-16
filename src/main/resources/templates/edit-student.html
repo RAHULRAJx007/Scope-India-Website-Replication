@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCOPE INDIA | Edit Student</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #060e30;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .es-card {
+            background: #030a28;
+            border: 1px solid rgba(245,196,0,0.15);
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 560px;
+            box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+            animation: cardIn 0.3s ease;
+        }
+        @keyframes cardIn {
+            from { opacity:0; transform:translateY(20px); }
+            to   { opacity:1; transform:translateY(0); }
+        }
+
+        .es-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900; font-size: 1rem;
+            letter-spacing: 1.5px;
+            margin-bottom: 28px;
+        }
+        .es-logo span { color: #f5c400; }
+
+        .es-head { margin-bottom: 28px; }
+        .es-head h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900; font-size: 1.4rem;
+            color: #ffffff; margin-bottom: 4px;
+        }
+        .es-head p { font-size: 0.82rem; color: rgba(255,255,255,0.38); }
+        .es-head p span {
+            color: #f5c400; font-weight: 600;
+        }
+
+        .es-form { display: flex; flex-direction: column; gap: 16px; }
+
+        .es-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+        .es-group { display: flex; flex-direction: column; gap: 6px; }
+        .es-group label {
+            font-size: 0.72rem; font-weight: 700;
+            color: rgba(255,255,255,0.38);
+            text-transform: uppercase; letter-spacing: 0.6px;
+        }
+        .es-input {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(245,196,0,0.15);
+            border-radius: 10px;
+            padding: 11px 16px;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            width: 100%;
+        }
+        .es-input::placeholder { color: rgba(255,255,255,0.2); }
+        .es-input:focus {
+            border-color: rgba(245,196,0,0.5);
+            box-shadow: 0 0 0 3px rgba(245,196,0,0.07);
+        }
+
+        .es-divider {
+            height: 1px;
+            background: rgba(245,196,0,0.08);
+            margin: 4px 0;
+        }
+
+        .es-actions {
+            display: flex; gap: 10px; justify-content: flex-end;
+            margin-top: 4px;
+        }
+        .es-cancel {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 11px 22px;
+            color: rgba(255,255,255,0.45);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.84rem; font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: inline-flex; align-items: center;
+        }
+        .es-cancel:hover { background: rgba(255,255,255,0.09); color: rgba(255,255,255,0.7); }
+        .es-save {
+            background: #f5c400; color: #030a28;
+            border: none; border-radius: 10px;
+            padding: 11px 28px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700; font-size: 0.86rem;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s;
+        }
+        .es-save:hover { background: #ffe066; transform: translateY(-1px); }
+
+        @media (max-width: 540px) {
+            .es-card { padding: 28px 20px; }
+            .es-row  { grid-template-columns: 1fr; }
+            .es-actions { flex-direction: column; }
+            .es-cancel, .es-save { width: 100%; text-align: center; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="es-card">
+
+    <div class="es-logo">SCOPE<span>INDIA</span></div>
+
+    <div class="es-head">
+        <h1>Edit Student</h1>
+        <p>Editing: <span th:text="${student.firstName + ' ' + student.lastName}">Student Name</span></p>
+    </div>
+
+    <form th:action="@{/admin/students/edit/{id}(id=${student.id})}" method="post" class="es-form">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+        <div class="es-row">
+            <div class="es-group">
+                <label>First Name</label>
+                <input type="text" name="firstName" class="es-input"
+                       th:value="${student.firstName}" required>
+            </div>
+            <div class="es-group">
+                <label>Last Name</label>
+                <input type="text" name="lastName" class="es-input"
+                       th:value="${student.lastName}" required>
+            </div>
+        </div>
+
+        <div class="es-group">
+            <label>Phone</label>
+            <input type="tel" name="phone" class="es-input"
+                   th:value="${student.phone}" required>
+        </div>
+
+        <div class="es-row">
+            <div class="es-group">
+                <label>Course</label>
+                <input type="text" name="course" class="es-input"
+                       th:value="${student.course}" required>
+            </div>
+            <div class="es-group">
+                <label>Branch</label>
+                <input type="text" name="branch" class="es-input"
+                       th:value="${student.branch}" required>
+            </div>
+        </div>
+
+        <div class="es-divider"></div>
+
+        <div class="es-actions">
+            <a th:href="@{/admin/dashboard}" class="es-cancel">&#x2190; Cancel</a>
+            <button type="submit" class="es-save">Save Changes</button>
+        </div>
+    </form>
+
+</div>
+
+</body>
+</html>
