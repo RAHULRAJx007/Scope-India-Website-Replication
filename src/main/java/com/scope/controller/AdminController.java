@@ -140,6 +140,7 @@ public class AdminController {
         Student student = studentRepo.findById(id).orElse(null);
 
         if (student == null) {
+        	
             return "redirect:/admin/dashboard";
         }
 
