@@ -56,6 +56,9 @@ public class SecurityConfig {
                         "/reviews",
                         "/contact",
                         "/registration",
+                        "/forgot-password",
+                        "/reset-password",
+                        "/verify-email",
                         "/css/**",
                         "/images/**"
                 ).permitAll()
